@@ -1,0 +1,17 @@
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\bin\Debug\net5.0\BusinessLogic.deps.json
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\bin\Debug\net5.0\BusinessLogic.dll
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\bin\Debug\net5.0\ref\BusinessLogic.dll
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\bin\Debug\net5.0\BusinessLogic.pdb
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\bin\Debug\net5.0\GlobalModels.dll
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\bin\Debug\net5.0\Repository.dll
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\bin\Debug\net5.0\Repository.pdb
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\bin\Debug\net5.0\GlobalModels.pdb
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\obj\Debug\net5.0\BusinessLogic.csprojAssemblyReference.cache
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\obj\Debug\net5.0\BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\obj\Debug\net5.0\BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\obj\Debug\net5.0\BusinessLogic.AssemblyInfo.cs
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\obj\Debug\net5.0\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\obj\Debug\net5.0\BusinessLogic.csproj.CopyComplete
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\obj\Debug\net5.0\BusinessLogic.dll
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\obj\Debug\net5.0\ref\BusinessLogic.dll
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\BusinessLogic\obj\Debug\net5.0\BusinessLogic.pdb
