@@ -7,12 +7,11 @@ trigger:
 - main
 
 pool:
-  vmImage: default
+  Default
 
 variables:
   buildConfiguration: 'Release'
   solution: 'P2_Cinephiliacs.sln'
-
 
 steps:
 - task: UseDotNet@2
