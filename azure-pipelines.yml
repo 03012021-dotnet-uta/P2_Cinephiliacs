@@ -7,6 +7,7 @@ trigger:
 - main
 
 pool:
+#  vmImage: 'windows-latest'
   Default
 
 variables:
@@ -62,7 +63,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'b5e34eeb-efbd-41a7-8e9d-19cfa5d3b806'
+    azureSubscription: 'Azure subscription 1(6b046a51-8f67-4253-b7de-78eea66e9f0d)'
     appType: 'webApp'
-    WebAppName: 'Cinephiliacs'
+    WebAppName: 'CinephiliacsAPI'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'

@@ -1,0 +1,10 @@
+<p>movie works!</p>
+
+<ul *ngIf="selectedMovie">
+    <li>
+        <p class="name">{{ selectedMovie.Title }}</p>
+        <p class="year">{{ selectedMovie.Year }}</p>
+        <p class="id">{{ selectedMovie.imdbID }}</p>
+        <img src="{{selectedMovie.Poster}}" alt="Flowers in Chania">
+    </li>
+</ul>
