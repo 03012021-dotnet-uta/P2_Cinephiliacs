@@ -62,7 +62,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure subscription 1(6b046a51-8f67-4253-b7de-78eea66e9f0d)'
+    azureSubscription: 'b5e34eeb-efbd-41a7-8e9d-19cfa5d3b806'
     appType: 'webApp'
-    WebAppName: 'Cinephiliacs-WebAPI'
+    WebAppName: 'Cinephiliacs'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
