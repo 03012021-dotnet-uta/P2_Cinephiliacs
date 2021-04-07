@@ -29,8 +29,20 @@ namespace WebAPI
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
-            // retrieve App Service connection string
+        {
+            // Setup CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "dev", builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    /*builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();*/
+                });
+            });
+
+            // Retrieve App Service connection string
             var myConnString = Configuration.GetConnectionString("Cinephiliacs_Db");
             // Register the configured Db context as a service
             services.AddDbContext<Cinephiliacs_DbContext>(options =>
@@ -76,6 +88,8 @@ namespace WebAPI
             app.UseStaticFiles();
             
             app.UseRouting();
+
+            app.UseCors("dev");
 
             app.UseAuthorization();
 
