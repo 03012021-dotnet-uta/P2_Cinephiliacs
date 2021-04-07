@@ -2,16 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLogic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Repository;
+using Repository.DatabaseModels;
 
 namespace WebAPI
 {
@@ -27,19 +31,35 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Setup CORS
+
+            /* Setup CORS
             services.AddCors(options =>
             {
                 options.AddPolicy(name: "dev", builder =>
                 {
-                    builder.AllowAnyOrigin();
-                    /*builder.WithOrigins("http://localhost:4200")
+                    builder.WithOrigins("http://localhost:4200")
                     .AllowAnyHeader()
-                    .AllowAnyMethod();*/
+                    .AllowAnyMethod();
                 });
-            });
+            });*/
 
             services.AddControllers();
+
+            var myConnString = Configuration.GetConnectionString("Cinephiliacs_Db");
+            services.AddDbContext<Cinephiliacs_DbContext>(options =>
+            {
+                options.UseSqlServer(myConnString);
+            });
+
+            services.AddScoped<UserMethods>();
+            
+            services.AddScoped<TheRepo>();
+
+            //services.AddControllersWithViews()
+            //    .AddNewtonsoftJson(options =>
+            //        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            //    );
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
@@ -57,20 +77,20 @@ namespace WebAPI
             }
 
             // allows to use the static JS pages
-            app.UseStatusCodePages();
+            //app.UseStatusCodePages();
 
             app.UseHttpsRedirection();
 
             // use this to  redirect to the index HTML for any random path
-            app.UseRewriter(new RewriteOptions()
-                .AddRedirect("^$", "index.html"));
+            //app.UseRewriter(new RewriteOptions()
+            //    .AddRedirect("^$", "index.html"));
 
             // use the .js static files (find out what 'static' means)
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
                 
             app.UseRouting();
 
-            app.UseCors("dev");
+            //app.UseCors("dev");
 
             app.UseAuthorization();
 
