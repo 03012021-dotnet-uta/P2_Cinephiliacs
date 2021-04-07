@@ -53,8 +53,6 @@ namespace WebAPI.Controllers
         [HttpPost("user")]
         public ActionResult CreateUser([FromBody] User user)
         {
-            return StatusCode(200);
-            /*
             if(!ModelState.IsValid)
             {
                 return StatusCode(400);
@@ -67,7 +65,7 @@ namespace WebAPI.Controllers
             else
             {
                 return StatusCode(400);
-            }*/
+            }
         }
     }
 }
