@@ -27,6 +27,7 @@
         "dependencies": {
           "BusinessLogic": "1.0.0",
           "GlobalModels": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "5.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.4",
           "Repository": "1.0.0",

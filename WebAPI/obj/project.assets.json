@@ -5981,6 +5981,7 @@
     "net5.0": [
       "BusinessLogic >= 1.0.0",
       "GlobalModels >= 1.0.0",
+      "Microsoft.EntityFrameworkCore >= 5.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.4",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.4",
       "Repository >= 1.0.0",
@@ -6040,6 +6041,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[5.0.4, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[5.0.4, )"

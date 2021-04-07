@@ -46,9 +46,9 @@ C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\bin\Debug\net5.0\ru
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\bin\Debug\net5.0\BusinessLogic.dll
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\bin\Debug\net5.0\GlobalModels.dll
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\bin\Debug\net5.0\Repository.dll
+C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\bin\Debug\net5.0\GlobalModels.pdb
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\bin\Debug\net5.0\BusinessLogic.pdb
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\bin\Debug\net5.0\Repository.pdb
-C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\bin\Debug\net5.0\GlobalModels.pdb
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\obj\Debug\net5.0\WebAPI.csprojAssemblyReference.cache
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\obj\Debug\net5.0\WebAPI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\WebAPI\obj\Debug\net5.0\WebAPI.AssemblyInfoInputs.cache

@@ -7,25 +7,22 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Repository.DatabaseModels;
-using BusinessLogic;
-using Repository;
 
 namespace WebAPI
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -42,22 +39,6 @@ namespace WebAPI
                 });
             });
 
-            // Retrieve App Service connection string
-            var myConnString = Configuration.GetConnectionString("Cinephiliacs_Db");
-            // Register the configured Db context as a service
-            services.AddDbContext<Cinephiliacs_DbContext>(options =>
-            {
-                options.UseSqlServer(myConnString);
-            });
-
-            // Register all business logic classes as services
-            //services.AddScoped<StoreMethods>();
-            services.AddScoped<UserMethods>();
-
-            // Register the repository class as a service
-            services.AddScoped<TheRepo>();
-
-            // Register the WebAPI controllers as services
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -74,19 +55,19 @@ namespace WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
-            // Enables default text-only handlers for common error status codes
-            //app.UseStatusCodePages();
+
+            // allows to use the static JS pages
+            app.UseStatusCodePages();
 
             app.UseHttpsRedirection();
 
-            // Redirects unknown paths to the index HTML
+            // use this to  redirect to the index HTML for any random path
             app.UseRewriter(new RewriteOptions()
                 .AddRedirect("^$", "index.html"));
 
-            // Enables static files to be served
-            // The default directory is {content root}/wwwroot
-            //app.UseStaticFiles();
-            
+            // use the .js static files (find out what 'static' means)
+            app.UseStaticFiles();
+                
             app.UseRouting();
 
             app.UseCors("dev");
