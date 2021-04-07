@@ -71,6 +71,10 @@ namespace WebAPI
             app.UseRewriter(new RewriteOptions()
                 .AddRedirect("^$", "index.html"));
 
+            // Enables static files to be served
+            // The default directory is {content root}/wwwroot
+            app.UseStaticFiles();
+            
             app.UseRouting();
 
             app.UseAuthorization();

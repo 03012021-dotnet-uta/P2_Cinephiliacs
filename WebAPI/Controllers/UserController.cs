@@ -9,12 +9,12 @@ using Microsoft.Net.Http.Headers;
 
 namespace WebAPI.Controllers
 {
-    [ApiController]
+    [UserController]
     [Route("[controller]")]
-    public class APIController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly UserMethods _userMethods;
-        public APIController(UserMethods userMethods)
+        public UserController(UserMethods userMethods)
         {
             _userMethods = userMethods;
         }
