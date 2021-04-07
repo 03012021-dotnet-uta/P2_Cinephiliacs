@@ -12,7 +12,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  solution: 'P2_Cinephiliacs.sln'
+  solution: 'WebAPIDemo.sln'
 
 steps:
 - task: UseDotNet@2
@@ -39,14 +39,6 @@ steps:
     command: 'build'
     projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration)'
-
-- task: DotNetCoreCLI@2
-  displayName: 'Testing'
-  inputs:
-    command: 'test'
-    projects: '$(solution)'
-    arguments: '--configuration $(buildConfiguration) --collect "Code Coverage"'
-    testRunTitle: 'Dotnet tests running'
 
 - task: DotNetCoreCLI@2
   displayName: 'Publishing'
