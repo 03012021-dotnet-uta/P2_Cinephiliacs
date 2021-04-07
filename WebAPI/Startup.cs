@@ -75,7 +75,7 @@ namespace WebAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
             // Enables default text-only handlers for common error status codes
-            app.UseStatusCodePages();
+            //app.UseStatusCodePages();
 
             app.UseHttpsRedirection();
 
@@ -85,7 +85,7 @@ namespace WebAPI
 
             // Enables static files to be served
             // The default directory is {content root}/wwwroot
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
             
             app.UseRouting();
 
