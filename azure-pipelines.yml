@@ -7,8 +7,8 @@ trigger:
 - main
 
 pool:
-#  vmImage: 'windows-latest'
-name: "Default"
+#vmImage: 'windows-latest'
+Default
 
 variables:
   buildConfiguration: 'Release'
