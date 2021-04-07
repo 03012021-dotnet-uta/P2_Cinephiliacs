@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Repository.DatabaseModels;
+using BusinessLogic;
 
 namespace WebAPI
 {
@@ -37,7 +38,7 @@ namespace WebAPI
 
             // Register all business logic classes as services
             //services.AddScoped<StoreMethods>();
-            //services.AddScoped<UserMethods>();
+            services.AddScoped<UserMethods>();
 
             // Register the repository class as a service
             //services.AddScoped<TheStoreRepo>();
