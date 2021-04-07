@@ -12,7 +12,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  solution: 'WebAPIDemo.sln'
+  solution: 'P2_Cinephiliacs.sln'
 
 steps:
 - task: UseDotNet@2
