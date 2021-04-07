@@ -9,7 +9,7 @@ using Microsoft.Net.Http.Headers;
 
 namespace WebAPI.Controllers
 {
-    [UserController]
+    [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
