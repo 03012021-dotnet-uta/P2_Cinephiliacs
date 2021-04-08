@@ -36,8 +36,10 @@ namespace CineAPI
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                 builder =>
                                 {
-                                    builder.AllowAnyOrigin();
-                                    //builder.WithOrigins("http://example.com");
+                                    builder.AllowAnyOrigin()
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod();
+                                    //builder.WithOrigins("http://cinephils.azurewebsites.net/");
                                 });
             });
             services.AddControllers();
