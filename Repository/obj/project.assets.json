@@ -1520,14 +1520,14 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "GlobalModels/1.0.0": {
+      "Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "compile": {
-          "bin/placeholder/GlobalModels.dll": {}
+          "bin/placeholder/Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/GlobalModels.dll": {}
+          "bin/placeholder/Models.dll": {}
         }
       }
     }
@@ -5752,17 +5752,17 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "GlobalModels/1.0.0": {
+    "Models/1.0.0": {
       "type": "project",
-      "path": "../GlobalModels/GlobalModels.csproj",
-      "msbuildProject": "../GlobalModels/GlobalModels.csproj"
+      "path": "../Models/Models.csproj",
+      "msbuildProject": "../Models/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "GlobalModels >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.4",
-      "Microsoft.EntityFrameworkCore.Tools >= 5.0.4"
+      "Microsoft.EntityFrameworkCore.Tools >= 5.0.4",
+      "Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5772,11 +5772,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
+      "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
+      "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\obj\\",
+      "outputPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5796,8 +5796,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj": {
-              "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj"
+            "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj"
             }
           }
         }

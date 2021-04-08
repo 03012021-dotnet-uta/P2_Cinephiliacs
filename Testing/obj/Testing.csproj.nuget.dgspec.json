@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj": {}
+    "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Testing\\Testing.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\BusinessLogic\\BusinessLogic.csproj": {
+    "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Logic\\logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\BusinessLogic\\BusinessLogic.csproj",
-        "projectName": "BusinessLogic",
-        "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\BusinessLogic\\BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Logic\\logic.csproj",
+        "projectName": "logic",
+        "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Logic\\logic.csproj",
         "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\BusinessLogic\\obj\\",
+        "outputPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Logic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -31,11 +31,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj": {
-                "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj"
+              "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj"
               },
-              "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
-                "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj"
+              "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\Repository.csproj": {
+                "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\Repository.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj": {
+    "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj",
-        "projectName": "GlobalModels",
-        "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj",
+        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj",
+        "projectName": "Models",
+        "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\obj\\",
+        "outputPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -125,14 +125,14 @@
         }
       }
     },
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
+    "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
+        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
+        "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\Repository.csproj",
         "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\obj\\",
+        "outputPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -152,8 +152,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj": {
-                "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj"
+              "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj"
               }
             }
           }
@@ -198,14 +198,14 @@
         }
       }
     },
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj": {
+    "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Testing\\Testing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Testing\\Testing.csproj",
         "projectName": "Testing",
-        "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+        "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Testing\\Testing.csproj",
         "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\obj\\",
+        "outputPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Testing\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -225,8 +225,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\BusinessLogic\\BusinessLogic.csproj": {
-                "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\BusinessLogic\\BusinessLogic.csproj"
+              "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Logic\\logic.csproj": {
+                "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Logic\\logic.csproj"
               }
             }
           }
@@ -241,10 +241,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.InMemory": {
-              "target": "Package",
-              "version": "[5.0.4, )"
-            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.7.1, )"

@@ -8,9 +8,9 @@
     ".NETCoreApp,Version=v5.0": {
       "Repository/1.0.0": {
         "dependencies": {
-          "GlobalModels": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.4",
-          "Microsoft.EntityFrameworkCore.Tools": "5.0.4"
+          "Microsoft.EntityFrameworkCore.Tools": "5.0.4",
+          "Models": "1.0.0"
         },
         "runtime": {
           "Repository.dll": {}
@@ -1067,9 +1067,9 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
-      "GlobalModels/1.0.0": {
+      "Models/1.0.0": {
         "runtime": {
-          "GlobalModels.dll": {}
+          "Models.dll": {}
         }
       }
     }
@@ -1759,7 +1759,7 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
-    "GlobalModels/1.0.0": {
+    "Models/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
