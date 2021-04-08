@@ -20,6 +20,7 @@ namespace CineAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,7 +31,15 @@ namespace CineAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                builder =>
+                                {
+                                    builder.AllowAnyOrigin();
+                                    //builder.WithOrigins("http://example.com");
+                                });
+            });
             services.AddControllers();
 
             var myConnectionString = Configuration.GetConnectionString("Cinephiliacs_Db");
@@ -59,9 +68,10 @@ namespace CineAPI
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
+            // Enables the CORS policty for all controller endpoints. Must come between UseRouting() and UseEndpoints()
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

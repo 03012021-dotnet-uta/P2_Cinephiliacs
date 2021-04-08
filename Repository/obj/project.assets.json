@@ -5772,11 +5772,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\Repository.csproj",
+      "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\Repository.csproj",
+      "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Repository\\obj\\",
+      "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5796,8 +5796,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\Matt_PC\\revature\\week_6\\WebAPIDemo\\Models\\Models.csproj"
+            "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
             }
           }
         }
