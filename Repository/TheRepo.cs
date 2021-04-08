@@ -30,6 +30,7 @@ namespace Repository
         public GlobalModels.User GetUser(string username)
         {
             User repoUser = _dbContext.Users.Where(a => a.Username == username).FirstOrDefault<User>();
+            //We are only needing the username for the loging?
             GlobalModels.User user = new GlobalModels.User(repoUser.Username, repoUser.FirstName, repoUser.LastName, repoUser.Email, repoUser.Permissions);
             return user;
         }

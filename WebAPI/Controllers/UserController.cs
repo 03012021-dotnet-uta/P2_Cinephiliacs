@@ -10,7 +10,6 @@ using Microsoft.Net.Http.Headers;
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class UserController : ControllerBase
     {
         private readonly UserMethods _userMethods;
@@ -24,7 +23,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        [HttpGet("user/{username}")]
+        [HttpGet("[controller]/{username}")]
         public ActionResult<User> GetUser(string username)
         {
             if(!ModelState.IsValid)
@@ -50,7 +49,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        [HttpPost("user")]
+        [HttpPost("[controller]")]
         public ActionResult CreateUser([FromBody] User user)
         {
             if(!ModelState.IsValid)

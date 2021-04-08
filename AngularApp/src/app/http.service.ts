@@ -9,6 +9,8 @@ import { FormsModule} from '@angular/forms';
 })
 export class HttpService {
 
+  baseURL:string = "https://cinephiliacsapi.azurewebsites.net/";
+
   constructor(private http: HttpClient, private router: Router) { 
     
   }
@@ -26,6 +28,10 @@ export class HttpService {
   onNavigate(){
     window.open("https://www.google.com", "_blank");
   } 
+
+  getBase(){
+    return this.baseURL;
+  }
   
 
   

@@ -16,3 +16,21 @@ C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\Repository\obj\Debug\net5.
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\Repository\obj\Debug\net5.0\ref\Repository.dll
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\Repository\obj\Debug\net5.0\Repository.pdb
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\Repository\obj\Debug\net5.0\Repository.genruntimeconfig.cache
+C:\Users\Rodge\Desktop\New folder (2)\Repository\bin\Debug\net5.0\Repository.deps.json
+C:\Users\Rodge\Desktop\New folder (2)\Repository\bin\Debug\net5.0\Repository.runtimeconfig.json
+C:\Users\Rodge\Desktop\New folder (2)\Repository\bin\Debug\net5.0\Repository.runtimeconfig.dev.json
+C:\Users\Rodge\Desktop\New folder (2)\Repository\bin\Debug\net5.0\Repository.dll
+C:\Users\Rodge\Desktop\New folder (2)\Repository\bin\Debug\net5.0\ref\Repository.dll
+C:\Users\Rodge\Desktop\New folder (2)\Repository\bin\Debug\net5.0\Repository.pdb
+C:\Users\Rodge\Desktop\New folder (2)\Repository\bin\Debug\net5.0\GlobalModels.dll
+C:\Users\Rodge\Desktop\New folder (2)\Repository\bin\Debug\net5.0\GlobalModels.pdb
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\Repository.csprojAssemblyReference.cache
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\Repository.AssemblyInfoInputs.cache
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\Repository.AssemblyInfo.cs
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\Repository.csproj.CoreCompileInputs.cache
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\Repository.csproj.CopyComplete
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\Repository.dll
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\ref\Repository.dll
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\Repository.pdb
+C:\Users\Rodge\Desktop\New folder (2)\Repository\obj\Debug\net5.0\Repository.genruntimeconfig.cache

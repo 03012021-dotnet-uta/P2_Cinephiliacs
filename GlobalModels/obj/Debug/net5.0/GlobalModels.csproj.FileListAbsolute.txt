@@ -10,3 +10,15 @@ C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\GlobalModels\obj\Debug\net
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\GlobalModels\obj\Debug\net5.0\GlobalModels.dll
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\GlobalModels\obj\Debug\net5.0\ref\GlobalModels.dll
 C:\Users\Matt_PC\revature\batch_repos\P2_Cinephiliacs\GlobalModels\obj\Debug\net5.0\GlobalModels.pdb
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\bin\Debug\net5.0\GlobalModels.deps.json
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\bin\Debug\net5.0\GlobalModels.dll
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\bin\Debug\net5.0\ref\GlobalModels.dll
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\bin\Debug\net5.0\GlobalModels.pdb
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\obj\Debug\net5.0\GlobalModels.csprojAssemblyReference.cache
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\obj\Debug\net5.0\GlobalModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\obj\Debug\net5.0\GlobalModels.AssemblyInfoInputs.cache
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\obj\Debug\net5.0\GlobalModels.AssemblyInfo.cs
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\obj\Debug\net5.0\GlobalModels.csproj.CoreCompileInputs.cache
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\obj\Debug\net5.0\GlobalModels.dll
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\obj\Debug\net5.0\ref\GlobalModels.dll
+C:\Users\Rodge\Desktop\New folder (2)\GlobalModels\obj\Debug\net5.0\GlobalModels.pdb

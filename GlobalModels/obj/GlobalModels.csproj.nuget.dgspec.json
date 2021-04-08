@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj": {}
+    "C:\\Users\\Rodge\\Desktop\\New folder (2)\\GlobalModels\\GlobalModels.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj": {
+    "C:\\Users\\Rodge\\Desktop\\New folder (2)\\GlobalModels\\GlobalModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj",
+        "projectUniqueName": "C:\\Users\\Rodge\\Desktop\\New folder (2)\\GlobalModels\\GlobalModels.csproj",
         "projectName": "GlobalModels",
-        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\GlobalModels.csproj",
-        "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\GlobalModels\\obj\\",
+        "projectPath": "C:\\Users\\Rodge\\Desktop\\New folder (2)\\GlobalModels\\GlobalModels.csproj",
+        "packagesPath": "C:\\Users\\Rodge\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rodge\\Desktop\\New folder (2)\\GlobalModels\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Matt_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Rodge\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
