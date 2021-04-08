@@ -1,0 +1,45 @@
+<p>home works!</p>
+<h1>Welcome</h1>
+
+<div class="play-container">
+    <p>You've Clicked <span (click)="countClick()"> this</span>{{clickCounter}} times.</p>
+</div>
+<div class="play-container">
+    <p>Test <span (click)="testClick()"> this</span>{{clickCounter}} times.</p>
+</div>
+<div class="play-container">
+    <p>
+        <input type="text" [(ngModel)]="name">
+        <br>
+        <strong>You said: </strong> {{name}}
+    </p>
+</div>
+
+<!--Allows you do do one simple change for the CSS based on a condition
+    [style.background-color]="clickCounter > 4 ? 'green' : 'red'"-->
+<!--Allows you to do multiple CSS changes in the class
+[ngStyle]="{
+    'background-color': clickCounter > 4 ? 'green' : 'red',
+    'border':           clickCounter > 4 ? '4px solid black' : 'none'
+}
+"
+    -->
+
+    <!-- Allows you to change the class of one area
+        [class.active]="clickCounter > 4"-->
+<div class="play-container" [ngClass]="setClasses()">
+    <ng-template [ngIf]="clickCounter > 4" [ngIfElse]="none">
+        <p>The click counter is greater than 4</p>
+    </ng-template>
+    <ng-template #none>
+        <p>The click counter is not greater than 4</p>
+    </ng-template>
+</div>
+<div class="play-container">
+    <p>
+        <input type="text" name="search" [(ngModel)]="name">
+        <br>
+        <strong routerLink="/list/{{name}}/1">Search </strong>
+    </p>
+  </div>
+
