@@ -59,6 +59,11 @@ namespace BusinessLogic
             {
                 // Get the topic associated with this discussion
                 Repository.Models.Topic topic = _repo.GetDiscussionTopic(repoDiscussion.DiscussionId);
+                if(topic == null)
+                {
+                    topic = new Repository.Models.Topic();
+                    topic.TopicName = "None";
+                }
                 discussions.Add(Mapper.RepoDiscussionToDiscussion(repoDiscussion, topic));
             }
             return discussions;
