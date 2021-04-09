@@ -32,14 +32,19 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonar Cloud'
+    organization: 'tmgsat'
+    scannerMode: 'MSBuild'
+    projectKey: 'tmgsat_Cinephiliacs'
+    projectName: 'Cinephiliacs'
 - task: DotNetCoreCLI@2
   displayName: 'Building'
   inputs:
     command: 'build'
     projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration)'
-
 - task: DotNetCoreCLI@2
   displayName: 'Testing'
   inputs:
@@ -47,6 +52,11 @@ steps:
     projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration) --collect "Code Coverage"'
     testRunTitle: 'Dotnet tests running'
+
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '60'
 
 - task: DotNetCoreCLI@2
   displayName: 'Publishing'
