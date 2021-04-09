@@ -109,6 +109,19 @@ namespace Repository
             return false;
         }
 
+        public bool AddMovie(string movieid)
+        {
+            Repository.Models.Movie movie = new Repository.Models.Movie();
+            movie.MovieId = movieid;
+            _dbContext.Movies.Add(movie);
+
+            if(_dbContext.SaveChanges() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private bool UserExists(string username)
         {
             return (_dbContext.Users.Where(u => u.Username == username).FirstOrDefault<User>() != null);

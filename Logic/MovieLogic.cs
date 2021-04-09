@@ -32,7 +32,7 @@ namespace BusinessLogic
 
         public bool NewMovie(string movieid)
         {
-            throw new NotImplementedException();
+            return _repo.AddMovie(movieid);
         }
 
         public bool NewReview(Review review)
