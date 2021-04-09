@@ -3,15 +3,24 @@
 
 
 
-<h1>Movies Result of Avengers</h1>
+<h1>Movies Result of {{searchTerm}}</h1>
 <ul *ngIf="searches">
     <li *ngFor="let search of searches">
-        <img src="{{search.Poster}}" routerLink="../../../movie/{{search.imdbID}}">
+        <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}">
         <p class="name">{{ search.Title }}</p>
         <p class="year">{{ search.Year }}</p>
         <p class="id">{{ search.imdbID }}</p>
     </li>
 </ul>
+<ul *ngIf="searches2">
+    <li *ngFor="let search of searches2">
+        <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}">
+        <p class="name">{{ search.Title }}</p>
+        <p class="year">{{ search.Year }}</p>
+        <p class="id">{{ search.imdbID }}</p>
+    </li>
+</ul>
+
 
 
 
