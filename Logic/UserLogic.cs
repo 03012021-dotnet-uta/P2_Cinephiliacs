@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using GlobalModels;
-using Microsoft.Extensions.Logging;
 using Repository;
 
 namespace BusinessLogic
@@ -9,12 +8,10 @@ namespace BusinessLogic
     public class UserLogic : Interfaces.IUserLogic
     {
         private readonly RepoLogic _repo;
-        //private readonly ILogger _logger;
         
-        public UserLogic(RepoLogic repo, ILogger<UserLogic> logger)
+        public UserLogic(RepoLogic repo)
         {
             _repo = repo;
-            //_logger = logger;
         }
 
         public bool CreateUser(User user)

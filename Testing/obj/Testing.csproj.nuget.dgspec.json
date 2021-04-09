@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj": {}
+    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj": {
+    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj",
+        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj",
         "projectName": "logic",
-        "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj",
+        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj",
         "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\obj\\",
+        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -31,11 +31,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
-                "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
+              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
               },
-              "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
-                "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj"
+              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
+                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
+    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj",
+        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\obj\\",
+        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -125,14 +125,14 @@
         }
       }
     },
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
+    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
+        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
+        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
         "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\obj\\",
+        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -152,8 +152,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
-                "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
+              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
               }
             }
           }
@@ -198,14 +198,14 @@
         }
       }
     },
-    "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj": {
+    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
         "projectName": "Testing",
-        "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
         "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\obj\\",
+        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -225,8 +225,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj": {
-                "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj"
+              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj": {
+                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj"
               }
             }
           }
