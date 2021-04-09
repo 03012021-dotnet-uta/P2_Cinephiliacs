@@ -25,9 +25,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(){
+  async login(){
     console.log("Login attempt" + this.userName);
-    console.log(this._login.loginUser(this.userName));
+    await this._login.loginUser(this.userName);
   }
 
   createUser(){

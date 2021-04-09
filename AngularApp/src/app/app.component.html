@@ -9,12 +9,13 @@
 
 <header>
   <div class="container">
-    <a href="#"class="logo">logo</a>
+    <a class="logo" (onclick)= "reloadPage()">logo</a>
     <nav>
       <ul>
-        <li><input type="text" name="search" [(ngModel)]="test"><strong routerLink="/list/{{test}}/1">Search </strong></li>
+        <li><input type="text" name="search" [(ngModel)]="test" ><a href="/list/{{test}}/1" >Search</a> </li>
         <li><a href="#" routerLink="/">Home</a></li>
-        <li><a href="#" routerLink="/list/back/1">Breweries</a></li>
+        <li><a href="/list/back/1" >Breweries</a></li>
+        
       </ul>
     </nav>
   </div>
