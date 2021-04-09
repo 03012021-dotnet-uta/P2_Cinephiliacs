@@ -29,5 +29,22 @@ namespace BusinessLogic
             return user;
         }
 
+        internal static Discussion RepoDiscussionToDiscussion(Repository.Models.Discussion repoDiscussion, Repository.Models.Topic topic)
+        {
+            var discussion = new Discussion(repoDiscussion.MovieId, repoDiscussion.Username, repoDiscussion.Subject, topic.TopicName);
+            return discussion;
+        }
+
+        internal static Comment RepoCommentToComment(Repository.Models.Comment repoComment)
+        {
+            var comment = new Comment(repoComment.DiscussionId, repoComment.Username, repoComment.CommentText, repoComment.IsSpoiler);
+            return comment;
+        }
+
+        internal static Review RepoReviewToReview(Repository.Models.Review repoReview)
+        {
+            var review = new Review(repoReview.MovieId, repoReview.Username, repoReview.Rating, repoReview.Review1);
+            return review;
+        }
     }
 }

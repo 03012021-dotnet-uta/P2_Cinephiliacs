@@ -34,5 +34,43 @@ namespace Repository
         {
             return _dbContext.Users.ToList();
         }
+
+        public Topic GetDiscussionTopic(int discussionId)
+        {
+            return _dbContext.Topics.Where(t => t.TopicName == _dbContext.DiscussionTopics
+                .Where(d => d.DiscussionId == discussionId).FirstOrDefault<DiscussionTopic>().TopicName)
+                .FirstOrDefault<Topic>();
+        }
+
+        public List<Repository.Models.Discussion> GetDiscussions(string username)
+        {
+            return _dbContext.Discussions.Where(d => d.Username == username).ToList();
+        }
+
+        public List<Repository.Models.Comment> GetComments(string username)
+        {
+            return _dbContext.Comments.Where(c => c.Username == username).ToList();
+        }
+
+        public List<Repository.Models.Review> GetReviews(string username)
+        {
+            return _dbContext.Reviews.Where(r => r.Username == username).ToList();
+        }
+
+        public List<FollowingMovie> GetFollowingMovies(string username)
+        {
+            return _dbContext.FollowingMovies.Where(f => f.Username == username).ToList();
+        }
+
+        public bool FollowMovie(FollowingMovie followingMovie)
+        {
+            _dbContext.FollowingMovies.Add(followingMovie);
+
+            if(_dbContext.SaveChanges() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

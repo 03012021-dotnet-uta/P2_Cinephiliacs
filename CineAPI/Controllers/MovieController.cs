@@ -13,10 +13,10 @@ namespace CineAPI.Controllers
     [Route("[controller]")]
     public class MovieController : ControllerBase
     {
-        private readonly IUserLogic _userLogic;
-        public MovieController(IUserLogic userLogic)
+        private readonly IMovieLogic _movieLogic;
+        public MovieController(IMovieLogic movieLogic)
         {
-            _userLogic = userLogic;
+            _movieLogic = movieLogic;
         }
     }
 }

@@ -47,6 +47,8 @@ namespace CineAPI
             );
 
             services.AddScoped<BusinessLogic.Interfaces.IUserLogic, UserLogic>();
+            services.AddScoped<BusinessLogic.Interfaces.IMovieLogic, MovieLogic>();
+            services.AddScoped<BusinessLogic.Interfaces.IForumLogic, ForumLogic>();
 
             services.AddScoped<RepoLogic>();
 

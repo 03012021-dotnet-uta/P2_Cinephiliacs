@@ -13,10 +13,10 @@ namespace CineAPI.Controllers
     [Route("[controller]")]
     public class ForumController : ControllerBase
     {
-        private readonly IUserLogic _userLogic;
-        public ForumController(IUserLogic userLogic)
+        private readonly IForumLogic _forumLogic;
+        public ForumController(IForumLogic forumLogic)
         {
-            _userLogic = userLogic;
+            _forumLogic = forumLogic;
         }
     }
 }
