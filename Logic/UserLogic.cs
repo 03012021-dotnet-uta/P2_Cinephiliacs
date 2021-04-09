@@ -9,12 +9,12 @@ namespace BusinessLogic
     public class UserLogic : Interfaces.IUserLogic
     {
         private readonly RepoLogic _repo;
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger;
         
         public UserLogic(RepoLogic repo, ILogger<UserLogic> logger)
         {
             _repo = repo;
-            _logger = logger;
+            //_logger = logger;
         }
 
         public bool CreateUser(User user)
@@ -28,10 +28,10 @@ namespace BusinessLogic
             var repoUser = _repo.GetUser(username);
             if(repoUser == null)
             {
-                _logger.LogWarning($"The repository layer's GetUser(${username}) returned null.");
+                //_logger.LogWarning($"The repository layer's GetUser(${username}) returned null.");
                 return null;
             }
-            _logger.LogWarning($"GetUser(${username}) WORKED, AND SO DID LOGGING!");
+            //_logger.LogWarning($"GetUser(${username}) WORKED, AND SO DID LOGGING!");
             return UserMapper.RepoUserToUser(repoUser);
         }
 
@@ -40,7 +40,7 @@ namespace BusinessLogic
             var repoUsers = _repo.GetUsers();
             if(repoUsers == null)
             {
-                _logger.LogWarning($"The repository layer's GetUsers() returned null.");
+                //_logger.LogWarning($"The repository layer's GetUsers() returned null.");
                 return null;
             }
 
