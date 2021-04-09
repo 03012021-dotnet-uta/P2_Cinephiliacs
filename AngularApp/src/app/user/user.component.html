@@ -1,0 +1,20 @@
+<p>user works!</p>
+<div *ngIf="user">
+    {{user.username}}
+    {{user.email}}<br>
+    <div *ngIf="reviews">
+        <h3>{{user.username}}'s' Review</h3>
+        <div *ngFor="let review of reviews">
+            <b>{{review.movieid}}</b><br>
+            <b>{{review.text}}</b>
+        </div>
+    </div>  
+    <div *ngIf="discussions">
+        <h3>{{user.username}}'s discussions</h3>
+        <div *ngFor="let discussions of discussions">
+            
+        </div>
+    </div>
+    
+</div>
+

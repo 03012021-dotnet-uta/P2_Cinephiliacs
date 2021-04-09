@@ -9,13 +9,19 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MovieComponent } from './movie/movie.component';
+import { AllUsersComponent } from './all-users/all-users.component';
+import { UserComponent } from './user/user.component';
+import { DiscussionComponent } from './discussion/discussion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListComponent,
-    MovieComponent
+    MovieComponent,
+    AllUsersComponent,
+    UserComponent,
+    DiscussionComponent
   ],
   imports: [
     BrowserModule,
