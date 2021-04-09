@@ -16,7 +16,7 @@ namespace BusinessLogic
 
         public bool CreateUser(User user)
         {
-            var repoUser = UserMapper.UserToRepoUser(user);
+            var repoUser = Mapper.UserToRepoUser(user);
             return _repo.AddUser(repoUser);
         }
 
@@ -27,7 +27,7 @@ namespace BusinessLogic
             {
                 return null;
             }
-            return UserMapper.RepoUserToUser(repoUser);
+            return Mapper.RepoUserToUser(repoUser);
         }
 
         public List<User> GetUsers()
@@ -41,14 +41,14 @@ namespace BusinessLogic
             var users = new List<User>();
             foreach (var repoUser in repoUsers)
             {
-                users.Add(UserMapper.RepoUserToUser(repoUser));
+                users.Add(Mapper.RepoUserToUser(repoUser));
             }
             return users;
         }
 
         public List<Discussion> GetDiscussions(string username)
         {
-            List<Repository.Models.Discussion> repoDiscussions = _repo.GetDiscussions(username);
+            List<Repository.Models.Discussion> repoDiscussions = _repo.GetUserDiscussions(username);
             if(repoDiscussions == null)
             {
                 return null;
@@ -59,14 +59,14 @@ namespace BusinessLogic
             {
                 // Get the topic associated with this discussion
                 Repository.Models.Topic topic = _repo.GetDiscussionTopic(repoDiscussion.DiscussionId);
-                discussions.Add(UserMapper.RepoDiscussionToDiscussion(repoDiscussion, topic));
+                discussions.Add(Mapper.RepoDiscussionToDiscussion(repoDiscussion, topic));
             }
             return discussions;
         }
 
         public List<Comment> GetComments(string username)
         {
-            List<Repository.Models.Comment> repoComments = _repo.GetComments(username);
+            List<Repository.Models.Comment> repoComments = _repo.GetUserComments(username);
             if(repoComments == null)
             {
                 return null;
@@ -75,7 +75,7 @@ namespace BusinessLogic
             List<Comment> comments = new List<Comment>();
             foreach (var repoComment in repoComments)
             {
-                comments.Add(UserMapper.RepoCommentToComment(repoComment));
+                comments.Add(Mapper.RepoCommentToComment(repoComment));
             }
             return comments;
         }
@@ -98,7 +98,7 @@ namespace BusinessLogic
 
         public List<Review> GetReviews(string username)
         {
-            List<Repository.Models.Review> repoReviews = _repo.GetReviews(username);
+            List<Repository.Models.Review> repoReviews = _repo.GetUserReviews(username);
             if(repoReviews == null)
             {
                 return null;
@@ -107,7 +107,7 @@ namespace BusinessLogic
             List<Review> reviews = new List<Review>();
             foreach (var repoReview in repoReviews)
             {
-                reviews.Add(UserMapper.RepoReviewToReview(repoReview));
+                reviews.Add(Mapper.RepoReviewToReview(repoReview));
             }
             return reviews;
         }

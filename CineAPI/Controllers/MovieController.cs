@@ -18,5 +18,50 @@ namespace CineAPI.Controllers
         {
             _movieLogic = movieLogic;
         }
+        
+        [HttpGet("reviews/{movieid}")]
+        public ActionResult<List<Review>> GetReviews(string movieid)
+        {
+            List<Review> reviews = _movieLogic.GetReviews(movieid);
+
+            if(reviews == null)
+            {
+                return StatusCode(404);
+            }
+            StatusCode(200);
+            return reviews;
+        }
+
+        [HttpPost("review")]
+        public ActionResult NewReview([FromBody] Review review)
+        {
+            if(!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            if(_movieLogic.NewReview(review))
+            {
+                return StatusCode(201);
+            }
+            else
+            {
+                return StatusCode(400);
+            }
+        }
+
+        [HttpPost("{movieid}")]
+        public ActionResult NewMovie(string movieid)
+        {
+            if (_movieLogic.NewMovie(movieid))
+            {
+                return StatusCode(201);
+            }
+            else
+            {
+                return StatusCode(400);
+            }
+        }
+
     }
 }
