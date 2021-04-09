@@ -31,11 +31,13 @@ export class ListComponent implements OnInit {
       
     });
     this._http.getMovies(this.searchTerm,(this.pageNum + 1)).subscribe(data => {
-      this.movies.concat(data);
-      this.searches = this.movies.Search;
+      this.movies2 =  data;
+      
+      this.searches2 = this.movies2.Search;
       console.log("this is movies now just so you know");
-      console.log(this.movies2.Search);
+      console.log(this.movies2);
     });
+    
 
   }
 
