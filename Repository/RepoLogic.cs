@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Repository.Models;
 
@@ -13,15 +14,8 @@ namespace Repository
             _dbContext = dbContext;
         }
 
-        public bool AddUser(GlobalModels.User user)
+        public bool AddUser(Repository.Models.User repoUser)
         {
-            User repoUser = new User();
-            repoUser.Username = user.Username;
-            repoUser.FirstName = user.Firstname;
-            repoUser.LastName = user.Lastname;
-            repoUser.Email = user.Email;
-            repoUser.Permissions = user.Permissions;
-
             _dbContext.Users.Add(repoUser);
 
             if(_dbContext.SaveChanges() > 0)
@@ -31,10 +25,14 @@ namespace Repository
             return false;
         }
 
-        public GlobalModels.User GetUser(string username)
+        public Repository.Models.User GetUser(string username)
         {
-            User repoUser = _dbContext.Users.Where(a => a.Username == username).FirstOrDefault<User>();
-            return new GlobalModels.User(repoUser.Username, repoUser.FirstName, repoUser.LastName, repoUser.Email, repoUser.Permissions);
+            return _dbContext.Users.Where(a => a.Username == username).FirstOrDefault<User>();
+        }
+
+        public List<Repository.Models.User> GetUsers()
+        {
+            return _dbContext.Users.ToList();
         }
     }
 }

@@ -8013,11 +8013,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+      "projectUniqueName": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
       "projectName": "Testing",
-      "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+      "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
       "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\obj\\",
+      "outputPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8037,8 +8037,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj": {
-              "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj"
+            "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj": {
+              "projectPath": "c:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj"
             }
           }
         }

@@ -19,10 +19,22 @@ namespace CineAPI.Controllers
             _userLogic = userLogic;
         }
 
-        [HttpGet]
-        public User Get()
+        [HttpGet("users")]
+        public ActionResult<List<User>> Get()
         {
-            return new User("Uname", "MrU", "Name", "mruname@gmail.com", 1);
+            if(!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            List<User> users = _userLogic.GetUsers();
+
+            if(users == null)
+            {
+                return StatusCode(404);
+            }
+            StatusCode(200);
+            return users;
         }
 
         [HttpPost]

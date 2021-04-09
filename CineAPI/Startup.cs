@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.AzureAppServices;
 using Microsoft.OpenApi.Models;
 using Repository;
 using Repository.Models;
@@ -31,6 +32,12 @@ namespace CineAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<AzureFileLoggerOptions>(options => {            
+                options.FileName = "azure-diagnostics-";
+                options.FileSizeLimit = 50 * 1024;
+                options.RetainedFileCountLimit = 5;
+            });
+            
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -39,6 +46,7 @@ namespace CineAPI
                                     builder.AllowAnyOrigin();
                                 });
             });
+
             services.AddControllers();
 
             var myConnectionString = Configuration.GetConnectionString("Cinephiliacs_Db");
