@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
+- angular
 
 pool:
   vmImage: ubuntu-latest
@@ -28,7 +28,7 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'archive files'
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)/$(angularDirectory)/dist/$(angularDirectory)/'
+    rootFolderOrFile: '$(Build.BinariesDirectory)/$(angularDirectory)/'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
