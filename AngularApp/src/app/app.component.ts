@@ -8,5 +8,12 @@ import { FormsModule} from '@angular/forms';
 })
 export class AppComponent {
   title = 'my-app';
-  test: string = '';
+  test: string = 'test';
+
+  constructor() { }
+  
+  reloadPage(){
+    console.log("reload?");
+    window.location.reload();
+  }
 }

@@ -5766,23 +5766,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Matt_PC\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Rodge\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
+      "projectUniqueName": "c:\\Users\\Rodge\\Desktop\\Project 2\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
-      "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\obj\\",
+      "projectPath": "c:\\Users\\Rodge\\Desktop\\Project 2\\Repository\\Repository.csproj",
+      "packagesPath": "C:\\Users\\Rodge\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Rodge\\Desktop\\Project 2\\Repository\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Matt_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Rodge\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5796,8 +5792,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
+            "c:\\Users\\Rodge\\Desktop\\Project 2\\Models\\Models.csproj": {
+              "projectPath": "c:\\Users\\Rodge\\Desktop\\Project 2\\Models\\Models.csproj"
             }
           }
         }
@@ -5838,7 +5834,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

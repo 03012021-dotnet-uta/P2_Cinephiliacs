@@ -9,8 +9,11 @@ import { HttpService} from '../http.service';
 })
 export class ListComponent implements OnInit {
  //object | undefined is what the example gave
-  movies: any;
+  movies: any = [];
   searches: any;
+
+  movies2: any;
+  searches2: any;
   searchTerm: any;
   pageNum: any;
 
@@ -19,13 +22,23 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.router.snapshot.params);
     this.searchTerm = this.router.snapshot.params.search;
-    this.pageNum = this.router.snapshot.params.page;
+    this.pageNum = (this.router.snapshot.params.page -1 ) * 2 + 1;
     this._http.getMovies(this.searchTerm,this.pageNum).subscribe(data => {
       this.movies = data;
       this.searches = this.movies.Search;
       console.log("this is movies now just so you know");
       console.log(this.movies.Search);
+      
     });
+    this._http.getMovies(this.searchTerm,(this.pageNum + 1)).subscribe(data => {
+      this.movies2 =  data;
+      
+      this.searches2 = this.movies2.Search;
+      console.log("this is movies now just so you know");
+      console.log(this.movies2);
+    });
+    
+
   }
 
 }
