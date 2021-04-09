@@ -25,10 +25,8 @@ namespace BusinessLogic
             var repoUser = _repo.GetUser(username);
             if(repoUser == null)
             {
-                //_logger.LogWarning($"The repository layer's GetUser(${username}) returned null.");
                 return null;
             }
-            //_logger.LogWarning($"GetUser(${username}) WORKED, AND SO DID LOGGING!");
             return UserMapper.RepoUserToUser(repoUser);
         }
 
@@ -37,7 +35,6 @@ namespace BusinessLogic
             var repoUsers = _repo.GetUsers();
             if(repoUsers == null)
             {
-                //_logger.LogWarning($"The repository layer's GetUsers() returned null.");
                 return null;
             }
 
