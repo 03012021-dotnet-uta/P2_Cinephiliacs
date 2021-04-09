@@ -25,7 +25,10 @@ export class UserComponent implements OnInit {
       console.log(data);
       this.reviews = data;
   });
-  this.http.get("https://cinephiliacsapi.azurewebsites.net/user/discussions/" + this.username).subscribe(data => console.log(data));
+    this.http.get("https://cinephiliacsapi.azurewebsites.net/user/discussions/" + this.username).subscribe(data => {
+      console.log(data);
+      this.discussions = data;
+  });
   }
 
 }

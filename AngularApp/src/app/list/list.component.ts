@@ -20,6 +20,7 @@ export class ListComponent implements OnInit {
   constructor(private router :ActivatedRoute, private _http: HttpService) { }
 
   ngOnInit(): void {
+    
     console.log(this.router.snapshot.params);
     this.searchTerm = this.router.snapshot.params.search;
     this.pageNum = (this.router.snapshot.params.page -1 ) * 2 + 1;
