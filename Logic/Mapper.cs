@@ -31,13 +31,13 @@ namespace BusinessLogic
 
         internal static Discussion RepoDiscussionToDiscussion(Repository.Models.Discussion repoDiscussion, Repository.Models.Topic topic)
         {
-            var discussion = new Discussion(repoDiscussion.MovieId, repoDiscussion.Username, repoDiscussion.Subject, topic.TopicName);
+            var discussion = new Discussion(repoDiscussion.DiscussionId, repoDiscussion.MovieId, repoDiscussion.Username, repoDiscussion.Subject, topic.TopicName);
             return discussion;
         }
 
         internal static Comment RepoCommentToComment(Repository.Models.Comment repoComment)
         {
-            var comment = new Comment(repoComment.DiscussionId, repoComment.Username, repoComment.CommentText, repoComment.IsSpoiler);
+            var comment = new Comment(repoComment.CommentId, repoComment.DiscussionId, repoComment.Username, repoComment.CommentText, repoComment.IsSpoiler);
             return comment;
         }
 
@@ -56,6 +56,29 @@ namespace BusinessLogic
             repoReview.CreationTime = DateTime.Now;
 
             return repoReview;
+        }
+
+        internal static Repository.Models.Discussion DiscussionToNewRepoDiscussion(NewDiscussion discussion)
+        {
+            var repoDiscussion = new Repository.Models.Discussion();
+            repoDiscussion.MovieId = discussion.Movieid;
+            repoDiscussion.Username = discussion.Username;
+            repoDiscussion.Subject = discussion.Subject;
+            repoDiscussion.CreationTime = DateTime.Now;
+
+            return repoDiscussion;
+        }
+
+        internal static Repository.Models.Comment DiscussionToNewRepoComment(NewComment comment)
+        {
+            var repoComment = new Repository.Models.Comment();
+            repoComment.DiscussionId = comment.Discussionid;
+            repoComment.Username = comment.Username;
+            repoComment.CommentText = comment.Text;
+            repoComment.CreationTime = DateTime.Now;
+            repoComment.IsSpoiler = comment.Isspoiler;
+
+            return repoComment;
         }
     }
 }

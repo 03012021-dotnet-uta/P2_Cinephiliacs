@@ -14,7 +14,7 @@ namespace Repository
             _dbContext = dbContext;
         }
 
-        public bool AddUser(Repository.Models.User repoUser)
+        public bool AddUser(User repoUser)
         {
             _dbContext.Users.Add(repoUser);
 
@@ -25,12 +25,34 @@ namespace Repository
             return false;
         }
 
-        public Repository.Models.User GetUser(string username)
+        public User GetUser(string username)
         {
             return _dbContext.Users.Where(a => a.Username == username).FirstOrDefault<User>();
         }
 
-        public List<Repository.Models.User> GetUsers()
+        public bool AddDiscussion(Discussion repoDiscussion)
+        {
+            _dbContext.Discussions.Add(repoDiscussion);
+
+            if(_dbContext.SaveChanges() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool AddComment(Comment repoComment)
+        {
+            _dbContext.Comments.Add(repoComment);
+
+            if(_dbContext.SaveChanges() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public List<User> GetUsers()
         {
             return _dbContext.Users.ToList();
         }
@@ -42,17 +64,17 @@ namespace Repository
                 .FirstOrDefault<Topic>();
         }
 
-        public List<Repository.Models.Discussion> GetUserDiscussions(string username)
+        public List<Discussion> GetUserDiscussions(string username)
         {
             return _dbContext.Discussions.Where(d => d.Username == username).ToList();
         }
 
-        public List<Repository.Models.Comment> GetUserComments(string username)
+        public List<Comment> GetUserComments(string username)
         {
             return _dbContext.Comments.Where(c => c.Username == username).ToList();
         }
 
-        public List<Repository.Models.Review> GetUserReviews(string username)
+        public List<Review> GetUserReviews(string username)
         {
             return _dbContext.Reviews.Where(r => r.Username == username).ToList();
         }
@@ -83,7 +105,7 @@ namespace Repository
             return false;
         }
 
-        public List<Repository.Models.Review> GetMovieReviews(string movieid)
+        public List<Review> GetMovieReviews(string movieid)
         {
             return _dbContext.Reviews.Where(r => r.MovieId == movieid).ToList();
         }
@@ -120,6 +142,21 @@ namespace Repository
                 return true;
             }
             return false;
+        }
+
+        public List<Topic> GetTopics()
+        {
+            return _dbContext.Topics.ToList();
+        }
+
+        public List<Discussion> GetMovieDiscussions(string movieid)
+        {
+            return _dbContext.Discussions.Where(d => d.MovieId == movieid).ToList();
+        }
+
+        public List<Comment> GetMovieComments(int discussionid)
+        {
+            return _dbContext.Comments.Where(c => c.DiscussionId == discussionid).ToList();
         }
 
         private bool UserExists(string username)
