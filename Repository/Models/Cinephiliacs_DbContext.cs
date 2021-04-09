@@ -17,21 +17,13 @@ namespace Repository.Models
         {
         }
 
-        public virtual DbSet<Actor> Actors { get; set; }
         public virtual DbSet<BlockedTag> BlockedTags { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Director> Directors { get; set; }
         public virtual DbSet<Discussion> Discussions { get; set; }
         public virtual DbSet<DiscussionTopic> DiscussionTopics { get; set; }
         public virtual DbSet<FollowingMovie> FollowingMovies { get; set; }
         public virtual DbSet<FollowingUser> FollowingUsers { get; set; }
-        public virtual DbSet<Genre> Genres { get; set; }
-        public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
-        public virtual DbSet<MovieActor> MovieActors { get; set; }
-        public virtual DbSet<MovieDirector> MovieDirectors { get; set; }
-        public virtual DbSet<MovieGenre> MovieGenres { get; set; }
-        public virtual DbSet<MovieLanguage> MovieLanguages { get; set; }
         public virtual DbSet<MovieTag> MovieTags { get; set; }
         public virtual DbSet<NewComment> NewComments { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
@@ -45,19 +37,6 @@ namespace Repository.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
-
-            modelBuilder.Entity<Actor>(entity =>
-            {
-                entity.HasKey(e => e.ActorName)
-                    .HasName("PK__actors__C4B3E035C299C477");
-
-                entity.ToTable("actors");
-
-                entity.Property(e => e.ActorName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("actor_name");
-            });
 
             modelBuilder.Entity<BlockedTag>(entity =>
             {
@@ -126,19 +105,6 @@ namespace Repository.Models
                     .HasForeignKey(d => d.Username)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__comments__userna__19DFD96B");
-            });
-
-            modelBuilder.Entity<Director>(entity =>
-            {
-                entity.HasKey(e => e.DirectorName)
-                    .HasName("PK__director__CD35ECA3F4D080AE");
-
-                entity.ToTable("directors");
-
-                entity.Property(e => e.DirectorName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("director_name");
             });
 
             modelBuilder.Entity<Discussion>(entity =>
@@ -269,32 +235,6 @@ namespace Repository.Models
                     .HasConstraintName("FK__following__follo__656C112C");
             });
 
-            modelBuilder.Entity<Genre>(entity =>
-            {
-                entity.HasKey(e => e.GenreName)
-                    .HasName("PK__genres__1E98D1506ED22919");
-
-                entity.ToTable("genres");
-
-                entity.Property(e => e.GenreName)
-                    .HasMaxLength(30)
-                    .IsUnicode(false)
-                    .HasColumnName("genre_name");
-            });
-
-            modelBuilder.Entity<Language>(entity =>
-            {
-                entity.HasKey(e => e.LanguageName)
-                    .HasName("PK__language__9CE82382763B02B8");
-
-                entity.ToTable("languages");
-
-                entity.Property(e => e.LanguageName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("language_name");
-            });
-
             modelBuilder.Entity<Movie>(entity =>
             {
                 entity.ToTable("movies");
@@ -303,169 +243,6 @@ namespace Repository.Models
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("movieID");
-
-                entity.Property(e => e.Awards)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("awards");
-
-                entity.Property(e => e.Country)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("country");
-
-                entity.Property(e => e.Plot)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("plot");
-
-                entity.Property(e => e.PosterLink)
-                    .HasMaxLength(300)
-                    .IsUnicode(false)
-                    .HasColumnName("poster_link");
-
-                entity.Property(e => e.Rated)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("rated");
-
-                entity.Property(e => e.Released)
-                    .HasColumnType("date")
-                    .HasColumnName("released");
-
-                entity.Property(e => e.RuntimeMinutes)
-                    .HasColumnType("numeric(4, 0)")
-                    .HasColumnName("runtime_minutes");
-
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("title");
-
-                entity.Property(e => e.Year)
-                    .HasColumnType("numeric(4, 0)")
-                    .HasColumnName("year");
-            });
-
-            modelBuilder.Entity<MovieActor>(entity =>
-            {
-                entity.HasKey(e => new { e.MovieId, e.ActorName })
-                    .HasName("movieID_actor_pk");
-
-                entity.ToTable("movie_actors");
-
-                entity.Property(e => e.MovieId)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("movieID");
-
-                entity.Property(e => e.ActorName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("actor_name");
-
-                entity.HasOne(d => d.ActorNameNavigation)
-                    .WithMany(p => p.MovieActors)
-                    .HasForeignKey(d => d.ActorName)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__movie_act__actor__06CD04F7");
-
-                entity.HasOne(d => d.Movie)
-                    .WithMany(p => p.MovieActors)
-                    .HasForeignKey(d => d.MovieId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__movie_act__movie__05D8E0BE");
-            });
-
-            modelBuilder.Entity<MovieDirector>(entity =>
-            {
-                entity.HasKey(e => new { e.MovieId, e.DirectorName })
-                    .HasName("movieID_director_pk");
-
-                entity.ToTable("movie_directors");
-
-                entity.Property(e => e.MovieId)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("movieID");
-
-                entity.Property(e => e.DirectorName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("director_name");
-
-                entity.HasOne(d => d.DirectorNameNavigation)
-                    .WithMany(p => p.MovieDirectors)
-                    .HasForeignKey(d => d.DirectorName)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__movie_dir__direc__01142BA1");
-
-                entity.HasOne(d => d.Movie)
-                    .WithMany(p => p.MovieDirectors)
-                    .HasForeignKey(d => d.MovieId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__movie_dir__movie__00200768");
-            });
-
-            modelBuilder.Entity<MovieGenre>(entity =>
-            {
-                entity.HasKey(e => new { e.MovieId, e.GenreName })
-                    .HasName("movieID_genre_pk");
-
-                entity.ToTable("movie_genres");
-
-                entity.Property(e => e.MovieId)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("movieID");
-
-                entity.Property(e => e.GenreName)
-                    .HasMaxLength(30)
-                    .IsUnicode(false)
-                    .HasColumnName("genre_name");
-
-                entity.HasOne(d => d.GenreNameNavigation)
-                    .WithMany(p => p.MovieGenres)
-                    .HasForeignKey(d => d.GenreName)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__movie_gen__genre__7B5B524B");
-
-                entity.HasOne(d => d.Movie)
-                    .WithMany(p => p.MovieGenres)
-                    .HasForeignKey(d => d.MovieId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__movie_gen__movie__7A672E12");
-            });
-
-            modelBuilder.Entity<MovieLanguage>(entity =>
-            {
-                entity.HasKey(e => new { e.MovieId, e.LanguageName })
-                    .HasName("movieID_language_pk");
-
-                entity.ToTable("movie_languages");
-
-                entity.Property(e => e.MovieId)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("movieID");
-
-                entity.Property(e => e.LanguageName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("language_name");
-
-                entity.HasOne(d => d.LanguageNameNavigation)
-                    .WithMany(p => p.MovieLanguages)
-                    .HasForeignKey(d => d.LanguageName)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__movie_lan__langu__0C85DE4D");
-
-                entity.HasOne(d => d.Movie)
-                    .WithMany(p => p.MovieLanguages)
-                    .HasForeignKey(d => d.MovieId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__movie_lan__movie__0B91BA14");
             });
 
             modelBuilder.Entity<MovieTag>(entity =>

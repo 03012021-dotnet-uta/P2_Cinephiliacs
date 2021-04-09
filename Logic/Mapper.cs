@@ -4,14 +4,14 @@ using GlobalModels;
 
 namespace BusinessLogic
 {
-    public static class UserMapper
+    internal static class Mapper
     {
         /// <summary>
         /// Maps an instance of GlobalModels.User onto Repository.Models.User
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public static Repository.Models.User UserToRepoUser(User user)
+        internal static Repository.Models.User UserToRepoUser(User user)
         {
             var repoUser = new Repository.Models.User();
             repoUser.Username = user.Username;
@@ -23,7 +23,7 @@ namespace BusinessLogic
             return repoUser;
         }
 
-        public static User RepoUserToUser(Repository.Models.User repoUser)
+        internal static User RepoUserToUser(Repository.Models.User repoUser)
         {
             var user = new User(repoUser.Username, repoUser.FirstName, repoUser.LastName, repoUser.Email, repoUser.Permissions);
             return user;
@@ -45,6 +45,17 @@ namespace BusinessLogic
         {
             var review = new Review(repoReview.MovieId, repoReview.Username, repoReview.Rating, repoReview.Review1);
             return review;
+        }
+
+        internal static Repository.Models.Review ReviewToRepoReview(Review review)
+        {
+            var repoReview = new Repository.Models.Review();
+            repoReview.Username = review.Username;
+            repoReview.MovieId = review.Movieid;
+            repoReview.Rating = review.Rating;
+            repoReview.CreationTime = DateTime.Now;
+
+            return repoReview;
         }
     }
 }
