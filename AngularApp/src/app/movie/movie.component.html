@@ -9,6 +9,47 @@
     </li>
 </ul>
 
+<div id="input">
+    <h3>Create new</h3>
+    <div id="review">
+        <h4>review</h4>
+        <form>
+            <select name="rating" id="rating" [(ngModel)]="sumbitReview.rating" [ngModelOptions]="{standalone: true}">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <input type="text" [(ngModel)]="sumbitReview.text" [ngModelOptions]="{standalone: true}">
+            <button (click)="postReview()">Submit Review</button>
+        </form>
+        <h4>Create New Discussion</h4>
+        <form>
+            <select name="rating" id="rating" [(ngModel)]="submitDiscussion.topic" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let topic of topics" 
+                        [value]="topic">
+                        {{topic}}
+                    </option>
+            </select>
+            <input type="text" [(ngModel)]="submitDiscussion.subject" [ngModelOptions]="{standalone: true}">
+            <button (click)="postDiscussion()">Submit Review</button>
+        </form>
+
+    </div>
+</div>
+<div> *ngIf="topics">
+                    
+    <div *ngFor="let topic of topics" value="1">
+        {{topic}}
+        
+    </div>
+</div>
 <ul *ngIf="discussions">
     <h3>Discussions</h3>
     <li *ngFor="let discussion of discussions">

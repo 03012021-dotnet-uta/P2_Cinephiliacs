@@ -22,7 +22,7 @@ export class LoginService {
       console.log(data);
       this.loggedIn = data;
       console.log(this.loggedIn.username);
-      
+      localStorage.setItem("loggedin",this.loggedIn.username);
       return data;
     });;
   }
