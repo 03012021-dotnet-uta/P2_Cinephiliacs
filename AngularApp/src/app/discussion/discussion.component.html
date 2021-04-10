@@ -3,10 +3,19 @@
 
 <div *ngIf="comments">
     <li *ngFor="let comment of comments">
-        <div>
+        <ng-template [ngIf]="comment.isspoiler" [ngIfElse]="nonSpoiler">
+            <div class="myDIV">
+              Spoiler
+            </div>
+            
+            <div class="spoiler">
+                {{comment.text}}
+            </div>
+        </ng-template>
+        <ng-template #nonSpoiler>
             <a routerLink="/user/{{comment.username}}">{{ comment.username }}</a>
             <div>{{comment.text}}</div>
-        </div>
+        </ng-template>>
     </li>
 </div>
 

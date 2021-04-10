@@ -14,6 +14,7 @@
     <div id="review">
         <h4>review</h4>
         <form>
+            <!-- This secion is -->
             <select name="rating" id="rating" [(ngModel)]="sumbitReview.rating" [ngModelOptions]="{standalone: true}">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -29,6 +30,7 @@
             <input type="text" [(ngModel)]="sumbitReview.text" [ngModelOptions]="{standalone: true}">
             <button (click)="postReview()">Submit Review</button>
         </form>
+        <!-- This sections is the one form for creating a new discussion-->
         <h4>Create New Discussion</h4>
         <form>
             <select name="rating" id="rating" [(ngModel)]="submitDiscussion.topic" [ngModelOptions]="{standalone: true}">
@@ -43,13 +45,7 @@
 
     </div>
 </div>
-<div> *ngIf="topics">
-                    
-    <div *ngFor="let topic of topics" value="1">
-        {{topic}}
-        
-    </div>
-</div>
+
 <ul *ngIf="discussions">
     <h3>Discussions</h3>
     <li *ngFor="let discussion of discussions">

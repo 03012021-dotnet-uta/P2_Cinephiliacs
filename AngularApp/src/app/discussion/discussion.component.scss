@@ -1,0 +1,8 @@
+.spoiler {
+    display: none;
+  }
+      
+  .myDIV:hover + .spoiler {
+    display: block;
+    color: red;
+  }
