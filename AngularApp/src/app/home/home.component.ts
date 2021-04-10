@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
 
   userName:string = "";
 
+  moviesFollowing:any;
+
   newUser:any ={
     username:'',
     firstname:'',
@@ -23,11 +25,15 @@ export class HomeComponent implements OnInit {
   constructor(private _login: LoginService, private _http: HttpClient) { }
 
   ngOnInit(): void {
+ 
+      
+      this.displayFollowMovie();
   }
 
   async login(){
     console.log("Login attempt" + this.userName);
     await this._login.loginUser(this.userName);
+    this.displayFollowMovie()
   }
 
   createUser(){
@@ -44,6 +50,19 @@ export class HomeComponent implements OnInit {
 
   logout(){
     localStorage.clear();
+    this.displayFollowMovie();
+  }
+
+  displayFollowMovie(){
+    if(localStorage.getItem("loggedin")){
+    this._http.get("https://cinephiliacsapi.azurewebsites.net/user/movies/"+localStorage.getItem("loggedin")).subscribe(data => {
+      this.moviesFollowing = data;
+      console.log(data);
+  });
+}else
+{
+  this.moviesFollowing = null;
+}
   }
   
   

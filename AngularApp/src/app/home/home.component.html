@@ -29,3 +29,13 @@
   <div class="container">
     <button (click)="logout()">Logout</button>
     </div>
+
+    <div id="followMovie">
+      <h4>Movies You're Following Movies</h4>
+      <div *ngIf="moviesFollowing">
+        <div *ngFor="let movie of moviesFollowing">
+            {{movie}}
+        </div>
+
+      </div>
+    </div>

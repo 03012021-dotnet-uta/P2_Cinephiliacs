@@ -50,28 +50,28 @@ export class MovieComponent implements OnInit {
       console.log("this is movies now just so you know");
       console.log(this.selectedMovie);
     });
-    //Will get the discussions for the movie
-    this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/discussions/"+this.movieID).subscribe(data => {
-      console.log(data);
-      this.discussions = data;
-    });
 
+    this.showDiscussion();
     //Movie Reviews
-    this.http.get("https://cinephiliacsapi.azurewebsites.net/movie/reviews/"+this.movieID).subscribe(data => {
-      console.log(data);
-      this.reviews = data;
-    });
+
 
     //saving a reference to the database of movies interacted with
     this.http.post("https://cinephiliacsapi.azurewebsites.net/movie/" +this.movieID,null).subscribe(data => console.log("submitted"));
   }
 
   showReview(){
-
+    this.http.get("https://cinephiliacsapi.azurewebsites.net/movie/reviews/"+this.movieID).subscribe(data => {
+      console.log(data);
+      this.reviews = data;
+    });
   }
 
   showDiscussion(){
-
+        //Will get the discussions for the movie
+        this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/discussions/"+this.movieID).subscribe(data => {
+          console.log(data);
+          this.discussions = data;
+        });
   }
 
   postDiscussion(){
@@ -106,6 +106,11 @@ export class MovieComponent implements OnInit {
       this.input = document.getElementById("input");
       this.input.style.display = "none";
     }
+  }
+
+  followMovie(){
+    this.http.post("https://cinephiliacsapi.azurewebsites.net/user/movie/"+localStorage.getItem("loggedin") + "/" + this.movieID
+        ,null).subscribe(data => console.log(data));
   }
 
 
