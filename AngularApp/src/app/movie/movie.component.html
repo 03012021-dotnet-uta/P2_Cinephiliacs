@@ -8,3 +8,22 @@
         <img src="{{selectedMovie.Poster}}" alt="Flowers in Chania">
     </li>
 </ul>
+
+<ul *ngIf="discussions">
+    <h3>Discussions</h3>
+    <li *ngFor="let discussion of discussions">
+        <p >{{ discussion.discussionid}}</p>
+        <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}}</u>
+        
+    </li>
+</ul>
+
+<ul *ngIf="reviews">
+    <h3>Reviews</h3>
+    <li *ngFor="let review of reviews">
+        <u routerLink ="/user/{{review.username}}">{{ review.username}}</u>
+        <p >{{ review.rating}}</p>
+        <p >{{ review.text}}</p>
+        
+    </li>
+</ul>

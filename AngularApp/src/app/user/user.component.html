@@ -11,8 +11,9 @@
     </div>  
     <div *ngIf="discussions">
         <h3>{{user.username}}'s discussions</h3>
-        <div *ngFor="let discussions of discussions">
-            
+        <div *ngFor="let discussion of discussions">
+            <b routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}}</b>
+            <b>{{discussion.discussionid}}</b>
         </div>
     </div>
     
