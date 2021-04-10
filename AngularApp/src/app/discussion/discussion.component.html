@@ -9,3 +9,12 @@
         </div>
     </li>
 </div>
+
+<div id="input">
+    <form>
+        <input type="text" placeholder="Comment" [(ngModel)]="newComment.text" [ngModelOptions]="{standalone: true}" required>
+        <input type="checkbox" [(ngModel)]="newComment.isspoiler" [ngModelOptions]="{standalone: true}">
+        <button (click)="postComment()">Comment</button>
+    </form>
+
+</div>

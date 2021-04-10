@@ -41,6 +41,10 @@ export class HomeComponent implements OnInit {
     this._http.post("https://cinephiliacsapi.azurewebsites.net/user/",this.newUser).subscribe(data => console.log("Data" + data));
   }
   }
+
+  logout(){
+    localStorage.clear();
+  }
   
   
 }
