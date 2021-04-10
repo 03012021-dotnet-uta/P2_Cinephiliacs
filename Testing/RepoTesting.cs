@@ -15,6 +15,7 @@ namespace Testing
         DbContextOptions<Cinephiliacs_DbContext> dbOptions = new DbContextOptionsBuilder<Cinephiliacs_DbContext>()
         .UseInMemoryDatabase(databaseName: "CineTestDb").Options;
 
+        [Fact]
         public async Task AddMovieTest()
         {
             string seedMovieId = "ab10101010";
