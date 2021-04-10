@@ -19,10 +19,14 @@ namespace CineAPI.Controllers
             _forumLogic = forumLogic;
         }
 
+        /// <summary>
+        /// Returns a list of Topic objects that includes every Topic.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("topics")]
-        public ActionResult<List<string>> GetTopics()
+        public async Task<ActionResult<List<string>>> GetTopics()
         {
-            List<string> topics = _forumLogic.GetTopics();
+            List<string> topics = await _forumLogic.GetTopics();
 
             if(topics == null)
             {
@@ -32,10 +36,16 @@ namespace CineAPI.Controllers
             return topics;
         }
 
+        /// <summary>
+        /// Returns a list of all Discussion objects that are associated with
+        /// the provided movie ID.
+        /// </summary>
+        /// <param name="movieid"></param>
+        /// <returns></returns>
         [HttpGet("discussions/{movieid}")]
-        public ActionResult<List<Discussion>> GetDiscussions(string movieid)
+        public async Task<ActionResult<List<Discussion>>> GetDiscussions(string movieid)
         {
-            List<Discussion> discussions = _forumLogic.GetDiscussions(movieid);
+            List<Discussion> discussions = await _forumLogic.GetDiscussions(movieid);
 
             if(discussions == null)
             {
@@ -45,10 +55,16 @@ namespace CineAPI.Controllers
             return discussions;
         }
 
+        /// <summary>
+        /// Returns a list of all Comment objects that are associated with
+        /// the provided discussion ID.
+        /// </summary>
+        /// <param name="discussionid"></param>
+        /// <returns></returns>
         [HttpGet("comments/{discussionid}")]
-        public ActionResult<List<Comment>> GetComments(int discussionid)
+        public async Task<ActionResult<List<Comment>>> GetComments(int discussionid)
         {
-            List<Comment> comments = _forumLogic.GetComments(discussionid);
+            List<Comment> comments = await _forumLogic.GetComments(discussionid);
 
             if(comments == null)
             {
@@ -58,15 +74,21 @@ namespace CineAPI.Controllers
             return comments;
         }
 
+        /// <summary>
+        /// Adds a new Discussion based on the information provided.
+        /// Returns a 400 status code if creation fails.
+        /// </summary>
+        /// <param name="discussion"></param>
+        /// <returns></returns>
         [HttpPost("discussion")]
-        public ActionResult CreateDiscussion([FromBody] NewDiscussion discussion)
+        public async Task<ActionResult> CreateDiscussion([FromBody] NewDiscussion discussion)
         {            
             if(!ModelState.IsValid)
             {
                 return StatusCode(400);
             }
 
-            if(_forumLogic.CreateDiscussion(discussion))
+            if(await _forumLogic.CreateDiscussion(discussion))
             {
                 return StatusCode(201);
             }
@@ -76,15 +98,21 @@ namespace CineAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Adds a new Comment based on the information provided.
+        /// Returns a 400 status code if creation fails.
+        /// </summary>
+        /// <param name="comment"></param>
+        /// <returns></returns>
         [HttpPost("comment")]
-        public ActionResult CreateComment([FromBody] NewComment comment)
+        public async Task<ActionResult> CreateComment([FromBody] NewComment comment)
         {            
             if(!ModelState.IsValid)
             {
                 return StatusCode(400);
             }
 
-            if(_forumLogic.CreateComment(comment))
+            if(await _forumLogic.CreateComment(comment))
             {
                 return StatusCode(201);
             }

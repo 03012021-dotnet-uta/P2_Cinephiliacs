@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using GlobalModels;
 using Repository;
 
@@ -14,9 +15,9 @@ namespace BusinessLogic
             _repo = repo;
         }
 
-        public List<Review> GetReviews(string movieid)
+        public async Task<List<Review>> GetReviews(string movieid)
         {
-            var repoReviews = _repo.GetMovieReviews(movieid);
+            var repoReviews = await _repo.GetMovieReviews(movieid);
             if(repoReviews == null)
             {
                 return null;
@@ -30,15 +31,15 @@ namespace BusinessLogic
             return reviews;
         }
 
-        public bool NewMovie(string movieid)
+        public async Task<bool> CreateMovie(string movieid)
         {
-            return _repo.AddMovie(movieid);
+            return await _repo.AddMovie(movieid);
         }
 
-        public bool NewReview(Review review)
+        public async Task<bool> CreateReview(Review review)
         {
             var repoReview = Mapper.ReviewToRepoReview(review);
-            return _repo.AddReview(repoReview);
+            return await _repo.AddReview(repoReview);
         }
     }
 }

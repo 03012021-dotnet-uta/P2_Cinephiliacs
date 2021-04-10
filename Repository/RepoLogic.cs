@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Repository.Models;
 
 namespace Repository
@@ -14,49 +16,108 @@ namespace Repository
             _dbContext = dbContext;
         }
 
-        public bool AddUser(User repoUser)
+        /// <summary>
+        /// Adds the User specified in the argument to the database.
+        /// </summary>
+        /// <param name="repoUser"></param>
+        /// <returns></returns>
+        public async Task<bool> AddUser(User repoUser)
         {
-            _dbContext.Users.Add(repoUser);
+            await _dbContext.Users.AddAsync(repoUser);
 
-            if(_dbContext.SaveChanges() > 0)
+            if(await _dbContext.SaveChangesAsync() > 0)
             {
                 return true;
             }
             return false;
         }
 
+        /// <summary>
+        /// Returns the User object from the database that matches the username specified
+        /// in the argument.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public User GetUser(string username)
         {
             return _dbContext.Users.Where(a => a.Username == username).FirstOrDefault<User>();
         }
 
-        public bool AddDiscussion(Discussion repoDiscussion)
+        /// <summary>
+        /// Adds the Discussion specified in the argument to the database.
+        /// Returns true iff successful.
+        /// Returns false if the username or movieid referenced in the Discussion object
+        /// do not already exist in their respective database tables.
+        /// </summary>
+        /// <param name="repoDiscussion"></param>
+        /// <returns></returns>
+        public async Task<bool> AddDiscussion(Discussion repoDiscussion)
         {
-            _dbContext.Discussions.Add(repoDiscussion);
+            var userExists = UserExists(repoDiscussion.Username);
+            if(!userExists)
+            {
+                return false;
+            }
+            var movieExists = MovieExists(repoDiscussion.MovieId);
+            if(!movieExists)
+            {
+                return false;
+            }
 
-            if(_dbContext.SaveChanges() > 0)
+            await _dbContext.Discussions.AddAsync(repoDiscussion);
+
+            if(await _dbContext.SaveChangesAsync() > 0)
             {
                 return true;
             }
             return false;
         }
 
-        public bool AddComment(Comment repoComment)
+        /// <summary>
+        /// Adds the Comment specified in the argument to the database.
+        /// Returns true iff successful.
+        /// Returns false if the username or discussion ID referenced in the Comment object
+        /// do not already exist in their respective database tables.
+        /// </summary>
+        /// <param name="repoComment"></param>
+        /// <returns></returns>
+        public async Task<bool> AddComment(Comment repoComment)
         {
-            _dbContext.Comments.Add(repoComment);
+            var userExists = UserExists(repoComment.Username);
+            if(!userExists)
+            {
+                return false;
+            }
+            var discussionExists = DiscussionExists(repoComment.DiscussionId);
+            if(!discussionExists)
+            {
+                return false;
+            }
 
-            if(_dbContext.SaveChanges() > 0)
+            await _dbContext.Comments.AddAsync(repoComment);
+
+            if(await _dbContext.SaveChangesAsync() > 0)
             {
                 return true;
             }
             return false;
         }
 
-        public List<User> GetUsers()
+        /// <summary>
+        /// Returns a list of all User objects in the database.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<User>> GetUsers()
         {
-            return _dbContext.Users.ToList();
+            return await _dbContext.Users.ToListAsync();
         }
 
+        /// <summary>
+        /// Returns the Topic object from the database that matches the discussionId specified
+        /// in the argument.
+        /// </summary>
+        /// <param name="discussionId"></param>
+        /// <returns></returns>
         public Topic GetDiscussionTopic(int discussionId)
         {
             return _dbContext.Topics.Where(t => t.TopicName == _dbContext.DiscussionTopics
@@ -64,116 +125,211 @@ namespace Repository
                 .FirstOrDefault<Topic>();
         }
 
-        public List<Discussion> GetUserDiscussions(string username)
+        /// <summary>
+        /// Returns a list of all Discussion objects from the database that match the username specified
+        /// in the argument.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<List<Discussion>> GetUserDiscussions(string username)
         {
-            return _dbContext.Discussions.Where(d => d.Username == username).ToList();
+            return await _dbContext.Discussions.Where(d => d.Username == username).ToListAsync();
         }
 
-        public List<Comment> GetUserComments(string username)
+        /// <summary>
+        /// Returns a list of all Comment objects from the database that match the username specified
+        /// in the argument.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<List<Comment>> GetUserComments(string username)
         {
-            return _dbContext.Comments.Where(c => c.Username == username).ToList();
+            return await _dbContext.Comments.Where(c => c.Username == username).ToListAsync();
         }
 
-        public List<Review> GetUserReviews(string username)
+        /// <summary>
+        /// Returns a list of all Review objects from the database that match the username specified
+        /// in the argument.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<List<Review>> GetUserReviews(string username)
         {
-            return _dbContext.Reviews.Where(r => r.Username == username).ToList();
+            return await _dbContext.Reviews.Where(r => r.Username == username).ToListAsync();
         }
 
-        public List<FollowingMovie> GetFollowingMovies(string username)
+        /// <summary>
+        /// Returns a list of all FollowingMovie objects from the database that match the username
+        /// specified in the argument.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<List<FollowingMovie>> GetFollowingMovies(string username)
         {
-            return _dbContext.FollowingMovies.Where(f => f.Username == username).ToList();
+            return await _dbContext.FollowingMovies.Where(f => f.Username == username).ToListAsync();
         }
 
-        public bool FollowMovie(FollowingMovie followingMovie)
+        /// <summary>
+        /// Adds the FollowingMovie specified in the argument to the database.
+        /// Returns true iff successful.
+        /// Returns false if the username or movieid referenced in the FollowingMovie object
+        /// do not already exist in their respective database tables.
+        /// </summary>
+        /// <param name="followingMovie"></param>
+        /// <returns></returns>
+        public async Task<bool> FollowMovie(FollowingMovie followingMovie)
         {
-            // Make sure the username and movieid exist in the database
-            if(!UserExists(followingMovie.Username))
+            var userExists = UserExists(followingMovie.Username);
+            if(!userExists)
             {
                 return false;
             }
-            if(!MovieExists(followingMovie.MovieId))
+            var movieExists = MovieExists(followingMovie.MovieId);
+            if(!movieExists)
             {
                 return false;
             }
 
-            _dbContext.FollowingMovies.Add(followingMovie);
+            await _dbContext.FollowingMovies.AddAsync(followingMovie);
 
-            if(_dbContext.SaveChanges() > 0)
+            if(await _dbContext.SaveChangesAsync() > 0)
             {
                 return true;
             }
             return false;
         }
 
-        public List<Review> GetMovieReviews(string movieid)
+        /// <summary>
+        /// Returns a list of all Review objects from the database that match the movie ID specified
+        /// in the argument.
+        /// </summary>
+        /// <param name="movieid"></param>
+        /// <returns></returns>
+        public async Task<List<Review>> GetMovieReviews(string movieid)
         {
-            return _dbContext.Reviews.Where(r => r.MovieId == movieid).ToList();
+            return await _dbContext.Reviews.Where(r => r.MovieId == movieid).ToListAsync();
         }
 
-        public bool AddReview(Review repoReview)
+        /// <summary>
+        /// Adds the Review specified in the argument to the database.
+        /// Returns true iff successful.
+        /// Returns false if the username or movie ID referenced in the Review object
+        /// do not already exist in their respective database tables.
+        /// </summary>
+        /// <param name="repoReview"></param>
+        /// <returns></returns>
+        public async Task<bool> AddReview(Review repoReview)
         {
-            // Make sure the username and movieid exist in the database
-            if(!UserExists(repoReview.Username))
+            var userExists = UserExists(repoReview.Username);
+            if(!userExists)
             {
                 return false;
             }
-            if(!MovieExists(repoReview.MovieId))
+            var movieExists = MovieExists(repoReview.MovieId);
+            if(!movieExists)
             {
                 return false;
             }
 
-            _dbContext.Reviews.Add(repoReview);
+            await _dbContext.Reviews.AddAsync(repoReview);
 
-            if(_dbContext.SaveChanges() > 0)
+            if(await _dbContext.SaveChangesAsync() > 0)
             {
                 return true;
             }
             return false;
         }
 
-        public bool AddMovie(string movieid)
+        /// <summary>
+        /// Adds the Movie specified in the argument to the database.
+        /// Returns true iff successful.
+        /// </summary>
+        /// <param name="movieid"></param>
+        /// <returns></returns>
+        public async Task<bool> AddMovie(string movieid)
         {
             Repository.Models.Movie movie = new Repository.Models.Movie();
             movie.MovieId = movieid;
-            _dbContext.Movies.Add(movie);
+            await _dbContext.Movies.AddAsync(movie);
 
-            if(_dbContext.SaveChanges() > 0)
+            if(await _dbContext.SaveChangesAsync() > 0)
             {
                 return true;
             }
             return false;
         }
 
-        public List<Topic> GetTopics()
+        /// <summary>
+        /// Returns a list of all Topic objects in the database.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Topic>> GetTopics()
         {
-            return _dbContext.Topics.ToList();
+            return await _dbContext.Topics.ToListAsync();
         }
 
-        public List<Discussion> GetMovieDiscussions(string movieid)
+        /// <summary>
+        /// Returns a list of all Discussion objects from the database that match the movie ID specified
+        /// in the argument.
+        /// </summary>
+        /// <param name="movieid"></param>
+        /// <returns></returns>
+        public async Task<List<Discussion>> GetMovieDiscussions(string movieid)
         {
-            return _dbContext.Discussions.Where(d => d.MovieId == movieid).ToList();
+            return await _dbContext.Discussions.Where(d => d.MovieId == movieid).ToListAsync();
         }
 
-        public List<Comment> GetMovieComments(int discussionid)
+        /// <summary>
+        /// Returns a list of all Comment objects from the database that match the discussion ID specified
+        /// in the argument.
+        /// </summary>
+        /// <param name="discussionid"></param>
+        /// <returns></returns>
+        public async Task<List<Comment>> GetMovieComments(int discussionid)
         {
-            return _dbContext.Comments.Where(c => c.DiscussionId == discussionid).ToList();
+            var commentList = await _dbContext.Comments.Where(c => c.DiscussionId == discussionid).ToListAsync();
+            return commentList;
         }
 
+        /// <summary>
+        /// Returns true iff the username, specified in the argument, exists in the database's Users table.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         private bool UserExists(string username)
         {
             return (_dbContext.Users.Where(u => u.Username == username).FirstOrDefault<User>() != null);
         }
+
+        /// <summary>
+        /// Returns true iff the movie ID, specified in the argument, exists in the database's Movies table.
+        /// </summary>
+        /// <param name="movieid"></param>
+        /// <returns></returns>
         private bool MovieExists(string movieid)
         {
             return (_dbContext.Movies.Where(m => m.MovieId == movieid).FirstOrDefault<Movie>() != null);
         }
+
+        /// <summary>
+        /// Returns true iff the discussion ID, specified in the argument, exists in the database's Discussions table.
+        /// </summary>
+        /// <param name="discussionid"></param>
+        /// <returns></returns>
         private bool DiscussionExists(int discussionid)
         {
             return (_dbContext.Discussions.Where(d => d.DiscussionId == discussionid).FirstOrDefault<Discussion>() != null);
         }
+
+        /// <summary>
+        /// Returns true iff the topic name, specified in the argument, exists in the database's Topics table.
+        /// </summary>
+        /// <param name="topicname"></param>
+        /// <returns></returns>
         private bool TopicExists(string topicname)
         {
             return (_dbContext.Topics.Where(t => t.TopicName == topicname).FirstOrDefault<Topic>() != null);
         }
+
     }
 }

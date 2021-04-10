@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using GlobalModels;
 using Repository;
 
@@ -14,21 +15,21 @@ namespace BusinessLogic
             _repo = repo;
         }
 
-        public bool CreateComment(NewComment comment)
+        public async Task<bool> CreateComment(NewComment comment)
         {
             var repoComment = Mapper.DiscussionToNewRepoComment(comment);
-            return _repo.AddComment(repoComment);
+            return await _repo.AddComment(repoComment);
         }
 
-        public bool CreateDiscussion(NewDiscussion discussion)
+        public async Task<bool> CreateDiscussion(NewDiscussion discussion)
         {
             var repoDiscussion = Mapper.DiscussionToNewRepoDiscussion(discussion);
-            return _repo.AddDiscussion(repoDiscussion);
+            return await _repo.AddDiscussion(repoDiscussion);
         }
 
-        public List<Comment> GetComments(int discussionid)
+        public async Task<List<Comment>> GetComments(int discussionid)
         {
-            List<Repository.Models.Comment> repoComments = _repo.GetMovieComments(discussionid);
+            List<Repository.Models.Comment> repoComments = await _repo.GetMovieComments(discussionid);
             if(repoComments == null)
             {
                 return null;
@@ -42,9 +43,9 @@ namespace BusinessLogic
             return comments;
         }
 
-        public List<Discussion> GetDiscussions(string movieid)
+        public async Task<List<Discussion>> GetDiscussions(string movieid)
         {
-            List<Repository.Models.Discussion> repoDiscussions = _repo.GetMovieDiscussions(movieid);
+            List<Repository.Models.Discussion> repoDiscussions = await _repo.GetMovieDiscussions(movieid);
             if(repoDiscussions == null)
             {
                 return null;
@@ -65,9 +66,9 @@ namespace BusinessLogic
             return discussions;
         }
 
-        public List<string> GetTopics()
+        public async Task<List<string>> GetTopics()
         {
-            var repoTopics = _repo.GetTopics();
+            var repoTopics = await _repo.GetTopics();
             if(repoTopics == null)
             {
                 return null;

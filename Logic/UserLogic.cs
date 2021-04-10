@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using GlobalModels;
 using Repository;
 
@@ -14,10 +15,10 @@ namespace BusinessLogic
             _repo = repo;
         }
 
-        public bool CreateUser(User user)
+        public async Task<bool> CreateUser(User user)
         {
             var repoUser = Mapper.UserToRepoUser(user);
-            return _repo.AddUser(repoUser);
+            return await _repo.AddUser(repoUser);
         }
 
         public User GetUser(string username)
@@ -30,9 +31,9 @@ namespace BusinessLogic
             return Mapper.RepoUserToUser(repoUser);
         }
 
-        public List<User> GetUsers()
+        public async Task<List<User>> GetUsers()
         {
-            var repoUsers = _repo.GetUsers();
+            var repoUsers = await _repo.GetUsers();
             if(repoUsers == null)
             {
                 return null;
@@ -46,9 +47,9 @@ namespace BusinessLogic
             return users;
         }
 
-        public List<Discussion> GetDiscussions(string username)
+        public async Task<List<Discussion>> GetDiscussions(string username)
         {
-            List<Repository.Models.Discussion> repoDiscussions = _repo.GetUserDiscussions(username);
+            List<Repository.Models.Discussion> repoDiscussions = await _repo.GetUserDiscussions(username);
             if(repoDiscussions == null)
             {
                 return null;
@@ -69,9 +70,9 @@ namespace BusinessLogic
             return discussions;
         }
 
-        public List<Comment> GetComments(string username)
+        public async Task<List<Comment>> GetComments(string username)
         {
-            List<Repository.Models.Comment> repoComments = _repo.GetUserComments(username);
+            List<Repository.Models.Comment> repoComments = await _repo.GetUserComments(username);
             if(repoComments == null)
             {
                 return null;
@@ -85,9 +86,9 @@ namespace BusinessLogic
             return comments;
         }
 
-        public List<string> GetFollowingMovies(string username)
+        public async Task<List<string>> GetFollowingMovies(string username)
         {
-            List<Repository.Models.FollowingMovie> repoFollowingMovies = _repo.GetFollowingMovies(username);
+            List<Repository.Models.FollowingMovie> repoFollowingMovies = await _repo.GetFollowingMovies(username);
             if(repoFollowingMovies == null)
             {
                 return null;
@@ -101,9 +102,9 @@ namespace BusinessLogic
             return followingMovies;
         }
 
-        public List<Review> GetReviews(string username)
+        public async Task<List<Review>> GetReviews(string username)
         {
-            List<Repository.Models.Review> repoReviews = _repo.GetUserReviews(username);
+            List<Repository.Models.Review> repoReviews = await _repo.GetUserReviews(username);
             if(repoReviews == null)
             {
                 return null;
@@ -117,13 +118,13 @@ namespace BusinessLogic
             return reviews;
         }
 
-        public bool FollowMovie(string username, string movieid)
+        public async Task<bool> FollowMovie(string username, string movieid)
         {
             Repository.Models.FollowingMovie repoFollowingMovie = new Repository.Models.FollowingMovie();
             repoFollowingMovie.Username = username;
             repoFollowingMovie.MovieId = movieid;
             
-            return _repo.FollowMovie(repoFollowingMovie);
+            return await _repo.FollowMovie(repoFollowingMovie);
         }
     }
 }

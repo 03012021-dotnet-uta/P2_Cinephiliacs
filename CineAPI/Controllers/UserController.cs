@@ -19,10 +19,14 @@ namespace CineAPI.Controllers
             _userLogic = userLogic;
         }
 
+        /// <summary>
+        /// Returns a list of User objects that includes every User.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("users")]
-        public ActionResult<List<User>> Get()
+        public async Task<ActionResult<List<User>>> Get()
         {
-            List<User> users = _userLogic.GetUsers();
+            List<User> users = await _userLogic.GetUsers();
 
             if(users == null)
             {
@@ -32,15 +36,21 @@ namespace CineAPI.Controllers
             return users;
         }
 
+        /// <summary>
+        /// Adds a new User based on the information provided.
+        /// Returns a 400 status code if creation fails.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult CreateUser([FromBody] User user)
+        public async Task<ActionResult> CreateUser([FromBody] User user)
         {            
             if(!ModelState.IsValid)
             {
                 return StatusCode(400);
             }
 
-            if(_userLogic.CreateUser(user))
+            if(await _userLogic.CreateUser(user))
             {
                 return StatusCode(201);
             }
@@ -50,16 +60,27 @@ namespace CineAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns the User information associated with the provided username.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("{username}")]
         public ActionResult<User> GetUser(string username)
         {
             return _userLogic.GetUser(username);
         }
 
+        /// <summary>
+        /// Returns a list of all Discussion objects that were created by the User
+        /// with the provided username.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("discussions/{username}")]
-        public ActionResult<List<Discussion>> GetDiscussions(string username)
+        public async Task<ActionResult<List<Discussion>>> GetDiscussions(string username)
         {
-            List<Discussion> discussions = _userLogic.GetDiscussions(username);
+            List<Discussion> discussions = await _userLogic.GetDiscussions(username);
 
             if(discussions == null)
             {
@@ -69,10 +90,16 @@ namespace CineAPI.Controllers
             return discussions;
         }
 
+        /// <summary>
+        /// Returns a list of all Comment objects that were created by the User
+        /// with the provided username.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("comments/{username}")]
-        public ActionResult<List<Comment>> GetComments(string username)
+        public async Task<ActionResult<List<Comment>>> GetComments(string username)
         {
-            List<Comment> comments = _userLogic.GetComments(username);
+            List<Comment> comments = await _userLogic.GetComments(username);
 
             if(comments == null)
             {
@@ -82,10 +109,16 @@ namespace CineAPI.Controllers
             return comments;
         }
 
+        /// <summary>
+        /// Returns a list containing all of the movie IDs for the Movies that
+        /// the User with the provided username is following.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("movies/{username}")]
-        public ActionResult<List<string>> GetFollowingMovies(string username)
+        public async Task<ActionResult<List<string>>> GetFollowingMovies(string username)
         {
-            List<string> movieids = _userLogic.GetFollowingMovies(username);
+            List<string> movieids = await _userLogic.GetFollowingMovies(username);
 
             if(movieids == null)
             {
@@ -95,10 +128,16 @@ namespace CineAPI.Controllers
             return movieids;
         }
 
+        /// <summary>
+        /// Returns a list of all Review objects that were created by the User
+        /// with the provided username.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("reviews/{username}")]
-        public ActionResult<List<Review>> GetReviews(string username)
+        public async Task<ActionResult<List<Review>>> GetReviews(string username)
         {
-            List<Review> reviews = _userLogic.GetReviews(username);
+            List<Review> reviews = await _userLogic.GetReviews(username);
 
             if(reviews == null)
             {
@@ -108,10 +147,18 @@ namespace CineAPI.Controllers
             return reviews;
         }
 
+        /// <summary>
+        /// Adds the Movie with the provided movie ID to the provided User's 
+        /// list of Movies they are following.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="movieid"></param>
+        /// <returns></returns>
         [HttpPost("movie/{username}/{movieid}")]
-        public ActionResult FollowMovie(string username, string movieid)
+        public async Task<ActionResult> FollowMovie(string username, string movieid)
         {
-            if(_userLogic.FollowMovie(username, movieid))
+            var result = await _userLogic.FollowMovie(username, movieid);
+            if(result)
             {
                 return StatusCode(201);
             }

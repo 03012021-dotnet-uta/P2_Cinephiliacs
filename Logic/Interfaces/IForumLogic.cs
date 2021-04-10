@@ -1,14 +1,47 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using GlobalModels;
 
 namespace BusinessLogic.Interfaces
 {
     public interface IForumLogic
     {
-        List<string> GetTopics();
-        List<Discussion> GetDiscussions(string movieid);
-        List<Comment> GetComments(int discussionid);
-        bool CreateDiscussion(NewDiscussion discussion);
-        bool CreateComment(NewComment comment);
+        /// <summary>
+        /// Returns a list of every topic's name.
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<string>> GetTopics();
+
+        /// <summary>
+        /// Returns a list of every Discussion object whose Movieid is equal to
+        /// the movieid argument.
+        /// </summary>
+        /// <param name="movieid"></param>
+        /// <returns></returns>
+        public Task<List<Discussion>> GetDiscussions(string movieid);
+
+        /// <summary>
+        /// Returns a list of every Comment object whose Discussionid is equal to
+        /// the discussionid argument.
+        /// </summary>
+        /// <param name="discussionid"></param>
+        /// <returns></returns>
+        public Task<List<Comment>> GetComments(int discussionid);
+
+        /// <summary>
+        /// Adds a new Discussion Object to storage.
+        /// Returns true if sucessful; false otherwise.
+        /// </summary>
+        /// <param name="discussion"></param>
+        /// <returns></returns>
+        public Task<bool> CreateDiscussion(NewDiscussion discussion);
+
+        /// <summary>
+        /// Adds a new Comment Object to storage.
+        /// Returns true if sucessful; false otherwise.
+        /// </summary>
+        /// <param name="comment"></param>
+        /// <returns></returns>
+        public Task<bool> CreateComment(NewComment comment);
     }
 }
