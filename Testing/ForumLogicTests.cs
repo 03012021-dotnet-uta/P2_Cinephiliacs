@@ -6,11 +6,19 @@ using BusinessLogic;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Testing
 {
     public class ForumLogicTests
     {
+        private readonly ITestOutputHelper _testOutput;
+
+        public ForumLogicTests(ITestOutputHelper testOutputHelper)
+        {
+            _testOutput = testOutputHelper;
+        }
+
         DbContextOptions<Repository.Models.Cinephiliacs_DbContext> dbOptions =
             new DbContextOptionsBuilder<Repository.Models.Cinephiliacs_DbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
@@ -94,6 +102,35 @@ namespace Testing
             }
 
             Assert.Equal(inputGMComment, outputGMComment);
+        }
+        
+        [Fact]
+        public async Task TopicTest()
+        {
+            RelatedDataSet dataSetA = new RelatedDataSet("JimmyJimerson", "ab10101010", "Theory");
+
+            string outputTopicName;
+
+            // Seed the test database
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.Topics.Add(dataSetA.Topic);
+                context.SaveChanges();
+            }
+
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {
+                RepoLogic repoLogic = new RepoLogic(context);
+                ForumLogic forumLogic = new ForumLogic(repoLogic);
+
+                List<string> topicNames = await forumLogic.GetTopics();
+                outputTopicName = topicNames[0];
+            }
+
+            Assert.Equal(dataSetA.Topic.TopicName, outputTopicName);
         }
     }
 }
