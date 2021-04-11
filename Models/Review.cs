@@ -1,12 +1,24 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GlobalModels
 {
     public sealed class Review : IEquatable<Review>
     {
+        [Required]
+        [StringLength(20)]
         public string Movieid { get; set; }
+
+        [Required]
+        [StringLength(30)]
         public string Username { get; set; }
+
+        [Required]
+        [Range(0,5)]
         public decimal Rating { get; set; }
+
+        [Required]
+        [StringLength(300)]
         public string Text { get; set; }
 
         public Review(string movieid, string username, decimal rating, string text)

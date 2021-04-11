@@ -1,13 +1,29 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GlobalModels
 {
     public sealed class User : IEquatable<User>
     {
+        [Required]
+        [StringLength(30)]
         public string Username { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string Firstname { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string Lastname { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [RegularExpression( @"(.+)(@)(.+).(.+){2,4}?$")]
         public string Email { get; set; }
+        
+        [Required]
+        [Range(0,3)]
         public byte Permissions { get; set; }
 
         public User(string username, string firstname, string lastname, string email, byte permissions)
