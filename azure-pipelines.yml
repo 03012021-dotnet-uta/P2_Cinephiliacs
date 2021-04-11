@@ -16,6 +16,8 @@ variables:
   angularDirectory: 'AngularApp'
 
 steps:
+- script: |
+    mkdir dist
 
 - script: |
     npm install -g @angular/cli
