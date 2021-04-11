@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router'
 import { HttpService} from '../http.service';
 
@@ -17,9 +18,15 @@ export class ListComponent implements OnInit {
   searchTerm: any;
   pageNum: any;
 
+  searchForm!: FormGroup;
+
   constructor(private router :ActivatedRoute, private _http: HttpService) { }
 
   ngOnInit(): void {
+
+    this.searchForm = new FormGroup({
+      search: new FormControl('', Validators.minLength(2))
+    });
     
     console.log(this.router.snapshot.params);
     this.searchTerm = this.router.snapshot.params.search;
@@ -38,8 +45,15 @@ export class ListComponent implements OnInit {
       console.log("this is movies now just so you know");
       console.log(this.movies2);
     });
-    
 
+  }
+
+  onSubmit() {
+    if (this.searchForm.get('search') != null)
+    {
+      let searchParam = JSON.stringify(this.searchForm.get('search')!.value).substring(1, JSON.stringify(this.searchForm.get('search')!.value).length - 1);
+      window.location.href = "/list/" +  searchParam + "/1";
+    }
   }
 
 }

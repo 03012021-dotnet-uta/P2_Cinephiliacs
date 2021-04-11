@@ -1,25 +1,65 @@
+.search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 10vh;
+
+    #searchInput{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        #svg4983 {
+            height: 25px;
+            width: auto;
+            margin-right: -35px;
+            margin-top: 7px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #pgSearch {
+            width: 50%;
+            border-radius: 5px;
+            height: 35px;
+            border: 1px solid grey;
+            padding-left: 45px;
+            font-size: 1.1em;
+        }
+    }
+}
+
 ul{
     list-style-type: none ;
     margin: 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-
+ 
     li{
-       background: rgb(238,238,238);
        padding: 1em;    
        width: 15%;
        height: auto;
        margin-bottom: 1em;
        display: flex;
        flex-direction: column;
-
+ 
+       div.image {
+           min-height: 250px;
+           display: flex;
+           align-items: center;
+ 
+           img {
+               width: 100%;
+           }
+       }
+ 
        p{
            margin: 0;
            font-weight:bold;
            font-size: 1.2rem;
        }
-
+ 
        p.name{
            font-weight: bold;
            font-size: 1.2rem;
@@ -28,12 +68,13 @@ ul{
        p.year{
            font-size: .9rem;
            flex-grow: 1;
-        
        }
-       
-
+       p.id {
+           display: none;
+       }
+ 
     }
-
+ 
     li:not(:last-child) {
         margin-right: 20px;
     }
