@@ -17,24 +17,24 @@ namespace GlobalModels
             Text = text;
         }
 
-        public bool Equals(Review obj)
+        public bool Equals(Review other)
         {
-            if (Object.ReferenceEquals(obj, null))
+            if (Object.ReferenceEquals(other, null))
             {
                 return false;
             }
 
-            if (Object.ReferenceEquals(this, obj))
+            if (Object.ReferenceEquals(this, other))
             {
                 return true;
             }
 
-            if (this.GetType() != obj.GetType())
+            if (this.GetType() != other.GetType())
             {
                 return false;
             }
 
-            return Movieid == obj.Movieid;
+            return Movieid == other.Movieid;
         }
 
         public override bool Equals(object obj)

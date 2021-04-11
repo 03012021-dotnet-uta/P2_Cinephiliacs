@@ -12,13 +12,6 @@ namespace Testing
 {
     public class ForumLogicTests
     {
-        private readonly ITestOutputHelper _testOutput;
-
-        public ForumLogicTests(ITestOutputHelper testOutputHelper)
-        {
-            _testOutput = testOutputHelper;
-        }
-
         readonly DbContextOptions<Repository.Models.Cinephiliacs_DbContext> dbOptions =
             new DbContextOptionsBuilder<Repository.Models.Cinephiliacs_DbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;

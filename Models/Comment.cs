@@ -19,24 +19,24 @@ namespace GlobalModels
             Isspoiler = isspoiler;
         }
 
-        public bool Equals(Comment obj)
+        public bool Equals(Comment other)
         {
-            if (Object.ReferenceEquals(obj, null))
+            if (Object.ReferenceEquals(other, null))
             {
                 return false;
             }
 
-            if (Object.ReferenceEquals(this, obj))
+            if (Object.ReferenceEquals(this, other))
             {
                 return true;
             }
 
-            if (this.GetType() != obj.GetType())
+            if (this.GetType() != other.GetType())
             {
                 return false;
             }
 
-            return Commentid == obj.Commentid;
+            return Commentid == other.Commentid;
         }
 
         public override bool Equals(object obj)

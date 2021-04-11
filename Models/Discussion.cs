@@ -19,24 +19,24 @@ namespace GlobalModels
             Topic = topic;
         }
 
-        public bool Equals(Discussion obj)
+        public bool Equals(Discussion other)
         {
-            if (Object.ReferenceEquals(obj, null))
+            if (Object.ReferenceEquals(other, null))
             {
                 return false;
             }
 
-            if (Object.ReferenceEquals(this, obj))
+            if (Object.ReferenceEquals(this, other))
             {
                 return true;
             }
 
-            if (this.GetType() != obj.GetType())
+            if (this.GetType() != other.GetType())
             {
                 return false;
             }
 
-            return Discussionid == obj.Discussionid;
+            return Discussionid == other.Discussionid;
         }
 
         public override bool Equals(object obj)
