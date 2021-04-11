@@ -16,5 +16,12 @@ namespace GlobalModels
             Subject = subject;
             Topic = topic;
         }
+        public NewDiscussion(Discussion discussion)
+        {
+            Movieid = discussion.Movieid;
+            Username = discussion.Username;
+            Subject = discussion.Subject;
+            Topic = discussion.Topic;
+        }
     }
 }

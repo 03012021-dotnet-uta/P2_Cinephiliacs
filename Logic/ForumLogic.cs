@@ -17,13 +17,13 @@ namespace BusinessLogic
 
         public async Task<bool> CreateComment(NewComment comment)
         {
-            var repoComment = Mapper.DiscussionToNewRepoComment(comment);
+            var repoComment = Mapper.NewCommentToNewRepoComment(comment);
             return await _repo.AddComment(repoComment);
         }
 
         public async Task<bool> CreateDiscussion(NewDiscussion discussion)
         {
-            var repoDiscussion = Mapper.DiscussionToNewRepoDiscussion(discussion);
+            var repoDiscussion = Mapper.NewDiscussionToNewRepoDiscussion(discussion);
             return await _repo.AddDiscussion(repoDiscussion);
         }
 

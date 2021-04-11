@@ -66,7 +66,7 @@ namespace Repository
 
             await _dbContext.Discussions.AddAsync(repoDiscussion);
 
-            if(await _dbContext.SaveChangesAsync() > 0)
+            if((await _dbContext.SaveChangesAsync()) > 0)
             {
                 return true;
             }
@@ -96,7 +96,7 @@ namespace Repository
 
             await _dbContext.Comments.AddAsync(repoComment);
 
-            if(await _dbContext.SaveChangesAsync() > 0)
+            if((await _dbContext.SaveChangesAsync()) > 0)
             {
                 return true;
             }

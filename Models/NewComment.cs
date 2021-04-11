@@ -16,5 +16,12 @@ namespace GlobalModels
             Text = text;
             Isspoiler = isspoiler;
         }
+        public NewComment(Comment comment)
+        {
+            Discussionid = comment.Discussionid;
+            Username = comment.Username;
+            Text = comment.Text;
+            Isspoiler = comment.Isspoiler;
+        }
     }
 }

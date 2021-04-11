@@ -2,7 +2,7 @@
 
 namespace GlobalModels
 {
-    public class User
+    public class User : IEquatable<User>
     {
         public string Username { get; set; }
         public string Firstname { get; set; }
@@ -17,6 +17,55 @@ namespace GlobalModels
             Lastname = lastname;
             Email = email;
             Permissions = permissions;
+        }
+
+        public bool Equals(User other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (this.GetType() != other.GetType())
+            {
+                return false;
+            }
+
+            return Username == other.Username;
+        }
+
+        public override bool Equals(object other)
+        {
+            return this.Equals(other as User);
+        }
+
+        public static bool operator ==(User lhs, User rhs)
+        {
+            if (Object.ReferenceEquals(lhs, null))
+            {
+                if (Object.ReferenceEquals(rhs, null))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            return lhs.Equals(rhs);
+        }
+
+        public static bool operator !=(User lhs, User rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        public override int GetHashCode()
+        {
+            return Username.GetHashCode();
         }
     }
 }
