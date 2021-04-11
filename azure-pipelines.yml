@@ -16,6 +16,11 @@ variables:
   angularDirectory: 'AngularApp'
 
 steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
 - script: |
     cd '$(System.DefaultWorkingDirectory)/HelloWorld'
     npm install -g @angular/cli
@@ -38,11 +43,3 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure subscription 1(6b046a51-8f67-4253-b7de-78eea66e9f0d)'
-    appType: 'webApp'
-    WebAppName: 'CinephiliacsFE'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
