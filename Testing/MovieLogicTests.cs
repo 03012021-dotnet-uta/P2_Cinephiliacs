@@ -11,7 +11,7 @@ namespace Testing
 {
     public class MovieLogicTests
     {
-        DbContextOptions<Repository.Models.Cinephiliacs_DbContext> dbOptions =
+        readonly DbContextOptions<Repository.Models.Cinephiliacs_DbContext> dbOptions =
             new DbContextOptionsBuilder<Repository.Models.Cinephiliacs_DbContext>()
         .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
@@ -48,8 +48,8 @@ namespace Testing
                 // Test GetReviews()
                 MovieLogic movieLogic = new MovieLogic(repoLogic);
                 List<GlobalModels.Review> gmReviewList = await movieLogic.GetReviews(dataSetA.Movie.MovieId);
-                outputGMReview = gmReviewList.Where(r => r.Movieid == dataSetA.Movie.MovieId)
-                    .FirstOrDefault<GlobalModels.Review>();
+                outputGMReview = gmReviewList
+                    .FirstOrDefault<GlobalModels.Review>(r => r.Movieid == dataSetA.Movie.MovieId);
             }
 
             Assert.Equal(inputGMReview, outputGMReview);
@@ -76,11 +76,7 @@ namespace Testing
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
             {
-                RepoLogic repoLogic = new RepoLogic(context);
-                MovieLogic movieLogic = new MovieLogic(repoLogic);
-
-                var gmMovie = context.Movies.Where(m => m.MovieId == inputMovieId)
-                    .FirstOrDefault<Repository.Models.Movie>();
+                var gmMovie = context.Movies.FirstOrDefault<Repository.Models.Movie>(m => m.MovieId == inputMovieId);
                 outputMovieId = gmMovie.MovieId;
             }
 

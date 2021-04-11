@@ -19,7 +19,7 @@ namespace Testing
             _testOutput = testOutputHelper;
         }
 
-        DbContextOptions<Repository.Models.Cinephiliacs_DbContext> dbOptions =
+        readonly DbContextOptions<Repository.Models.Cinephiliacs_DbContext> dbOptions =
             new DbContextOptionsBuilder<Repository.Models.Cinephiliacs_DbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
@@ -56,8 +56,8 @@ namespace Testing
                 // Test GetDiscussions()
                 ForumLogic forumLogic = new ForumLogic(repoLogic);
                 List<GlobalModels.Discussion> gmDiscussionList = await forumLogic.GetDiscussions(dataSetA.Discussion.MovieId);
-                outputGMDiscussion = gmDiscussionList.Where(d => d.Movieid == dataSetA.Discussion.MovieId)
-                    .FirstOrDefault<GlobalModels.Discussion>();
+                outputGMDiscussion = gmDiscussionList
+                    .FirstOrDefault<GlobalModels.Discussion>(d => d.Movieid == dataSetA.Discussion.MovieId);
             }
 
             Assert.Equal(inputGMDiscussion, outputGMDiscussion);
@@ -97,8 +97,8 @@ namespace Testing
                 // Test GetComments()
                 ForumLogic forumLogic = new ForumLogic(repoLogic);
                 List<GlobalModels.Comment> gmCommentList = await forumLogic.GetComments(dataSetA.Comment.DiscussionId);
-                outputGMComment = gmCommentList.Where(c => c.Discussionid == dataSetA.Comment.DiscussionId)
-                    .FirstOrDefault<GlobalModels.Comment>();
+                outputGMComment = gmCommentList
+                    .FirstOrDefault<GlobalModels.Comment>(c => c.Discussionid == dataSetA.Comment.DiscussionId);
             }
 
             Assert.Equal(inputGMComment, outputGMComment);

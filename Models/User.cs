@@ -2,7 +2,7 @@
 
 namespace GlobalModels
 {
-    public class User : IEquatable<User>
+    public sealed class User : IEquatable<User>
     {
         public string Username { get; set; }
         public string Firstname { get; set; }
@@ -19,29 +19,29 @@ namespace GlobalModels
             Permissions = permissions;
         }
 
-        public bool Equals(User other)
+        public bool Equals(User obj)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (Object.ReferenceEquals(obj, null))
             {
                 return false;
             }
 
-            if (Object.ReferenceEquals(this, other))
+            if (Object.ReferenceEquals(this, obj))
             {
                 return true;
             }
 
-            if (this.GetType() != other.GetType())
+            if (this.GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return Username == other.Username;
+            return Username == obj.Username;
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            return this.Equals(other as User);
+            return this.Equals(obj as User);
         }
 
         public static bool operator ==(User lhs, User rhs)

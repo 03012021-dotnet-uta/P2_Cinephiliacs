@@ -2,7 +2,7 @@ using System;
 
 namespace GlobalModels
 {
-    public class NewDiscussion
+    public sealed class NewDiscussion
     {
         public string Movieid { get; set; }
         public string Username { get; set; }

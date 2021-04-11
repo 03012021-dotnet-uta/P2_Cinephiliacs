@@ -12,14 +12,7 @@ namespace Testing
 {
     public class UserLogicTests
     {
-        private readonly ITestOutputHelper _testOutput;
-
-        public UserLogicTests(ITestOutputHelper testOutputHelper)
-        {
-            _testOutput = testOutputHelper;
-        }
-
-        DbContextOptions<Repository.Models.Cinephiliacs_DbContext> dbOptions =
+        readonly DbContextOptions<Repository.Models.Cinephiliacs_DbContext> dbOptions =
             new DbContextOptionsBuilder<Repository.Models.Cinephiliacs_DbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
@@ -87,8 +80,8 @@ namespace Testing
                 // Test GetUsers()
                 UserLogic userLogic = new UserLogic(repoLogic);
                 List<GlobalModels.User> gmUserList = await userLogic.GetUsers();
-                outputGMUser = gmUserList.Where(u => u.Username == dataSetA.User.Username)
-                    .FirstOrDefault<GlobalModels.User>();
+                outputGMUser = gmUserList
+                    .FirstOrDefault<GlobalModels.User>(u => u.Username == dataSetA.User.Username);
             }
 
             Assert.Equal(inputGMUser, outputGMUser);
@@ -162,8 +155,8 @@ namespace Testing
                 // Test GetReviews()
                 UserLogic userLogic = new UserLogic(repoLogic);
                 List<GlobalModels.Review> gmReviewList = await userLogic.GetReviews(dataSetA.User.Username);
-                outputGMReview = gmReviewList.Where(r => r.Username == dataSetA.User.Username)
-                    .FirstOrDefault<GlobalModels.Review>();
+                outputGMReview = gmReviewList
+                    .FirstOrDefault<GlobalModels.Review>(r => r.Username == dataSetA.User.Username);
             }
 
             Assert.Equal(inputGMReview, outputGMReview);
@@ -201,8 +194,8 @@ namespace Testing
                 // Test GetDiscussions()
                 UserLogic userLogic = new UserLogic(repoLogic);
                 List<GlobalModels.Discussion> gmDiscussionList = await userLogic.GetDiscussions(dataSetA.User.Username);
-                outputGMDiscussion = gmDiscussionList.Where(d => d.Username == dataSetA.User.Username)
-                    .FirstOrDefault<GlobalModels.Discussion>();
+                outputGMDiscussion = gmDiscussionList
+                    .FirstOrDefault<GlobalModels.Discussion>(d => d.Username == dataSetA.User.Username);
             }
 
             Assert.Equal(inputGMDiscussion, outputGMDiscussion);
@@ -241,8 +234,8 @@ namespace Testing
                 // Test GetComments()
                 UserLogic userLogic = new UserLogic(repoLogic);
                 List<GlobalModels.Comment> gmCommentList = await userLogic.GetComments(dataSetA.User.Username);
-                outputGMComment = gmCommentList.Where(c => c.Username == dataSetA.User.Username)
-                    .FirstOrDefault<GlobalModels.Comment>();
+                outputGMComment = gmCommentList
+                    .FirstOrDefault<GlobalModels.Comment>(c => c.Username == dataSetA.User.Username);
             }
 
             Assert.Equal(inputGMComment, outputGMComment);

@@ -320,16 +320,5 @@ namespace Repository
         {
             return (_dbContext.Discussions.Where(d => d.DiscussionId == discussionid).FirstOrDefault<Discussion>() != null);
         }
-
-        /// <summary>
-        /// Returns true iff the topic name, specified in the argument, exists in the database's Topics table.
-        /// </summary>
-        /// <param name="topicname"></param>
-        /// <returns></returns>
-        private bool TopicExists(string topicname)
-        {
-            return (_dbContext.Topics.Where(t => t.TopicName == topicname).FirstOrDefault<Topic>() != null);
-        }
-
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace GlobalModels
 {
-    public class Comment : IEquatable<Comment>
+    public sealed class Comment : IEquatable<Comment>
     {
         public int Commentid { get; set; }
         public int Discussionid { get; set; }
@@ -19,29 +19,29 @@ namespace GlobalModels
             Isspoiler = isspoiler;
         }
 
-        public bool Equals(Comment other)
+        public bool Equals(Comment obj)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (Object.ReferenceEquals(obj, null))
             {
                 return false;
             }
 
-            if (Object.ReferenceEquals(this, other))
+            if (Object.ReferenceEquals(this, obj))
             {
                 return true;
             }
 
-            if (this.GetType() != other.GetType())
+            if (this.GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return Commentid == other.Commentid;
+            return Commentid == obj.Commentid;
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            return this.Equals(other as Comment);
+            return this.Equals(obj as Comment);
         }
 
         public static bool operator ==(Comment lhs, Comment rhs)
