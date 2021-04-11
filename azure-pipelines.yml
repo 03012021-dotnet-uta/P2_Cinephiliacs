@@ -43,7 +43,8 @@ steps:
     npm install -g @angular/cli
     npm install --save-dev @angular-devkit/build-angular
     npm install
-  displayName: 'npm install'
+    ng build --prod
+  displayName: 'npm install & ng build'
   workingDirectory: '$(angularDirectory)'
 
 - task: SonarCloudPrepare@1
@@ -53,11 +54,6 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'tmgsat_Cinephiliacs'
     projectName: 'Cinephiliacs'
-
-- script:
-    ng build --prod
-  displayName: 'ng build'
-  workingDirectory: '$(angularDirectory)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Building'
