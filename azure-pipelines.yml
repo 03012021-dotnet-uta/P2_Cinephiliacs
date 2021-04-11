@@ -13,34 +13,71 @@ pool:
 variables:
   buildConfiguration: 'Release'
   solution: 'cine.sln'
-  AngularRootDir: '$(System.DefaultWorkingDirectory)/AngularApp'
 
 steps:
-- task: NodeTool@0 
+- task: UseDotNet@2
+  displayName: 'Install .NET Core SDK'
   inputs:
-    versionSpec: '14.x'
-  displayName: 'Install Node.js'
+    packageType: 'sdk'
+    version: '5.0.x'
 
-- script: |
-    cd AngularApp
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
-  displayName: 'npm install and build'
-
-- task: PublishBuildArtifacts@1
+- task: UseDotNet@2
+  displayName: 'Install .NET Core Runtime'
   inputs:
-    PathtoPublish: '$(AngularRootDir)'
+    packageType: 'runtime'
+    version: '2.x'
 
-- task: ArchiveFiles@2
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
   inputs:
-    rootFolderOrFile: '$(AngularRootDir)'
-    includeRootFolder: false
+    restoreSolution: '$(solution)'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonar Cloud'
+    organization: 'tmgsat'
+    scannerMode: 'MSBuild'
+    projectKey: 'tmgsat_Cinephiliacs'
+    projectName: 'Cinephiliacs'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Building'
+  inputs:
+    command: 'build'
+    projects: '$(solution)'
+    arguments: '--configuration $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: 'Testing'
+  inputs:
+    command: 'test'
+    projects: '$(solution)'
+    arguments: '--configuration $(buildConfiguration) --collect "Code Coverage"'
+    testRunTitle: 'Dotnet tests running'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '**/coburtura/coverage.xml'
+
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '60'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publishing'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '$(solution)'
+    zipAfterPublish: true
 
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(6b046a51-8f67-4253-b7de-78eea66e9f0d)'
     appType: 'webApp'
-    WebAppName: 'CinephiliacsFE'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/../**/AngularApp/**/*.zip'
+    WebAppName: 'CinephiliacsAPI'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
