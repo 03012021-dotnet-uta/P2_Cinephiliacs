@@ -39,14 +39,10 @@ namespace Testing
                 // Test CreateReview()
                 MovieLogic movieLogic = new MovieLogic(repoLogic);
                 await movieLogic.CreateReview(inputGMReview);
-
-                context.SaveChanges();
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
             {
-                context.Database.EnsureCreated();
-
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetReviews()
@@ -76,14 +72,10 @@ namespace Testing
                 // Test CreateMovie()
                 MovieLogic movieLogic = new MovieLogic(repoLogic);
                 await movieLogic.CreateMovie(inputMovieId);
-
-                context.SaveChanges();
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
             {
-                context.Database.EnsureCreated();
-
                 RepoLogic repoLogic = new RepoLogic(context);
                 MovieLogic movieLogic = new MovieLogic(repoLogic);
 

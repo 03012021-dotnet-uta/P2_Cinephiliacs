@@ -4,7 +4,6 @@ namespace Testing
 {
     internal class RelatedDataSet
     {
-        static int id = 1;
         internal Repository.Models.User User { get; }
         internal Repository.Models.Movie Movie { get; }
         internal Repository.Models.Review Review { get; }
@@ -36,29 +35,27 @@ namespace Testing
             Topic.TopicName = movieId;
 
             Discussion = new Repository.Models.Discussion();
-            Discussion.DiscussionId = id;
+            Discussion.DiscussionId = 1;
             Discussion.MovieId = movieId;
             Discussion.Username = username;
             Discussion.CreationTime = DateTime.Now;
             Discussion.Subject = "This movie doesn't exist.";
 
             Comment = new Repository.Models.Comment();
-            Comment.CommentId = id;
-            Comment.DiscussionId = id;
+            Comment.CommentId = 1;
+            Comment.DiscussionId = 1;
             Comment.Username = username;
             Comment.CreationTime = DateTime.Now;
             Comment.CommentText = "This movie is UNREAL!";
             Comment.IsSpoiler = true;
 
             DiscussionTopic = new Repository.Models.DiscussionTopic();
-            DiscussionTopic.DiscussionId = id;
+            DiscussionTopic.DiscussionId = 1;
             DiscussionTopic.TopicName = topicName;
 
             FollowingMovie = new Repository.Models.FollowingMovie();
             FollowingMovie.Username = username;
             FollowingMovie.MovieId = movieId;
-
-            id += 1;
         }
 
     }
