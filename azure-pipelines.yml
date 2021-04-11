@@ -22,7 +22,7 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install & ng build'
-  workingDirectory: '$(angularDirectory)'
+#workingDirectory: '$(angularDirectory)'
 
 - task: PublishBuildArtifacts@1
   inputs:
