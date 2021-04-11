@@ -24,7 +24,6 @@ steps:
 - script: |
     cd '$(System.DefaultWorkingDirectory)/HelloWorld'
     npm install -g @angular/cli
-#    npm install --save-dev @angular-devkit/build-angular
     npm install
     ng build --prod
   displayName: 'npm install and build'
