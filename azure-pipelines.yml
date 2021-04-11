@@ -13,6 +13,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   solution: 'cine.sln'
+  angularDirectory: 'AngularApp'
 
 steps:
 - task: UseDotNet@2
@@ -40,6 +41,18 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'tmgsat_Cinephiliacs'
     projectName: 'Cinephiliacs'
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '12.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g @angular/cli
+    npm install
+    ng build --prod
+  displayName: 'npm install and build'
+  workingDirectory: '$(angularDirectory)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Building'
