@@ -21,8 +21,8 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    cd AngularApp
     npm install -g @angular/cli
-    npm install --save-dev @angular-devkit/build-angular
     npm install
     ng build --prod
   displayName: 'npm install and build'
@@ -42,4 +42,4 @@ steps:
     azureSubscription: 'Azure subscription 1(6b046a51-8f67-4253-b7de-78eea66e9f0d)'
     appType: 'webApp'
     WebAppName: 'CinephiliacsFE'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/../**/*.zip'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
