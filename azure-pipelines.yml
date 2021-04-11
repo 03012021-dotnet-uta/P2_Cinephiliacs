@@ -54,7 +54,7 @@ steps:
     projectName: 'Cinephiliacs'
 
 - script:
-    ng build --prod -- -op ..
+    ng build --prod
   displayName: 'ng build'
   workingDirectory: '$(angularDirectory)'
 
