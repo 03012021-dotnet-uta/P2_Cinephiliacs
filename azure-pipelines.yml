@@ -17,9 +17,6 @@ variables:
 
 steps:
 - script: |
-    mkdir dist
-
-- script: |
     npm install -g @angular/cli
     npm install --save-dev @angular-devkit/build-angular
     npm install
@@ -29,7 +26,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(angularDirectory)/dist/$(Build.BuildId).zip'
+    PathtoPublish: '$(angularDirectory)/$(Build.BuildId).zip'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
@@ -39,4 +36,4 @@ steps:
     azureSubscription: 'Azure subscription 1(6b046a51-8f67-4253-b7de-78eea66e9f0d)'
     appType: 'webApp'
     WebAppName: 'CinephiliacsFE'
-    packageForLinux: '$(angularDirectory)/dist/$(Build.BuildId).zip'
+    packageForLinux: '$(angularDirectory)/$(Build.BuildId).zip'
