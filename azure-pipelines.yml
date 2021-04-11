@@ -34,14 +34,6 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'Sonar Cloud'
-    organization: 'tmgsat'
-    scannerMode: 'MSBuild'
-    projectKey: 'tmgsat_Cinephiliacs'
-    projectName: 'Cinephiliacs'
-
 - task: NodeTool@0
   inputs:
     versionSpec: '12.x'
@@ -50,8 +42,20 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --prod
-  displayName: 'npm install and build'
+  displayName: 'npm install'
+  workingDirectory: '$(angularDirectory)'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonar Cloud'
+    organization: 'tmgsat'
+    scannerMode: 'MSBuild'
+    projectKey: 'tmgsat_Cinephiliacs'
+    projectName: 'Cinephiliacs'
+
+- script:
+    ng build --prod -- -op ..
+  displayName: 'ng build'
   workingDirectory: '$(angularDirectory)'
 
 - task: DotNetCoreCLI@2
@@ -94,3 +98,17 @@ steps:
     appType: 'webApp'
     WebAppName: 'CinephiliacsAPI'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(angularDirectory)/$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(6b046a51-8f67-4253-b7de-78eea66e9f0d)'
+    appType: 'webApp'
+    WebAppName: 'CinephiliacsFE'
+    packageForLinux: '$(angularDirectory)/$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
