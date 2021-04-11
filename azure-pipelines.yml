@@ -13,7 +13,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   solution: 'cine.sln'
-  rootDir: '$(System.DefaultWorkingDirectory)/AngularApp'
+  AngularRootDir: '$(System.DefaultWorkingDirectory)/AngularApp'
 
 steps:
 - task: NodeTool@0 
@@ -30,11 +30,11 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(rootDir)'
+    PathtoPublish: '$(AngularRootDir)'
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(rootDir)'
+    rootFolderOrFile: '$(AngularRootDir)'
     includeRootFolder: false
 
 - task: AzureRmWebAppDeployment@4
@@ -43,4 +43,4 @@ steps:
     azureSubscription: 'Azure subscription 1(6b046a51-8f67-4253-b7de-78eea66e9f0d)'
     appType: 'webApp'
     WebAppName: 'CinephiliacsFE'
-    packageForLinux: '$(rootDir)/**/*.zip'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/../**/AngularApp/**/*.zip'
