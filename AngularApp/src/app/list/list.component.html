@@ -1,25 +1,45 @@
-<p>list works!</p>
-
-
-
-
-<h1>Movies Result of {{searchTerm}}</h1>
+<div class="search">
+    <form id="searchInput" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <!-- svg source https://freesvg.org/vector-clip-art-of-minimal-design-search-icon -->
+        <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="28.10632" height="25" viewBox="0 0 55.770032 124.72441" id="svg4983" version="1.1" inkscape:version="0.91 r13725" sodipodi:docname="Minimal Magnifying Glass.svg">
+            <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(64.082039,-216.03793)">
+            <g id="g4288" transform="matrix(12.843054,0,0,12.843054,-4352.973,-5791.3727)" style="fill:none;stroke:grey;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+                <circle r="3.625" cy="472.13062" cx="335.03351" id="path4284" style="color:grey;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation-filters:linearRGB;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#393939;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
+                <path sodipodi:nodetypes="cc" inkscape:connector-curvature="0" id="path4286" d="m 337.9085,474.44313 2.90967,2.26732" style="color:grey;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation-filters:linearRGB;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#393939;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
+            </g>
+            </g>
+        </svg>
+        <input type="text" id="pgSearch" name="pgSearch" formControlName="search">
+    </form>
+    <div class="filters">
+    </div>
+</div>
+ 
+<h1>Results for "{{searchTerm}}"</h1>
 <ul *ngIf="searches">
     <li *ngFor="let search of searches">
-        <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}">
+        <div class="image">
+            <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}">
+        </div>
         <p class="name">{{ search.Title }}</p>
-        <p class="year">{{ search.Year }}</p>
+        <p class="year">{{ search.Year }}<span *ngIf="search.Year.substring(search.Year.length - 1)=='–'">present</span></p>
         <p class="id">{{ search.imdbID }}</p>
     </li>
 </ul>
 <ul *ngIf="searches2">
     <li *ngFor="let search of searches2">
-        <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}">
+        <div class="image">
+            <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}">
+        </div>
         <p class="name">{{ search.Title }}</p>
-        <p class="year">{{ search.Year }}</p>
+        <p class="year">{{ search.Year }}<span *ngIf="search.Year.substring(search.Year.length - 1)=='–'">present</span></p>
         <p class="id">{{ search.imdbID }}</p>
     </li>
 </ul>
+
+<div class="pages">
+
+</div>
 
 
 
