@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic;
+using BusinessLogic.Interfaces;
+using CineAPI.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Xunit;
@@ -35,8 +37,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test CreateUser()
-                UserLogic userLogic = new UserLogic(repoLogic);
-                await userLogic.CreateUser(inputGMUser);
+                IUserLogic userLogic = new UserLogic(repoLogic);
+                UserController userController = new UserController(userLogic);
+                await userController.CreateUser(inputGMUser);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -44,8 +47,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetUser()
-                UserLogic userLogic = new UserLogic(repoLogic);
-                outputGMUser = userLogic.GetUser(dataSetA.User.Username);
+                IUserLogic userLogic = new UserLogic(repoLogic);
+                UserController userController = new UserController(userLogic);
+                outputGMUser = userController.GetUser(dataSetA.User.Username).Value;
             }
 
             Assert.Equal(inputGMUser, outputGMUser);
@@ -69,8 +73,9 @@ namespace Testing
 
                 RepoLogic repoLogic = new RepoLogic(context);
 
-                UserLogic userLogic = new UserLogic(repoLogic);
-                await userLogic.CreateUser(inputGMUser);
+                IUserLogic userLogic = new UserLogic(repoLogic);
+                UserController userController = new UserController(userLogic);
+                await userController.CreateUser(inputGMUser);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -78,8 +83,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetUsers()
-                UserLogic userLogic = new UserLogic(repoLogic);
-                List<GlobalModels.User> gmUserList = await userLogic.GetUsers();
+                IUserLogic userLogic = new UserLogic(repoLogic);
+                UserController userController = new UserController(userLogic);
+                List<GlobalModels.User> gmUserList = (await userController.Get()).Value;
                 outputGMUser = gmUserList
                     .FirstOrDefault<GlobalModels.User>(u => u.Username == dataSetA.User.Username);
             }
@@ -106,8 +112,9 @@ namespace Testing
                 await repoLogic.AddMovie(dataSetA.Movie.MovieId);
 
                 // Test FollowMovie()
-                UserLogic userLogic = new UserLogic(repoLogic);
-                await userLogic.FollowMovie(dataSetA.FollowingMovie.Username, dataSetA.FollowingMovie.MovieId);
+                IUserLogic userLogic = new UserLogic(repoLogic);
+                UserController userController = new UserController(userLogic);
+                await userController.FollowMovie(dataSetA.FollowingMovie.Username, dataSetA.FollowingMovie.MovieId);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -115,8 +122,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetFollowingMovies()
-                UserLogic userLogic = new UserLogic(repoLogic);
-                List<string> followingMovieList = await userLogic.GetFollowingMovies(dataSetA.User.Username);
+                IUserLogic userLogic = new UserLogic(repoLogic);
+                UserController userController = new UserController(userLogic);
+                List<string> followingMovieList = (await userController.GetFollowingMovies(dataSetA.User.Username)).Value;
                 outputFollowingMovieId = followingMovieList.FirstOrDefault<string>();
             }
 
@@ -144,8 +152,9 @@ namespace Testing
                 await repoLogic.AddUser(dataSetA.User);
                 await repoLogic.AddMovie(dataSetA.Movie.MovieId);
 
-                MovieLogic movieLogic = new MovieLogic(repoLogic);
-                await movieLogic.CreateReview(inputGMReview);
+                IMovieLogic movieLogic = new MovieLogic(repoLogic);
+                MovieController movieController = new MovieController(movieLogic);
+                await movieController.CreateReview(inputGMReview);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -153,8 +162,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetReviews()
-                UserLogic userLogic = new UserLogic(repoLogic);
-                List<GlobalModels.Review> gmReviewList = await userLogic.GetReviews(dataSetA.User.Username);
+                IUserLogic userLogic = new UserLogic(repoLogic);
+                UserController userController = new UserController(userLogic);
+                List<GlobalModels.Review> gmReviewList = (await userController.GetReviews(dataSetA.User.Username)).Value;
                 outputGMReview = gmReviewList
                     .FirstOrDefault<GlobalModels.Review>(r => r.Username == dataSetA.User.Username);
             }
@@ -183,8 +193,9 @@ namespace Testing
                 await repoLogic.AddUser(dataSetA.User);
                 await repoLogic.AddMovie(dataSetA.Movie.MovieId);
 
-                ForumLogic forumLogic = new ForumLogic(repoLogic);
-                await forumLogic.CreateDiscussion(newDiscussion);
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                await forumController.CreateDiscussion(newDiscussion);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -192,8 +203,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetDiscussions()
-                UserLogic userLogic = new UserLogic(repoLogic);
-                List<GlobalModels.Discussion> gmDiscussionList = await userLogic.GetDiscussions(dataSetA.User.Username);
+                IUserLogic userLogic = new UserLogic(repoLogic);
+                UserController userController = new UserController(userLogic);
+                List<GlobalModels.Discussion> gmDiscussionList = (await userController.GetDiscussions(dataSetA.User.Username)).Value;
                 outputGMDiscussion = gmDiscussionList
                     .FirstOrDefault<GlobalModels.Discussion>(d => d.Username == dataSetA.User.Username);
             }
@@ -222,9 +234,10 @@ namespace Testing
                 await repoLogic.AddUser(dataSetA.User);
                 await repoLogic.AddMovie(dataSetA.Movie.MovieId);
                 await repoLogic.AddDiscussion(dataSetA.Discussion);
-                
-                ForumLogic forumLogic = new ForumLogic(repoLogic);
-                await forumLogic.CreateComment(newComment);
+
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                await forumController.CreateComment(newComment);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -232,8 +245,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetComments()
-                UserLogic userLogic = new UserLogic(repoLogic);
-                List<GlobalModels.Comment> gmCommentList = await userLogic.GetComments(dataSetA.User.Username);
+                IUserLogic userLogic = new UserLogic(repoLogic);
+                UserController userController = new UserController(userLogic);
+                List<GlobalModels.Comment> gmCommentList = (await userController.GetComments(dataSetA.User.Username)).Value;
                 outputGMComment = gmCommentList
                     .FirstOrDefault<GlobalModels.Comment>(c => c.Username == dataSetA.User.Username);
             }

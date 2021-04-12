@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic;
+using BusinessLogic.Interfaces;
+using CineAPI.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Xunit;
@@ -38,8 +40,9 @@ namespace Testing
                 await repoLogic.AddMovie(dataSetA.Movie.MovieId);
 
                 // Test CreateDiscussion()
-                ForumLogic forumLogic = new ForumLogic(repoLogic);
-                await forumLogic.CreateDiscussion(newDiscussion);
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                await forumController.CreateDiscussion(newDiscussion);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -47,8 +50,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetDiscussions()
-                ForumLogic forumLogic = new ForumLogic(repoLogic);
-                List<GlobalModels.Discussion> gmDiscussionList = await forumLogic.GetDiscussions(dataSetA.Discussion.MovieId);
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                List<GlobalModels.Discussion> gmDiscussionList = (await forumController.GetDiscussions(dataSetA.Discussion.MovieId)).Value;
                 outputGMDiscussion = gmDiscussionList
                     .FirstOrDefault<GlobalModels.Discussion>(d => d.Movieid == dataSetA.Discussion.MovieId);
             }
@@ -79,8 +83,9 @@ namespace Testing
                 await repoLogic.AddDiscussion(dataSetA.Discussion);
                 
                 // Test CreateComment()
-                ForumLogic forumLogic = new ForumLogic(repoLogic);
-                await forumLogic.CreateComment(newComment);
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                await forumController.CreateComment(newComment);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -88,8 +93,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetComments()
-                ForumLogic forumLogic = new ForumLogic(repoLogic);
-                List<GlobalModels.Comment> gmCommentList = await forumLogic.GetComments(dataSetA.Comment.DiscussionId);
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                List<GlobalModels.Comment> gmCommentList = (await forumController.GetComments(dataSetA.Comment.DiscussionId)).Value;
                 outputGMComment = gmCommentList
                     .FirstOrDefault<GlobalModels.Comment>(c => c.Discussionid == dataSetA.Comment.DiscussionId);
             }
@@ -117,9 +123,10 @@ namespace Testing
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
             {
                 RepoLogic repoLogic = new RepoLogic(context);
-                ForumLogic forumLogic = new ForumLogic(repoLogic);
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
 
-                List<string> topicNames = await forumLogic.GetTopics();
+                List<string> topicNames = (await forumController.GetTopics()).Value;
                 outputTopicName = topicNames[0];
             }
 

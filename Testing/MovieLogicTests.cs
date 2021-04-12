@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic;
+using BusinessLogic.Interfaces;
+using CineAPI.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Xunit;
@@ -37,8 +39,9 @@ namespace Testing
                 await repoLogic.AddMovie(dataSetA.Movie.MovieId);
 
                 // Test CreateReview()
-                MovieLogic movieLogic = new MovieLogic(repoLogic);
-                await movieLogic.CreateReview(inputGMReview);
+                IMovieLogic movieLogic = new MovieLogic(repoLogic);
+                MovieController movieController = new MovieController(movieLogic);
+                await movieController.CreateReview(inputGMReview);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -46,8 +49,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test GetReviews()
-                MovieLogic movieLogic = new MovieLogic(repoLogic);
-                List<GlobalModels.Review> gmReviewList = await movieLogic.GetReviews(dataSetA.Movie.MovieId);
+                IMovieLogic movieLogic = new MovieLogic(repoLogic);
+                MovieController movieController = new MovieController(movieLogic);
+                List<GlobalModels.Review> gmReviewList = (await movieController.GetReviews(dataSetA.Movie.MovieId)).Value;
                 outputGMReview = gmReviewList
                     .FirstOrDefault<GlobalModels.Review>(r => r.Movieid == dataSetA.Movie.MovieId);
             }
@@ -70,8 +74,9 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test CreateMovie()
-                MovieLogic movieLogic = new MovieLogic(repoLogic);
-                await movieLogic.CreateMovie(inputMovieId);
+                IMovieLogic movieLogic = new MovieLogic(repoLogic);
+                MovieController movieController = new MovieController(movieLogic);
+                await movieController.CreateMovie(inputMovieId);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))

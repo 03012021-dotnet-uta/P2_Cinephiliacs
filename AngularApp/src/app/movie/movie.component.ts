@@ -11,6 +11,7 @@ import { HttpService} from '../http.service';
 })
 export class MovieComponent implements OnInit {
 
+  reviewScore:any =0;
   selectedMovie: any;
   movieID: any;
   discussions: any;
@@ -56,11 +57,18 @@ export class MovieComponent implements OnInit {
       this.discussions = data;
     });
 
-    //Movie Reviews
-    this.http.get("https://cinephiliacsapi.azurewebsites.net/movie/reviews/"+this.movieID).subscribe(data => {
-      console.log(data);
-      this.reviews = data;
-    });
+   //Movie Reviews
+   this.http.get("https://cinephiliacsapi.azurewebsites.net/movie/reviews/"+this.movieID).subscribe(data => {
+    console.log(data);
+    this.reviews = data;
+    this.reviews.forEach( (value:any) => {
+      console.log(value);
+      this.reviewScore += Number(value.rating);
+      console.log(this.reviewScore);
+  });
+      this.reviewScore = this.reviewScore/this.reviews.length;
+      console.log(this.reviewScore);
+  });
 
     //saving a reference to the database of movies interacted with
     this.http.post("https://cinephiliacsapi.azurewebsites.net/movie/" +this.movieID,null).subscribe(data => console.log("submitted"));
