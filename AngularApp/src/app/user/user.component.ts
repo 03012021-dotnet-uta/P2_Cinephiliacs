@@ -9,13 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
-  router :ActivatedRoute = new ActivatedRoute();
+  
 
   username: string = "";
   user: any;
   reviews: any;
   discussions: any;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.username = this.router.snapshot.params.username;
