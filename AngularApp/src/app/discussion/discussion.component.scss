@@ -1,0 +1,28 @@
+ul {
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+        border: 1px solid gray;
+        padding: 1% 5% 2% 5%;
+
+        div {
+            a.username {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+            div.commenttext {
+                padding-left: 2%;
+                border-left: 5px outset lightgrey;
+            }
+        }
+    }
+
+    li:not(:first-child) {
+        border-top: none;
+        padding-left: 10%;
+    }
+}
