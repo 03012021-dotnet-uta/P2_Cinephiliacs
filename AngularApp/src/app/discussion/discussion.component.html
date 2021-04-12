@@ -1,13 +1,12 @@
-<p>discussion works!</p>
-
-
 <div *ngIf="comments">
-    <li *ngFor="let comment of comments">
-        <div>
-            <a routerLink="/user/{{comment.username}}">{{ comment.username }}</a>
-            <div>{{comment.text}}</div>
-        </div>
-    </li>
+    <ul>
+        <li *ngFor="let comment of comments">
+            <div>
+                <a routerLink="/user/{{comment.username}}">{{ comment.username }}</a>
+                <div>{{comment.text}}</div>
+            </div>
+        </li>
+    </ul>
 </div>
 
 <div id="input">
