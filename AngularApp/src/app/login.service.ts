@@ -13,24 +13,14 @@ export class LoginService {
   connection:string ="";
   loggedIn:any;
 
-  constructor(private http: HttpClient, private _http: HttpService) { }
+  baseURL:string = "https://cinephiliacsapi.azurewebsites.net/";
 
-  async loginUser(username: string){
-    this.connection = this._http.getBase() +"user/" + username;
-    console.log(this.connection);
-    await this.http.get(this.connection).subscribe(data => {
-      console.log(data);
-      this.loggedIn = data;
-      console.log(this.loggedIn.username);
-      localStorage.setItem("loggedin",this.loggedIn.username);
-      return data;
-    });;
+  constructor() { }
+
+
+
+  getURL(){
+    return this.baseURL;
   }
 
-  createUser(newUser: any){
-    console.log("User" + newUser);
-
-    
-    this.http.post(this._http.getBase() , newUser).subscribe(data => console.log(data));
-  }
 }

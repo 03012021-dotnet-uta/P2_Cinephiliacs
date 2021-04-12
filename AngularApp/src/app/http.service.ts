@@ -9,7 +9,7 @@ import { FormsModule} from '@angular/forms';
 })
 export class HttpService {
 
-  baseURL:string = "https://cinephiliacsapi.azurewebsites.net/";
+  
 
   constructor(private http: HttpClient) { 
     
@@ -25,13 +25,7 @@ export class HttpService {
     return this.http.get("https://movie-database-imdb-alternative.p.rapidapi.com?rapidapi-key=f6d24cec46msh55a535ae1cf36d0p1bf4bcjsnd49b624447d2&i="+ id + "&r=json");
   }
 
-  onNavigate(){
-    window.open("https://www.google.com", "_blank");
-  } 
 
-  getBase(){
-    return this.baseURL;
-  }
   
 
   

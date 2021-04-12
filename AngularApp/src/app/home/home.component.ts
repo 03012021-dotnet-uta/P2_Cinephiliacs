@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
 
   userName:string = "";
 
+  url:string ="";
+
   newUser:any ={
     username:'',
     firstname:'',
@@ -20,14 +22,26 @@ export class HomeComponent implements OnInit {
     permissions:1
   }
 
-  constructor(private _login: LoginService, private _http: HttpClient) { }
+  loggedIn: any;
+
+  _login: LoginService = new LoginService();
+
+  constructor( private _http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   async login(){
     console.log("Login attempt" + this.userName);
-    await this._login.loginUser(this.userName);
+    this.url =  this._login.getURL() +"user/" + this.userName;
+    console.log(this.url);
+    await this._http.get(this.url).subscribe(data => {
+      console.log(data);
+      this.loggedIn = data;
+      console.log(this.loggedIn.username);
+      localStorage.setItem("loggedin",this.loggedIn.userName);
+      return data;
+    });;
   }
 
   createUser(){
@@ -38,7 +52,7 @@ export class HomeComponent implements OnInit {
     }else{
     this.newUser 
     console.log(JSON.stringify(this.newUser));
-    this._http.post("https://cinephiliacsapi.azurewebsites.net/user/",this.newUser).subscribe(data => console.log("Data" + data));
+    this._http.post(this._login.getURL()+ "user/",this.newUser).subscribe(data => console.log("Data" + data));
   }
   }
 
