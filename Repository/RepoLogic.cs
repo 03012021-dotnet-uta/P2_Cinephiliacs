@@ -23,6 +23,10 @@ namespace Repository
         /// <returns></returns>
         public async Task<bool> AddUser(User repoUser)
         {
+            if(UserExists(repoUser.Username))
+            {
+                return false;
+            }
             await _dbContext.Users.AddAsync(repoUser);
 
             if(await _dbContext.SaveChangesAsync() > 0)
@@ -189,6 +193,14 @@ namespace Repository
             {
                 return false;
             }
+            // Ensure the User is not already Following this Movie
+            if((await _dbContext.FollowingMovies.Where(fm => 
+                    fm.Username == followingMovie.Username 
+                    && fm.MovieId == followingMovie.MovieId
+                ).FirstOrDefaultAsync<FollowingMovie>()) != null)
+            {
+                return false;
+            }
 
             await _dbContext.FollowingMovies.AddAsync(followingMovie);
 
@@ -212,6 +224,7 @@ namespace Repository
 
         /// <summary>
         /// Adds the Review specified in the argument to the database.
+        /// If the User has already reviewed this movie, the review is replaced.
         /// Returns true iff successful.
         /// Returns false if the username or movie ID referenced in the Review object
         /// do not already exist in their respective database tables.
@@ -230,14 +243,31 @@ namespace Repository
             {
                 return false;
             }
-
-            await _dbContext.Reviews.AddAsync(repoReview);
-
-            if(await _dbContext.SaveChangesAsync() > 0)
+            // If the User has already reviewed this movie, update it
+            Review review = await _dbContext.Reviews.Where(r => 
+                    r.Username == repoReview.Username 
+                    && r.MovieId == repoReview.MovieId).FirstOrDefaultAsync<Review>();
+            if(review == null)
             {
-                return true;
+                await _dbContext.Reviews.AddAsync(repoReview);
+
+                if(await _dbContext.SaveChangesAsync() > 0)
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
+            else
+            {
+                review.Rating = repoReview.Rating;
+                review.Review1 = repoReview.Review1;
+                
+                if(await _dbContext.SaveChangesAsync() > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
 
         /// <summary>
@@ -248,6 +278,11 @@ namespace Repository
         /// <returns></returns>
         public async Task<bool> AddMovie(string movieid)
         {
+            if(MovieExists(movieid))
+            {
+                return false;
+            }
+            
             Repository.Models.Movie movie = new Repository.Models.Movie();
             movie.MovieId = movieid;
             await _dbContext.Movies.AddAsync(movie);
