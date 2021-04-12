@@ -1,0 +1,32 @@
+header{
+    display: flex;
+    align-items: center;
+
+    a.logo {
+        display: flex;
+        align-items: center;
+        font-size: 1.3em;
+        width: 25%;
+
+        img#siteLogo {
+            position: relative;
+            z-index: 1;
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+        }
+    }
+
+    nav {
+        margin-top: -38px;
+
+        ul{
+            input {
+                border-radius: 5px;
+                border: 1px solid grey;
+                padding-left: 5px;
+                height: 25px;
+            }
+        }
+    }
+}

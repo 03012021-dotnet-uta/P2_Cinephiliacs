@@ -5,7 +5,8 @@
         <p class="name">{{ selectedMovie.Title }}</p>
         <p class="year">{{ selectedMovie.Year }}</p>
         <p class="id">{{ selectedMovie.imdbID }}</p>
-        <img src="{{selectedMovie.Poster}}" alt="Flowers in Chania">
+        <img src="{{selectedMovie.Poster}}" alt="Movie Poster">
+        <p>{{reviewScore}}</p>
     </li>
 </ul>
 
@@ -20,11 +21,6 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
             </select>
             <input type="text" [(ngModel)]="sumbitReview.text" [ngModelOptions]="{standalone: true}">
             <button (click)="postReview()">Submit Review</button>
