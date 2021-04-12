@@ -5,16 +5,16 @@
         <li>
             <img src="{{selectedMovie.Poster}}" alt="Movie Poster">
             <div class="information">
-                <p class="name">Title: {{ selectedMovie.Title }}</p>
-                <p class="year">Year(s): {{ selectedMovie.Year }}<span *ngIf="selectedMovie.Year.substring(selectedMovie.Year.length - 1)=='–'">present</span></p>
-                <p class="date">Release Date: {{ selectedMovie.Released }}</p>
-                <p class="runtime">Runtime: {{ selectedMovie.Runtime }}</p>
-                <p class="genre">Genre: {{ selectedMovie.Genre }}</p>
-                <p class="directors">Director(s): {{ selectedMovie.Director }}</p>
-                <p class="writers">Writer(s): {{ selectedMovie.Writer }}</p>
-                <p class="actors">Actors: {{ selectedMovie.Actors }}</p>
-                <p class="awards">Awards: {{ selectedMovie.Awards }}</p>
-                <p class="plot">Plot Summary: {{ selectedMovie.Plot }}</p>
+                <p class="name"><strong>Title:</strong> {{ selectedMovie.Title }}</p>
+                <p class="year"><strong>Year(s):</strong> {{ selectedMovie.Year }}<span *ngIf="selectedMovie.Year.substring(selectedMovie.Year.length - 1)=='–'">present</span></p>
+                <p class="date"><strong>Release Date:</strong> {{ selectedMovie.Released }}</p>
+                <p class="runtime"><strong>Runtime:</strong> {{ selectedMovie.Runtime }}</p>
+                <p class="genre"><strong>Genre:</strong> {{ selectedMovie.Genre }}</p>
+                <p class="directors"><strong>Director(s):</strong> {{ selectedMovie.Director }}</p>
+                <p class="writers"><strong>Writer(s):</strong> {{ selectedMovie.Writer }}</p>
+                <p class="actors"><strong>Actors:</strong> {{ selectedMovie.Actors }}</p>
+                <p class="awards"><strong>Awards:</strong> {{ selectedMovie.Awards }}</p>
+                <p class="plot"><strong>Plot Summary:</strong> {{ selectedMovie.Plot }}</p>
                 <!-- <p class="id">{{ selectedMovie.imdbID }}</p> -->
             </div>
         </li>
