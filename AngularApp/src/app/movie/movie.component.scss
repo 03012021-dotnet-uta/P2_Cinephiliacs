@@ -1,0 +1,66 @@
+.movieinfo {
+    margin-bottom: 5%;
+    margin-top: -35px;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+
+        img {
+            float: left;
+            height: 450px;
+            margin-right: 5%;
+        }
+
+        .information {
+            height: 450px;
+        }
+    }
+}
+
+.left {
+    float: left;
+    width: 55%;
+    margin-bottom: 5%;
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    ul {
+        list-style-type: none;
+
+        li {
+            border: 1px solid grey;
+            padding: 2% 5%;
+
+            .rating {
+                margin-bottom: 0;
+                font-size: 1.1em;
+                font-weight: bold;
+            }
+
+            .username {
+                font-size: .75em;
+            }
+        }
+
+        li:not(:last-child) {
+            border-bottom: none;
+        }
+    }
+}
+
+.right {
+    float: right;
+    width: 40%;
+    margin-bottom: 5%;
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    li {
+        margin-bottom: 2%;
+    }
+}

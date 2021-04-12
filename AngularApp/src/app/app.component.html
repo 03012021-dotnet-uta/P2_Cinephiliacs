@@ -12,7 +12,7 @@
     <a class="logo" (onclick)= "reloadPage()"><img id="siteLogo" src="/assets/Cinephiliacs-Logo.png">Cinephiliacs</a>
     <nav>
       <ul>
-        <li><form [formGroup]="headerSearch" (ngSubmit)="onSubmit()"><input type="text" name="search" [(ngModel)]="test" placeholder="Search" formControlName="headSearch"><a href="/list/{{test}}/1">Search</a></form></li>
+        <li><form [formGroup]="headerSearch" (ngSubmit)="onSubmit()"><input type="text" name="search" [(ngModel)]="test" placeholder="Search movies" formControlName="headSearch"><a href="/list/{{test}}/1">Search</a></form></li>
         <li><a href="#" routerLink="/">Home</a></li>
         <li><a href="/alluser" >Users</a></li>
         

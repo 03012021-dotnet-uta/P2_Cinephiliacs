@@ -1,13 +1,55 @@
-<p>movie works!</p>
+<div *ngIf="selectedMovie" class="movieinfo">
+    <h1>{{ selectedMovie.Title }}</h1>
 
-<ul *ngIf="selectedMovie">
-    <li>
-        <p class="name">{{ selectedMovie.Title }}</p>
-        <p class="year">{{ selectedMovie.Year }}</p>
-        <p class="id">{{ selectedMovie.imdbID }}</p>
-        <img src="{{selectedMovie.Poster}}" alt="Flowers in Chania">
-    </li>
-</ul>
+    <ul>
+        <li>
+            <img src="{{selectedMovie.Poster}}" alt="Movie Poster">
+            <div class="information">
+                <p class="name">Title: {{ selectedMovie.Title }}</p>
+                <p class="year">Year(s): {{ selectedMovie.Year }}<span *ngIf="selectedMovie.Year.substring(selectedMovie.Year.length - 1)=='–'">present</span></p>
+                <p class="date">Release Date: {{ selectedMovie.Released }}</p>
+                <p class="runtime">Runtime: {{ selectedMovie.Runtime }}</p>
+                <p class="genre">Genre: {{ selectedMovie.Genre }}</p>
+                <p class="directors">Director(s): {{ selectedMovie.Director }}</p>
+                <p class="writers">Writer(s): {{ selectedMovie.Writer }}</p>
+                <p class="actors">Actors: {{ selectedMovie.Actors }}</p>
+                <p class="awards">Awards: {{ selectedMovie.Awards }}</p>
+                <p class="plot">Plot Summary: {{ selectedMovie.Plot }}</p>
+                <!-- <p class="id">{{ selectedMovie.imdbID }}</p> -->
+            </div>
+        </li>
+    </ul>
+</div> 
+
+<!-- <div *ngIf="topics">
+                    
+    <div *ngFor="let topic of topics" value="1">
+        {{topic}}
+        
+    </div>
+</div> -->
+
+<div class="left">
+    <ul *ngIf="reviews">
+        <h3>Reviews</h3>
+        <li *ngFor="let review of reviews">
+            <p class="rating">{{ review.rating}}</p>
+            <u routerLink ="/user/{{review.username}}" class="username">{{ review.username}}</u>
+            <p >{{ review.text}}</p>
+            
+        </li>
+    </ul>
+</div>
+
+<div class="right">
+    <ul *ngIf="discussions">
+        <h3>Recent Discussions</h3>
+        <li *ngFor="let discussion of discussions">
+            <!-- <p >{{ discussion.discussionid}}</p> -->
+            <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}}</u> 
+        </li>
+    </ul>
+</div>
 
 <div id="input">
     <h3>Create new</h3>
@@ -43,28 +85,3 @@
 
     </div>
 </div>
-<div> *ngIf="topics">
-                    
-    <div *ngFor="let topic of topics" value="1">
-        {{topic}}
-        
-    </div>
-</div>
-<ul *ngIf="discussions">
-    <h3>Discussions</h3>
-    <li *ngFor="let discussion of discussions">
-        <p >{{ discussion.discussionid}}</p>
-        <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}}</u>
-        
-    </li>
-</ul>
-
-<ul *ngIf="reviews">
-    <h3>Reviews</h3>
-    <li *ngFor="let review of reviews">
-        <u routerLink ="/user/{{review.username}}">{{ review.username}}</u>
-        <p >{{ review.rating}}</p>
-        <p >{{ review.text}}</p>
-        
-    </li>
-</ul>
