@@ -11,7 +11,7 @@ export class HttpService {
 
   baseURL:string = "https://cinephiliacsapi.azurewebsites.net/";
 
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient) { 
     
   }
 
