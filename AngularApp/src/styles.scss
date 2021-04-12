@@ -1,12 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
 
-$primary: rgb(111,0,255);
-
 body{
     margin:0;
     font-family: 'Nunito','sans-serif';
     font-size: 18px;
+    background-color: #fcfaf8;
 }
 .container{
     width: 80%;
@@ -14,7 +13,7 @@ body{
 }
 
 header{
-    background-color: $primary;
+    background-color: #467aaa;
     padding: 1em 0;
     a{
         color: white;
@@ -34,7 +33,7 @@ header{
             li a{
                 padding: 1em;
                 &:hover{
-                    background: darken($primary,10);
+                    background: darken(#8a7971,10);
                 }
             }
         }
