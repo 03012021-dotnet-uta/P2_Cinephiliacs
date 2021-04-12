@@ -37,7 +37,7 @@ export class MovieComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.router.snapshot.params);
-    this.inputFeilds();
+    this.inputFields();
 
     this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/topics").subscribe(data => {
       console.log(data);
@@ -93,7 +93,7 @@ export class MovieComponent implements OnInit {
     console.log(this.sumbitReview);
   }
   
-  inputFeilds(){
+  inputFields(){
     if(localStorage.getItem("loggedin")){
       console.log("userset");
       this.submitDiscussion.username = localStorage.getItem("loggedin");

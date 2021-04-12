@@ -35,7 +35,8 @@ u:hover {
         list-style-type: none;
 
         li {
-            border: 1px solid grey;
+            border: 2px outset rgb(175, 192, 204);
+            background-color: rgb(187, 204, 216);
             padding: 2% 5%;
 
             .rating {
@@ -51,6 +52,14 @@ u:hover {
 
         li:not(:last-child) {
             border-bottom: none;
+        }
+
+        li:nth-child(2) {
+            border-radius: 10px 10px 0 0;
+        }
+
+        li:last-child {
+            border-radius: 0 0 10px 10px;
         }
     }
 }
