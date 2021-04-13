@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+// import { throws } from 'node:assert';
 
 @Component({
   selector: 'app-discussion',
@@ -13,6 +14,7 @@ export class DiscussionComponent implements OnInit {
   disscussionID:number = 0;
   discussion: any;
   subject: any;
+  displaySpoilers: any = false;
 
   newComment: any = {
     discussionid: 0,
@@ -57,6 +59,15 @@ export class DiscussionComponent implements OnInit {
       this.http.post("https://cinephiliacsapi.azurewebsites.net/Forum/comment",this.newComment).subscribe(data => console.log(data));
     }
     console.log(this.newComment);
+  }
+
+  showSpoilers() {
+    this.displaySpoilers = true;
+    console.log(this.displaySpoilers);
+  }
+
+  spoilersShown() {
+    return this.displaySpoilers;
   }
 
 }

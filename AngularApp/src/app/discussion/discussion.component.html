@@ -3,7 +3,10 @@
 <div *ngIf="comments">
     <ul>
         <li *ngFor="let comment of comments">
-            <div>
+            <div  class="spoilerCover" *ngIf="comment.isspoiler && !spoilersShown()">
+                <button (click)="showSpoilers()">Show Spoilers</button>
+            </div>
+            <div class="commentContent" *ngIf="!comment.isspoiler || spoilersShown()">
                 <a routerLink="/user/{{comment.username}}" class="username">{{ comment.username }}</a>
                 <div class="commenttext">{{comment.text}}</div>
             </div>
