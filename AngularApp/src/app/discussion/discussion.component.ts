@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-// import { throws } from 'node:assert';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-discussion',
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DiscussionComponent implements OnInit {
 
   comments: any;
-  disscussionID:number = 0;
+  disscussionID:string = "";
   discussion: any;
   subject: any;
   displaySpoilers: any = false;
@@ -23,14 +23,14 @@ export class DiscussionComponent implements OnInit {
     isspoiler: false
   };
 
-  constructor(private http:HttpClient,private router :ActivatedRoute) { }
+  constructor(private _login:LoginService,private router :ActivatedRoute) { }
 
   ngOnInit(): void {
 
     this.disscussionID =  this.router.snapshot.params.id;
     this.newComment.discussionid = this.router.snapshot.params.id;
     this.displayInput();
-    this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/comments/" + this.disscussionID).subscribe(data =>{ 
+    this._login.getDiscussionComments(this.disscussionID).subscribe(data =>{ 
       console.log(data);
       this.comments = data;
     });
@@ -56,7 +56,7 @@ export class DiscussionComponent implements OnInit {
     if(this.newComment.text ==""){
       console.log("Please enter a comment");
     }else{
-      this.http.post("https://cinephiliacsapi.azurewebsites.net/Forum/comment",this.newComment).subscribe(data => console.log(data));
+      this._login.postComment(this.newComment).subscribe(data => console.log(data));
     }
     console.log(this.newComment);
   }

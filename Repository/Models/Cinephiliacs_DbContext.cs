@@ -30,6 +30,7 @@ namespace Repository.Models
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Setting> Settings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -414,6 +415,26 @@ namespace Repository.Models
                     .HasColumnName("last_name");
 
                 entity.Property(e => e.Permissions).HasColumnName("permissions");
+            });
+
+            modelBuilder.Entity<Setting>(entity =>
+            {
+                entity.HasKey(e => e.Setting1)
+                    .HasName("PK_setting");
+
+                entity.ToTable("settings");
+
+                entity.Property(e => e.Setting1)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("setting");
+
+                entity.Property(e => e.IntValue).HasColumnName("intValue");
+
+                entity.Property(e => e.StringValue)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("stringValue");
             });
 
             OnModelCreatingPartial(modelBuilder);

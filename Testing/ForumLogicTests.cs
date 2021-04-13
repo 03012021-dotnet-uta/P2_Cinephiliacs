@@ -19,7 +19,7 @@ namespace Testing
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
         [Fact]
-        public async Task DiscussionTest()
+        public async Task GetDiscussionsTest()
         {
             RelatedDataSet dataSetA = new RelatedDataSet("JimmyJimerson", "ab10101010", "Theory");
 
@@ -61,7 +61,47 @@ namespace Testing
         }
 
         [Fact]
-        public async Task CommentTest()
+        public async Task GetDiscussionTest()
+        {
+            RelatedDataSet dataSetA = new RelatedDataSet("JimmyJimerson", "ab10101010", "Theory");
+
+            GlobalModels.Discussion inputGMDiscussion = BusinessLogic.Mapper.RepoDiscussionToDiscussion(dataSetA.Discussion, dataSetA.Topic);
+            GlobalModels.Discussion outputGMDiscussion;
+
+            // Seed the test database
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                var newDiscussion = new GlobalModels.NewDiscussion(inputGMDiscussion);
+
+                RepoLogic repoLogic = new RepoLogic(context);
+                // Add Database entries for the object-under-test's foreign keys
+                await repoLogic.AddUser(dataSetA.User);
+                await repoLogic.AddMovie(dataSetA.Movie.MovieId);
+
+                // Test CreateDiscussion()
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                await forumController.CreateDiscussion(newDiscussion);
+            }
+
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {                
+                RepoLogic repoLogic = new RepoLogic(context);
+
+                // Test GetDiscussions()
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                outputGMDiscussion = (await forumController.GetDiscussion(dataSetA.Discussion.DiscussionId)).Value;
+            }
+
+            Assert.Equal(inputGMDiscussion, outputGMDiscussion);
+        }
+
+        [Fact]
+        public async Task CommentsTest()
         {
             RelatedDataSet dataSetA = new RelatedDataSet("JimmyJimerson", "ab10101010", "Theory");
 
@@ -96,6 +136,50 @@ namespace Testing
                 IForumLogic forumLogic = new ForumLogic(repoLogic);
                 ForumController forumController = new ForumController(forumLogic);
                 List<GlobalModels.Comment> gmCommentList = (await forumController.GetComments(dataSetA.Comment.DiscussionId)).Value;
+                outputGMComment = gmCommentList
+                    .FirstOrDefault<GlobalModels.Comment>(c => c.Discussionid == dataSetA.Comment.DiscussionId);
+            }
+
+            Assert.Equal(inputGMComment, outputGMComment);
+        }
+
+        [Fact]
+        public async Task CommentsPageTest()
+        {
+            RelatedDataSet dataSetA = new RelatedDataSet("JimmyJimerson", "ab10101010", "Theory");
+
+            GlobalModels.Comment inputGMComment = BusinessLogic.Mapper.RepoCommentToComment(dataSetA.Comment);
+            GlobalModels.Comment outputGMComment;
+
+            // Seed the test database
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                var newComment = new GlobalModels.NewComment(inputGMComment);
+
+                RepoLogic repoLogic = new RepoLogic(context);
+                // Add Database entries for the object-under-test's foreign keys
+                await repoLogic.AddUser(dataSetA.User);
+                await repoLogic.AddMovie(dataSetA.Movie.MovieId);
+                await repoLogic.AddDiscussion(dataSetA.Discussion);
+                
+                // Test CreateComment()
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                await forumController.CreateComment(newComment);
+            }
+
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {
+                RepoLogic repoLogic = new RepoLogic(context);
+
+                // Test GetComments()
+                IForumLogic forumLogic = new ForumLogic(repoLogic);
+                ForumController forumController = new ForumController(forumLogic);
+                await forumController.SetCommentsPageSize(10);
+                List<GlobalModels.Comment> gmCommentList = (await forumController.GetCommentsPage(dataSetA.Comment.DiscussionId, 1)).Value;
                 outputGMComment = gmCommentList
                     .FirstOrDefault<GlobalModels.Comment>(c => c.Discussionid == dataSetA.Comment.DiscussionId);
             }
