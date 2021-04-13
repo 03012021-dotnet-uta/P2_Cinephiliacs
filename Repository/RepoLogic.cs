@@ -141,6 +141,16 @@ namespace Repository
         }
 
         /// <summary>
+        /// Returns the Discussion object that match the discussionid specified in the argument.
+        /// </summary>
+        /// <param name="discussionid"></param>
+        /// <returns></returns>
+        public async Task<Discussion> GetDiscussion(int discussionid)
+        {
+            return await _dbContext.Discussions.Where(d => d.DiscussionId == discussionid).FirstOrDefaultAsync<Discussion>();
+        }
+
+        /// <summary>
         /// Returns a list of all Comment objects from the database that match the username specified
         /// in the argument.
         /// </summary>

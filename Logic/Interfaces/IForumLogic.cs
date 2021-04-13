@@ -21,6 +21,14 @@ namespace BusinessLogic.Interfaces
         public Task<List<Discussion>> GetDiscussions(string movieid);
 
         /// <summary>
+        /// Returns the Discussion object whose Discussion ID is equal to the
+        /// discussionid argument.
+        /// </summary>
+        /// <param name="discussionid"></param>
+        /// <returns></returns>
+        Task<Discussion> GetDiscussion(int discussionid);
+
+        /// <summary>
         /// Returns a list of every Comment object whose Discussionid is equal to
         /// the discussionid argument.
         /// </summary>

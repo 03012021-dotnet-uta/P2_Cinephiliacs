@@ -54,6 +54,24 @@ namespace CineAPI.Controllers
         }
 
         /// <summary>
+        /// Returns the Discussion object with the provided discussion ID.
+        /// </summary>
+        /// <param name="discussion"></param>
+        /// <returns></returns>
+        [HttpGet("discussion/{discussionid}")]
+        public async Task<ActionResult<Discussion>> GetDiscussion(int discussionid)
+        {
+            Discussion discussion = await _forumLogic.GetDiscussion(discussionid);
+
+            if(discussion == null)
+            {
+                return StatusCode(404);
+            }
+            StatusCode(200);
+            return discussion;
+        }
+
+        /// <summary>
         /// Returns a list of all Comment objects that are associated with
         /// the provided discussion ID.
         /// </summary>

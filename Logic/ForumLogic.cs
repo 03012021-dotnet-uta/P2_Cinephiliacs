@@ -124,6 +124,25 @@ namespace BusinessLogic
             return discussions;
         }
 
+        public async Task<Discussion> GetDiscussion(int discussionid)
+        {
+            Repository.Models.Discussion repoDiscussion = await _repo.GetDiscussion(discussionid);
+            if(repoDiscussion == null)
+            {
+                return null;
+            }
+
+            // Get the topic associated with this discussion
+            Repository.Models.Topic topic = _repo.GetDiscussionTopic(repoDiscussion.DiscussionId);
+            if(topic == null)
+            {
+                topic = new Repository.Models.Topic();
+                topic.TopicName = "None";
+            }
+            Discussion discussion = Mapper.RepoDiscussionToDiscussion(repoDiscussion, topic);
+            return discussion;
+        }
+
         public async Task<List<string>> GetTopics()
         {
             var repoTopics = await _repo.GetTopics();
