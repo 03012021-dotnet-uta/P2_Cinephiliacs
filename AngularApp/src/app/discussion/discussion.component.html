@@ -1,3 +1,5 @@
+<h1>{{subject}}</h1>
+
 <div *ngIf="comments">
     <ul>
         <li *ngFor="let comment of comments">
@@ -10,11 +12,11 @@
 </div>
 
 <div id="input">
+    <h3>New Comment</h3>
     <form>
-        <input type="text" placeholder="Comment" [(ngModel)]="newComment.text" [ngModelOptions]="{standalone: true}" required>
-        <input type="checkbox" [(ngModel)]="newComment.isspoiler" [ngModelOptions]="{standalone: true}">
-        <label>Spoiler</label>
+        <input type="text" placeholder="Comment" id="comment" [(ngModel)]="newComment.text" [ngModelOptions]="{standalone: true}" required>
+        <input type="checkbox" id="spoiler" [(ngModel)]="newComment.isspoiler" [ngModelOptions]="{standalone: true}">
+        <label>Spoiler</label><br>
         <button (click)="postComment()">Comment</button>
     </form>
-
 </div>

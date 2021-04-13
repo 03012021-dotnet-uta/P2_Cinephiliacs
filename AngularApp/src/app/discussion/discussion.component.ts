@@ -11,6 +11,8 @@ export class DiscussionComponent implements OnInit {
 
   comments: any;
   disscussionID:number = 0;
+  discussion: any;
+  subject: any;
 
   newComment: any = {
     discussionid: 0,
@@ -29,6 +31,12 @@ export class DiscussionComponent implements OnInit {
     this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/comments/" + this.disscussionID).subscribe(data =>{ 
       console.log(data);
       this.comments = data;
+    });
+
+    this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/discussion/" + this.disscussionID).subscribe(data => {
+      console.log(data);
+      this.discussion = data;
+      this.subject = this.discussion.subject;
     });
   }
 

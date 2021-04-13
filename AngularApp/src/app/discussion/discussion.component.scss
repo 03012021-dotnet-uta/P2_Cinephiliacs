@@ -3,8 +3,9 @@ ul {
     padding-left: 0;
 
     li {
-        border: 1px solid gray;
-        padding: 1% 5% 2% 5%;
+        border: 2px solid #d8d5d1;
+        background-color: #fffdfa;
+        padding: 1.5% 3% 2% 4%;
 
         div {
             a.username {
@@ -15,8 +16,10 @@ ul {
             }
 
             div.commenttext {
+                margin-left: 2px;
                 padding-left: 2%;
-                border-left: 5px outset lightgrey;
+                border-left: 5px outset rgb(182, 204, 219);
+                font-size: .95em;
             }
         }
     }
@@ -24,5 +27,22 @@ ul {
     li:not(:first-child) {
         border-top: none;
         padding-left: 10%;
+    }
+
+    li:first-child {
+        border-radius: 10px 10px 0 0;
+    }
+
+    li:last-child {
+        border-radius: 0 0 10px 10px;
+    }
+}
+
+#input {
+    form {
+        input#comment {
+            width:75%;
+            height: 35px;
+        }
     }
 }
