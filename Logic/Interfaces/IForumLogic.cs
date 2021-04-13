@@ -29,6 +29,23 @@ namespace BusinessLogic.Interfaces
         public Task<List<Comment>> GetComments(int discussionid);
 
         /// <summary>
+        /// Returns Comments objects [n*(page-1), n*(page-1) + n] whose Discussionid
+        /// is equal to the discussionid argument. Where n is the current page size
+        /// for comments
+        /// </summary>
+        /// <param name="discussionid"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public Task<List<Comment>> GetCommentsPage(int discussionid, int page);
+
+        /// <summary>
+        /// Sets the page size for comments.
+        /// </summary>
+        /// <param name="pagesize"></param>
+        /// <returns></returns>
+        public Task<bool> SetCommentsPageSize(int pagesize);
+
+        /// <summary>
         /// Adds a new Discussion Object to storage.
         /// Returns true if sucessful; false otherwise.
         /// </summary>

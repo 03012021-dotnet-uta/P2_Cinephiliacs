@@ -20,6 +20,10 @@ namespace GlobalModels
         [Required]
         [StringLength(25)]
         public string Topic { get; set; }
+        public NewDiscussion()
+        {
+            
+        }
 
         public NewDiscussion(string movieid, string username, string subject, string topic)
         {

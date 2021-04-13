@@ -18,6 +18,10 @@ namespace GlobalModels
 
         [Required]
         public bool Isspoiler { get; set; }
+        public NewComment()
+        {
+            
+        }
 
         public NewComment(int discussionid, string username, string text, bool isspoiler)
         {
