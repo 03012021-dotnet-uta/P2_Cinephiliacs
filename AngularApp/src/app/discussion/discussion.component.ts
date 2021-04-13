@@ -23,6 +23,7 @@ export class DiscussionComponent implements OnInit {
   constructor(private _login:LoginService,private router :ActivatedRoute) { }
 
   ngOnInit(): void {
+
     this.disscussionID =  this.router.snapshot.params.id;
     this.newComment.discussionid = this.router.snapshot.params.id;
     this.displayInput();

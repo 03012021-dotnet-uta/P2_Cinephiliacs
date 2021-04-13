@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GlobalModels;
 using Repository;
@@ -41,6 +42,63 @@ namespace BusinessLogic
                 comments.Add(Mapper.RepoCommentToComment(repoComment));
             }
             return comments;
+        }
+
+        public async Task<List<Comment>> GetCommentsPage(int discussionid, int page)
+        {
+            if(page < 1)
+            {
+                return null;
+            }
+
+            Repository.Models.Setting pageSizeSetting = _repo.GetSetting("commentspagesize");
+            int pageSize = pageSizeSetting.IntValue ?? default(int);
+            if(pageSizeSetting == null || pageSize < 1)
+            {
+                return null;
+            }
+
+            List<Repository.Models.Comment> repoComments = await _repo.GetMovieComments(discussionid);
+            repoComments = repoComments.OrderByDescending(c => c.CreationTime).ToList<Repository.Models.Comment>();
+            if(repoComments == null)
+            {
+                return null;
+            }
+
+            int numberOfComments = repoComments.Count;
+            int startIndex = pageSize * (page - 1);
+
+            if(startIndex > numberOfComments - 1)
+            {
+                return null;
+            }
+
+            int endIndex = startIndex + pageSize - 1;
+            if(endIndex > numberOfComments - 1)
+            {
+                endIndex = numberOfComments - 1;
+            }
+
+            List<Comment> comments = new List<Comment>();
+
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                comments.Add(Mapper.RepoCommentToComment(repoComments[i]));
+            }
+            return comments;
+        }
+
+        public async Task<bool> SetCommentsPageSize(int pagesize)
+        {
+            if(pagesize < 1 || pagesize > 100)
+            {
+                return false;
+            }
+
+            Repository.Models.Setting setting = new Repository.Models.Setting();
+            setting.Setting1 = "commentspagesize";
+            setting.IntValue = pagesize;
+            return await _repo.SetSetting(setting);
         }
 
         public async Task<List<Discussion>> GetDiscussions(string movieid)

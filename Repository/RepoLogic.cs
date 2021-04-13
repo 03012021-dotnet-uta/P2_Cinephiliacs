@@ -327,6 +327,58 @@ namespace Repository
         }
 
         /// <summary>
+        /// Gets the value(s) of an existing setting in the database with a matching key string.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public Setting GetSetting(string key)
+        {
+            return _dbContext.Settings.Where(s => s.Setting1 == key).FirstOrDefault<Setting>();
+        }
+
+        /// <summary>
+        /// Creates a new setting entry or updates the value(s) of an existing setting
+        /// in the database.
+        /// </summary>
+        /// <param name="setting"></param>
+        /// <returns></returns>
+        public async Task<bool> SetSetting(Setting setting)
+        {
+            if(setting == null || setting.Setting1.Length < 1)
+            {
+                return false;
+            }
+            if(SettingExists(setting.Setting1))
+            {
+                Setting existentSetting = await _dbContext.Settings.Where(
+                    s => s.Setting1 == setting.Setting1).FirstOrDefaultAsync<Setting>();
+                if(setting.IntValue != null)
+                {
+                    existentSetting.IntValue = setting.IntValue;
+                }
+                if(setting.StringValue != null)
+                {
+                    existentSetting.StringValue = setting.StringValue;
+                }
+                if(await _dbContext.SaveChangesAsync() > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                await _dbContext.Settings.AddAsync(setting);
+
+                if(await _dbContext.SaveChangesAsync() > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Returns true iff the username, specified in the argument, exists in the database's Users table.
         /// </summary>
         /// <param name="username"></param>
@@ -354,6 +406,16 @@ namespace Repository
         private bool DiscussionExists(int discussionid)
         {
             return (_dbContext.Discussions.Where(d => d.DiscussionId == discussionid).FirstOrDefault<Discussion>() != null);
+        }
+
+        /// <summary>
+        /// Returns true iff the setting key, specified in the argument, exists in the database's Settings table.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        private bool SettingExists(string key)
+        {
+            return (_dbContext.Settings.Where(s => s.Setting1 == key).FirstOrDefault<Setting>() != null);
         }
     }
 }
