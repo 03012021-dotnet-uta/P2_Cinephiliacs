@@ -38,7 +38,8 @@
 </ul>
 
 <div class="pages">
-
+    <a href="/list/{{searchTerm}}/{{prevPg}}" class="prev" *ngIf="prevPg>0">Previous Page</a>
+    <a href="/list/{{searchTerm}}/{{nextPg}}" class="next" *ngIf="nextPg<76">Next Page</a>
 </div>
 
 
