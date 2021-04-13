@@ -25,6 +25,10 @@ namespace GlobalModels
         [Required]
         [Range(0,3)]
         public byte Permissions { get; set; }
+        public User()
+        {
+
+        }
 
         public User(string username, string firstname, string lastname, string email, byte permissions)
         {

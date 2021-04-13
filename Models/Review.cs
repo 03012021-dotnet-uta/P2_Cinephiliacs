@@ -20,6 +20,10 @@ namespace GlobalModels
         [Required]
         [StringLength(300)]
         public string Text { get; set; }
+        public Review()
+        {
+            
+        }
 
         public Review(string movieid, string username, decimal rating, string text)
         {

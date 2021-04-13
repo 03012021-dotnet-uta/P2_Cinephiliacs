@@ -54,6 +54,24 @@ namespace CineAPI.Controllers
         }
 
         /// <summary>
+        /// Returns the Discussion object with the provided discussion ID.
+        /// </summary>
+        /// <param name="discussion"></param>
+        /// <returns></returns>
+        [HttpGet("discussion/{discussionid}")]
+        public async Task<ActionResult<Discussion>> GetDiscussion(int discussionid)
+        {
+            Discussion discussion = await _forumLogic.GetDiscussion(discussionid);
+
+            if(discussion == null)
+            {
+                return StatusCode(404);
+            }
+            StatusCode(200);
+            return discussion;
+        }
+
+        /// <summary>
         /// Returns a list of all Comment objects that are associated with
         /// the provided discussion ID.
         /// </summary>
@@ -70,6 +88,44 @@ namespace CineAPI.Controllers
             }
             StatusCode(200);
             return comments;
+        }
+
+        /// <summary>
+        /// Returns Comments objects [n*(page-1), n*(page-1) + n] that are associated with the
+        /// provided discussion ID. Where n is the current page size for comments.
+        /// </summary>
+        /// <param name="discussionid"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        [HttpGet("comments/{discussionid}/{page}")]
+        public async Task<ActionResult<List<Comment>>> GetCommentsPage(int discussionid, int page)
+        {
+            List<Comment> comments = await _forumLogic.GetCommentsPage(discussionid, page);
+
+            if(comments == null)
+            {
+                return StatusCode(404);
+            }
+            StatusCode(200);
+            return comments;
+        }
+
+        /// <summary>
+        /// Sets the page size for comments
+        /// </summary>
+        /// <param name="pagesize"></param>
+        /// <returns></returns>
+        [HttpPost("comments/page/{pagesize}")]
+        public async Task<ActionResult> SetCommentsPageSize(int pagesize)
+        {
+            if(await _forumLogic.SetCommentsPageSize(pagesize))
+            {
+                return StatusCode(201);
+            }
+            else
+            {
+                return StatusCode(400);
+            }
         }
 
         /// <summary>
