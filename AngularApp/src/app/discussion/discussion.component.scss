@@ -3,26 +3,98 @@ ul {
     padding-left: 0;
 
     li {
-        border: 1px solid gray;
-        padding: 1% 5% 2% 5%;
+        border: 2px solid #d8d5d1;
+        background-color: #fffdfa;
 
-        div {
+        div.spoilerCover {
+            padding: 1.5% 3% 2% 4%;
+            background-color: rgb(213, 221, 226);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            button {
+                width: 200px;
+                height: 50px;
+                margin: 1% 0;
+                color: black;
+                border: none;
+                background-color: #60a0dd;
+                border-radius: 5px;
+                font-size: .8em;
+            }
+
+            button:hover {
+                cursor: pointer;
+            }
+        }
+
+        div.commentContent {
+            padding: 1.5% 3% 2% 4%;
+            
             a.username {
                 display: block;
                 margin-bottom: 5px;
                 font-weight: bold;
-                text-decoration: none;
+                color: black;
             }
 
             div.commenttext {
+                margin-left: 2px;
                 padding-left: 2%;
-                border-left: 5px outset lightgrey;
+                border-left: 5px outset rgb(182, 204, 219);
+                font-size: .95em;
             }
         }
     }
 
     li:not(:first-child) {
         border-top: none;
-        padding-left: 10%;
+
+        div.commentContent {
+            padding-left: 10%;
+        }
+    }
+
+    li:first-child {
+        border-radius: 10px 10px 0 0;
+    }
+
+    li:last-child {
+        border-radius: 0 0 10px 10px;
+    }
+}
+
+#input {
+    margin-bottom: 5%;
+
+    form {
+        input#comment {
+            width: 50%;
+            height: 50px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid lightgray;
+            padding: 0 20px;
+        }
+
+        button {
+            width: 150px;
+            height: 35px;
+            color: white;
+            border: none;
+            background-color: #357fc5;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        label {
+            margin-left: 2px;
+            font-size: .9em;
+        }
     }
 }
