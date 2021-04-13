@@ -33,28 +33,46 @@ export class LoginService {
   }
 
   getTopics(){
-    return this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/topics");
+    return this.http.get( this.baseURL + "forum/topics");
   }
   
 
   getDiscussion(movieId:String){
-    return this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/discussions/"+movieId);
+    return this.http.get( this.baseURL + "forum/discussions/"+movieId);
   }
 
   getReviews(movieId:String){
-    return this.http.get("https://cinephiliacsapi.azurewebsites.net/movie/reviews/"+movieId);
+    return this.http.get( this.baseURL + "movie/reviews/"+movieId);
   }
 
   submitDiscussion(discussion:any){
-    return this.http.post("https://cinephiliacsapi.azurewebsites.net/forum/discussion", discussion);
+    return this.http.post( this.baseURL + "forum/discussion", discussion);
   }
 
   postMovieId(movieID:string){
-    return this.http.post("https://cinephiliacsapi.azurewebsites.net/movie/" +movieID,null);
+    return this.http.post( this.baseURL + "movie/" +movieID,null);
   }
 
   postReview(sumbitReview:any){
-    return this.http.post("https://cinephiliacsapi.azurewebsites.net/movie/review", sumbitReview);
+    return this.http.post( this.baseURL + "movie/review", sumbitReview);
+  }
+
+  getUser(username:string){
+    return this.http.get( this.baseURL + "user/"+ username);
+  }
+
+  getUserReviews(username:string){
+    return this.http.get( this.baseURL + "user/reviews/" + username);
+  }
+  getUserDiscussions(username:string){
+    return this.http.get( this.baseURL + "user/discussions/" + username);
+  }
+  getDiscussionComments(discussionID:string){
+    return this.http.get( this.baseURL + "forum/comments/" + discussionID);
+  }
+
+  postComment(newComment:any){
+    return this.http.post( this.baseURL + "Forum/comment",newComment);
   }
 
 }

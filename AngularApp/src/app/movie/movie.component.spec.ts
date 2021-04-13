@@ -15,7 +15,6 @@ describe('MovieComponent', () => {
   beforeEach(async () => {    TestBed.configureTestingModule({
     imports: [
       RouterTestingModule,
-      HttpClientTestingModule,
       HttpClientTestingModule
     ],
     declarations: [
