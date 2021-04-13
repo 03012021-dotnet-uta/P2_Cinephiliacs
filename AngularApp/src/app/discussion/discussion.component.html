@@ -14,9 +14,9 @@
 <div id="input">
     <h3>New Comment</h3>
     <form>
-        <input type="text" placeholder="Comment" id="comment" [(ngModel)]="newComment.text" [ngModelOptions]="{standalone: true}" required>
+        <input type="text" placeholder="Comment" id="comment" [(ngModel)]="newComment.text" [ngModelOptions]="{standalone: true}" required><br>
+        <button (click)="postComment()">Post Comment</button>
         <input type="checkbox" id="spoiler" [(ngModel)]="newComment.isspoiler" [ngModelOptions]="{standalone: true}">
-        <label>Spoiler</label><br>
-        <button (click)="postComment()">Comment</button>
+        <label>Spoiler</label>
     </form>
 </div>
