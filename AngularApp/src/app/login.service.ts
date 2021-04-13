@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { AppComponent } from './app.component';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,24 +14,65 @@ export class LoginService {
   connection:string ="";
   loggedIn:any;
 
-  constructor(private http: HttpClient, private _http: HttpService) { }
+  baseURL:string = "https://cinephiliacsapi.azurewebsites.net/";
 
-  async loginUser(username: string){
-    this.connection = this._http.getBase() +"user/" + username;
+  constructor(private http:HttpClient) { }
+
+  createUser(newUser:string){
+    return this.http.post(this.baseURL+ "user/",newUser);
+  }
+
+  loginUser(userName:string){
+    this.connection =  this.baseURL +"user/" + userName;
     console.log(this.connection);
-    await this.http.get(this.connection).subscribe(data => {
-      console.log(data);
-      this.loggedIn = data;
-      console.log(this.loggedIn.username);
-      localStorage.setItem("loggedin",this.loggedIn.username);
-      return data;
-    });;
+    return this.http.get(this.connection);
   }
 
-  createUser(newUser: any){
-    console.log("User" + newUser);
-
-    
-    this.http.post(this._http.getBase() , newUser).subscribe(data => console.log(data));
+  getURL(){
+    return this.baseURL;
   }
+
+  getTopics(){
+    return this.http.get( this.baseURL + "forum/topics");
+  }
+  
+
+  getDiscussion(movieId:String){
+    return this.http.get( this.baseURL + "forum/discussions/"+movieId);
+  }
+
+  getReviews(movieId:String){
+    return this.http.get( this.baseURL + "movie/reviews/"+movieId);
+  }
+
+  submitDiscussion(discussion:any){
+    return this.http.post( this.baseURL + "forum/discussion", discussion);
+  }
+
+  postMovieId(movieID:string){
+    return this.http.post( this.baseURL + "movie/" +movieID,null);
+  }
+
+  postReview(sumbitReview:any){
+    return this.http.post( this.baseURL + "movie/review", sumbitReview);
+  }
+
+  getUser(username:string){
+    return this.http.get( this.baseURL + "user/"+ username);
+  }
+
+  getUserReviews(username:string){
+    return this.http.get( this.baseURL + "user/reviews/" + username);
+  }
+  getUserDiscussions(username:string){
+    return this.http.get( this.baseURL + "user/discussions/" + username);
+  }
+  getDiscussionComments(discussionID:string){
+    return this.http.get( this.baseURL + "forum/comments/" + discussionID);
+  }
+
+  postComment(newComment:any){
+    return this.http.post( this.baseURL + "Forum/comment",newComment);
+  }
+
 }

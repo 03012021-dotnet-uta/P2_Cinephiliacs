@@ -36,6 +36,46 @@ namespace CineAPI.Controllers
         }
 
         /// <summary>
+        /// Returns Review objects [n*(page-1), n*(page-1) + n] that are associated with the
+        /// provided movie ID. Where n is the current page size for comments and sortorder
+        /// is a string that determines how the Reviews are sorted before pagination.
+        /// </summary>
+        /// <param name="movieid"></param>
+        /// <param name="page"></param>
+        /// <param name="sortorder"></param>
+        /// <returns></returns>
+        [HttpGet("reviews/{movieid}/{page}/{sortorder}")]
+        public async Task<ActionResult<List<Review>>> GetReviewsPage(string movieid, int page, string sortorder)
+        {
+            List<Review> reviews = await _movieLogic.GetReviewsPage(movieid, page, sortorder);
+
+            if(reviews == null)
+            {
+                return StatusCode(404);
+            }
+            StatusCode(200);
+            return reviews;
+        }
+
+        /// <summary>
+        /// Sets the page size for reviews
+        /// </summary>
+        /// <param name="pagesize"></param>
+        /// <returns></returns>
+        [HttpPost("reviews/page/{pagesize}")]
+        public async Task<ActionResult> SetReviewsPageSize(int pagesize)
+        {
+            if(await _movieLogic.SetReviewsPageSize(pagesize))
+            {
+                return StatusCode(201);
+            }
+            else
+            {
+                return StatusCode(400);
+            }
+        }
+
+        /// <summary>
         /// Adds a new Movie Review based on the information provided.
         /// Returns a 400 status code if creation fails.
         /// </summary>

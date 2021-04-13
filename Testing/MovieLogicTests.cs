@@ -60,6 +60,49 @@ namespace Testing
         }
         
         [Fact]
+        public async Task ReviewsPageTest()
+        {
+            GlobalModels.Review inputGMReview;
+            GlobalModels.Review outputGMReview;
+
+            RelatedDataSet dataSetA = new RelatedDataSet("JimmyJimerson", "ab10101010", "Theory");
+
+            // Seed the test database
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                inputGMReview = BusinessLogic.Mapper.RepoReviewToReview(dataSetA.Review);
+
+                RepoLogic repoLogic = new RepoLogic(context);
+                // Load Database entries for the object-under-test's foreign keys
+                await repoLogic.AddUser(dataSetA.User);
+                await repoLogic.AddMovie(dataSetA.Movie.MovieId);
+
+                // Test CreateReview()
+                IMovieLogic movieLogic = new MovieLogic(repoLogic);
+                MovieController movieController = new MovieController(movieLogic);
+                await movieController.CreateReview(inputGMReview);
+            }
+
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {
+                RepoLogic repoLogic = new RepoLogic(context);
+
+                // Test GetReviews()
+                IMovieLogic movieLogic = new MovieLogic(repoLogic);
+                MovieController movieController = new MovieController(movieLogic);
+                await movieController.SetReviewsPageSize(10);
+                List<GlobalModels.Review> gmReviewList = (await movieController.GetReviewsPage(dataSetA.Movie.MovieId, 1, "ratingasc")).Value;
+                outputGMReview = gmReviewList
+                    .FirstOrDefault<GlobalModels.Review>(r => r.Movieid == dataSetA.Movie.MovieId);
+            }
+
+            Assert.Equal(inputGMReview, outputGMReview);
+        }
+
+        [Fact]
         public async Task MovieTest()
         {
             string inputMovieId = "ab10101010";
