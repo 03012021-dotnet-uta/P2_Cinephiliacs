@@ -24,14 +24,7 @@ namespace CineAPI.Controllers
         [HttpGet("users")]
         public async Task<ActionResult<List<User>>> Get()
         {
-            List<User> users = await _userLogic.GetUsers();
-
-            if(users == null)
-            {
-                return StatusCode(404);
-            }
-            StatusCode(200);
-            return users;
+            return await _userLogic.GetUsers();
         }
 
         /// <summary>
@@ -45,6 +38,7 @@ namespace CineAPI.Controllers
         {            
             if(!ModelState.IsValid)
             {
+                Console.WriteLine("UserController.CreateUser() was called with invalid body data.");
                 return StatusCode(400);
             }
 
@@ -54,7 +48,7 @@ namespace CineAPI.Controllers
             }
             else
             {
-                return StatusCode(400);
+                return StatusCode(200);
             }
         }
 
@@ -66,7 +60,14 @@ namespace CineAPI.Controllers
         [HttpGet("{username}")]
         public ActionResult<User> GetUser(string username)
         {
-            return _userLogic.GetUser(username);
+            User user = _userLogic.GetUser(username);
+
+            if(user == null)
+            {
+                return StatusCode(404);
+            }
+            StatusCode(200);
+            return user;
         }
 
         /// <summary>
@@ -79,10 +80,14 @@ namespace CineAPI.Controllers
         public async Task<ActionResult<List<Discussion>>> GetDiscussions(string username)
         {
             List<Discussion> discussions = await _userLogic.GetDiscussions(username);
-
+            
             if(discussions == null)
             {
                 return StatusCode(404);
+            }
+            if(discussions.Count == 0)
+            {
+                return StatusCode(204);
             }
             StatusCode(200);
             return discussions;
@@ -98,10 +103,14 @@ namespace CineAPI.Controllers
         public async Task<ActionResult<List<Comment>>> GetComments(string username)
         {
             List<Comment> comments = await _userLogic.GetComments(username);
-
+            
             if(comments == null)
             {
                 return StatusCode(404);
+            }
+            if(comments.Count == 0)
+            {
+                return StatusCode(204);
             }
             StatusCode(200);
             return comments;
@@ -117,10 +126,14 @@ namespace CineAPI.Controllers
         public async Task<ActionResult<List<string>>> GetFollowingMovies(string username)
         {
             List<string> movieids = await _userLogic.GetFollowingMovies(username);
-
+            
             if(movieids == null)
             {
                 return StatusCode(404);
+            }
+            if(movieids.Count == 0)
+            {
+                return StatusCode(204);
             }
             StatusCode(200);
             return movieids;
@@ -140,6 +153,10 @@ namespace CineAPI.Controllers
             if(reviews == null)
             {
                 return StatusCode(404);
+            }
+            if(reviews.Count == 0)
+            {
+                return StatusCode(204);
             }
             StatusCode(200);
             return reviews;

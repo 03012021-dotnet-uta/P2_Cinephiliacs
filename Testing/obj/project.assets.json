@@ -8951,11 +8951,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\testing\\Testing.csproj",
+      "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
       "projectName": "Testing",
-      "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\testing\\Testing.csproj",
+      "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
       "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\testing\\obj\\",
+      "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
