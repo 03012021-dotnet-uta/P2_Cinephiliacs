@@ -44,8 +44,6 @@ stages:
           organization: 'rwplyler'
           scannerMode: 'CLI'
           configMode: 'file'
-          cliSources: './FrontEnd/'
-          
 
       - script: |
           npm install -g @angular/cli
@@ -54,7 +52,6 @@ stages:
           npm run test-ci   
           ls /coverage
           ls     
-          workingDir: './Frontend/'
         displayName: 'npm install, unitTest and build'
 
       # - script: |
