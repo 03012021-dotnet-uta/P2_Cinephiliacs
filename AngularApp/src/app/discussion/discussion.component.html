@@ -1,19 +1,19 @@
-<p>discussion works!</p>
-
-
 <div *ngIf="comments">
-    <li *ngFor="let comment of comments">
-        <div>
-            <a routerLink="/user/{{comment.username}}">{{ comment.username }}</a>
-            <div>{{comment.text}}</div>
-        </div>
-    </li>
+    <ul>
+        <li *ngFor="let comment of comments">
+            <div>
+                <a routerLink="/user/{{comment.username}}" class="username">{{ comment.username }}</a>
+                <div class="commenttext">{{comment.text}}</div>
+            </div>
+        </li>
+    </ul>
 </div>
 
 <div id="input">
     <form>
         <input type="text" placeholder="Comment" [(ngModel)]="newComment.text" [ngModelOptions]="{standalone: true}" required>
         <input type="checkbox" [(ngModel)]="newComment.isspoiler" [ngModelOptions]="{standalone: true}">
+        <label>Spoiler</label>
         <button (click)="postComment()">Comment</button>
     </form>
 

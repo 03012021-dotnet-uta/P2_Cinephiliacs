@@ -49,7 +49,7 @@ export class ListComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.searchForm.get('search') != null)
+    if (this.searchForm.get('search')!.value != "")
     {
       let searchParam = JSON.stringify(this.searchForm.get('search')!.value).substring(1, JSON.stringify(this.searchForm.get('search')!.value).length - 1);
       window.location.href = "/list/" +  searchParam + "/1";
