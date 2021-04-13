@@ -53,7 +53,7 @@ namespace BusinessLogic
 
             Repository.Models.Setting pageSizeSetting = _repo.GetSetting("commentspagesize");
             int pageSize = pageSizeSetting.IntValue ?? default(int);
-            if(pageSizeSetting == null || pageSize < 1)
+            if(pageSize < 1)
             {
                 return null;
             }
