@@ -17,6 +17,8 @@ export class ListComponent implements OnInit {
   searches2: any;
   searchTerm: any;
   pageNum: any;
+  nextPg: any;
+  prevPg: any;
 
   searchForm!: FormGroup;
 
@@ -31,6 +33,14 @@ export class ListComponent implements OnInit {
     console.log(this.router.snapshot.params);
     this.searchTerm = this.router.snapshot.params.search;
     this.pageNum = (this.router.snapshot.params.page -1 ) * 2 + 1;
+    if (this.pageNum < 75)
+    {  
+      this.nextPg = parseInt(this.router.snapshot.params.page) + 1;
+    }
+    if (this.pageNum > 1)
+    {
+      this.prevPg = this.router.snapshot.params.page - 1;
+    }
     this._http.getMovies(this.searchTerm,this.pageNum).subscribe(data => {
       this.movies = data;
       this.searches = this.movies.Search;

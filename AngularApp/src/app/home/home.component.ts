@@ -24,24 +24,20 @@ export class HomeComponent implements OnInit {
 
   loggedIn: any;
 
-  _login: LoginService = new LoginService();
-
-  constructor( private _http: HttpClient) { }
+  constructor( private _login: LoginService) { }
 
   ngOnInit(): void {
   }
 
-  async login(){
+  login(){
     console.log("Login attempt" + this.userName);
-    this.url =  this._login.getURL() +"user/" + this.userName;
-    console.log(this.url);
-    await this._http.get(this.url).subscribe(data => {
+    this._login.loginUser(this.userName).subscribe(data => {
       console.log(data);
       this.loggedIn = data;
       console.log(this.loggedIn.username);
       localStorage.setItem("loggedin",this.loggedIn.userName);
       return data;
-    });;
+    });
   }
 
   createUser(){
@@ -52,7 +48,7 @@ export class HomeComponent implements OnInit {
     }else{
     this.newUser 
     console.log(JSON.stringify(this.newUser));
-    this._http.post(this._login.getURL()+ "user/",this.newUser).subscribe(data => console.log("Data" + data));
+    this._login.createUser(this.newUser).subscribe(data => console.log( data));
   }
   }
 

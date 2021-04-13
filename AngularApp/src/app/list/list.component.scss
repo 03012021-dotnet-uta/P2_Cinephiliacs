@@ -80,3 +80,39 @@ ul{
         margin-right: 20px;
     }
 }
+
+.pages {
+    margin-bottom: 10%;
+    padding-top: 5%;
+
+    .prev {
+        float: left;
+        width: 200px;
+        height: 50px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        border: 2px outset #2a67a0;
+        background-color: #357fc5;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .next {
+        float: right;
+        width: 200px;
+        height: 50px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        border: 2px outset #2a67a0;
+        background-color: #357fc5;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 2.5%;
+    }
+}
