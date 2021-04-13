@@ -35,7 +35,7 @@ export class DiscussionComponent implements OnInit {
       this.comments = data;
     });
 
-    this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/discussion/" + this.disscussionID).subscribe(data => {
+    this._login.getDiscussion(this.disscussionID).subscribe(data => {
       console.log(data);
       this.discussion = data;
       this.subject = this.discussion.subject;
