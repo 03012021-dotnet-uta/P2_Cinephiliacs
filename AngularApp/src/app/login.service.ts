@@ -32,4 +32,29 @@ export class LoginService {
     return this.baseURL;
   }
 
+  getTopics(){
+    return this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/topics");
+  }
+  
+
+  getDiscussion(movieId:String){
+    return this.http.get("https://cinephiliacsapi.azurewebsites.net/forum/discussions/"+movieId);
+  }
+
+  getReviews(movieId:String){
+    return this.http.get("https://cinephiliacsapi.azurewebsites.net/movie/reviews/"+movieId);
+  }
+
+  submitDiscussion(discussion:any){
+    return this.http.post("https://cinephiliacsapi.azurewebsites.net/forum/discussion", discussion);
+  }
+
+  postMovieId(movieID:string){
+    return this.http.post("https://cinephiliacsapi.azurewebsites.net/movie/" +movieID,null);
+  }
+
+  postReview(sumbitReview:any){
+    return this.http.post("https://cinephiliacsapi.azurewebsites.net/movie/review", sumbitReview);
+  }
+
 }
