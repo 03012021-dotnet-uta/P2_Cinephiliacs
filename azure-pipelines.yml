@@ -63,13 +63,13 @@ steps:
   displayName: 'Building'
   inputs:
     command: 'build'
-    projects: '$(AngularApp)'
+    projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration)'
 - task: DotNetCoreCLI@2
   displayName: 'Testing'
   inputs:
     command: 'test'
-    projects: '$(AngularApp)'
+    projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration) --collect "Code Coverage"'
     testRunTitle: 'Dotnet tests running'
 
@@ -77,14 +77,14 @@ steps:
   displayName: 'NPM Build Angular'
   inputs:
     command: 'custom'
-    workingDir: $(solution)
+    workingDir: $(AngularApp)
     customCommand: 'ng build --prod'
 
 - task: Npm@1
   displayName: 'NPM Test'
   inputs:
     command: 'custom'
-    workingDir: $(solution)
+    workingDir: $(AngularApp)
     customCommand: 'run test-headless'
 
 # - task: PublishCodeCoverageResults@1
