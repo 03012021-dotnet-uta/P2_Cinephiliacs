@@ -15,6 +15,7 @@ export class DiscussionComponent implements OnInit {
   discussion: any;
   subject: any;
   displaySpoilers: any = false;
+  user: any;
 
   newComment: any = {
     discussionid: 0,
@@ -50,7 +51,8 @@ export class DiscussionComponent implements OnInit {
   displayInput(){
     if(localStorage.getItem("loggedin"))
     {
-      this.newComment.username= localStorage.getItem("loggedin");
+      this.user = localStorage.getItem("loggedin");
+      this.newComment.username= JSON.parse(this.user).username;
       console.log("User Logged In");
     }else{
       console.log("Hide inputs");
