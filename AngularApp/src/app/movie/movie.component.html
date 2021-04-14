@@ -32,9 +32,10 @@
         </li>
     </ul>
 
-    <h4>New Review</h4>
     <div id="review">
+        <h4>New Review</h4>
         <form>
+            <label>Rating:</label><br>
             <select name="rating" id="rating" [(ngModel)]="sumbitReview.rating" [ngModelOptions]="{standalone: true}">
                 <option selected hidden></option>
                 <option value="1">1</option>
@@ -46,7 +47,8 @@
                 <option value="4">4</option>
                 <option value="4.5">4.5</option>
                 <option value="5">5</option>
-            </select>
+            </select><br>
+            <label>Review Text:</label><br>
             <input type="text" [(ngModel)]="sumbitReview.text" [ngModelOptions]="{standalone: true}"><br>
             <button type="reset"  (click)="postReview()">Submit Review</button>
         </form>
@@ -71,6 +73,7 @@
     <div id="discussion">
         <h4>New Discussion</h4>
         <form>
+            <label>Topic: </label><br>
             <select name="rating" id="rating" [(ngModel)]="submitDiscussion.topic" [ngModelOptions]="{standalone: true}">
                 <option selected hidden></option>    
                 <option *ngFor="let topic of topics" 
@@ -78,6 +81,7 @@
                         {{topic}}
                 </option>
             </select><br>
+            <label>Discussion Subject:</label><br>
             <input type="text" [(ngModel)]="submitDiscussion.subject" [ngModelOptions]="{standalone: true}"><br>
             <button type="reset" (click)="postDiscussion()">Submit Discussion</button>
         </form>
