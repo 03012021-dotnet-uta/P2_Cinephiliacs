@@ -134,5 +134,49 @@ namespace Testing
 
             Assert.False(result);
         }
+
+        [Fact]
+        public async Task NoMovieAddDiscussionTest()
+        {
+            bool result;
+
+            RelatedDataSet dataSetA = new RelatedDataSet("JimmyJimerson", "ab10101010", "Theory");
+
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {              
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                RepoLogic repoLogic = new RepoLogic(context);
+                await repoLogic.AddUser(dataSetA.User);
+
+                // Test AddDiscussion() without User dependency
+                result = await repoLogic.AddDiscussion(dataSetA.Discussion);
+            }
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public async Task NoMovieAddCommentTest()
+        {
+            bool result;
+
+            RelatedDataSet dataSetA = new RelatedDataSet("JimmyJimerson", "ab10101010", "Theory");
+
+            using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
+            {              
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                RepoLogic repoLogic = new RepoLogic(context);
+                await repoLogic.AddUser(dataSetA.User);
+
+                // Test AddComment() without User dependency
+                result = await repoLogic.AddComment(dataSetA.Comment);
+            }
+
+            Assert.False(result);
+        }
     }
 }
