@@ -9,13 +9,31 @@
 
 <header>
   <div class="container">
-    <a class="logo" (onclick)= "reloadPage()"><img id="siteLogo" src="/assets/Cinephiliacs-Logo.png">Cinephiliacs</a>
+    <a href="#" routerLink="/" class="logo"><img id="siteLogo" src="/assets/Cinephiliacs-Logo.png">Cinephiliacs</a>
     <nav>
       <ul>
 
-        <li><form [formGroup]="headerSearch" (ngSubmit)="onSubmit()"><input type="text" name="search" [(ngModel)]="test" placeholder="Search" formControlName="headSearch"><a href="/list/{{test}}/1">Search</a></form></li>
-        <li><a href="#" id="search" routerLink="/">Home</a></li>
-        <li><a href="/alluser" >Users</a></li>
+        <li class="search"><form [formGroup]="headerSearch" (ngSubmit)="onSubmit()">
+          <!-- svg source https://freesvg.org/vector-clip-art-of-minimal-design-search-icon -->
+          <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="25" height="20" viewBox="0 0 55.770032 124.72441" id="svg4983" version="1.1" inkscape:version="0.91 r13725" sodipodi:docname="Minimal Magnifying Glass.svg">
+            <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(64.082039,-216.03793)">
+              <g id="g4288" transform="matrix(12.843054,0,0,12.843054,-4352.973,-5791.3727)" style="fill:none;stroke:black;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+                  <circle r="3.625" cy="472.13062" cx="335.03351" id="path4284" style="clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation-filters:linearRGB;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:black;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
+                  <path sodipodi:nodetypes="cc" inkscape:connector-curvature="0" id="path4286" d="m 337.9085,474.44313 2.90967,2.26732" style="clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation-filters:linearRGB;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:black;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
+              </g>
+            </g>
+          </svg>
+          <input type="text" name="search" [(ngModel)]="test" placeholder="Search Movies" formControlName="headSearch">
+        </form></li>
+        <li><a href="#" routerLink="/" class="profile">
+          <!-- Free svg from https://freesvg.org/user-icon-silhouette -->
+          <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="35" height="40" viewBox="0 0 248.03149 248.03149" id="svg4526" version="1.1" inkscape:version="0.91 r13725" sodipodi:docname="user.svg">
+            <g inkscape:label="Laag 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-804.33071)">
+              <path style="opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.50507629;stroke-opacity:1" d="m 76.42344,1042.717 c -2.2224,-0.2267 -4.7225,-0.6821 -5.5559,-1.012 -0.8334,-0.3299 -9.3384,-2.8569 -18.9001,-5.6157 -9.5617,-2.7588 -17.4523,-5.0834 -17.5347,-5.1657 -0.2391,-0.2392 2.2788,-42.51159 2.8639,-48.08136 2.2676,-21.58406 6.0483,-32.16101 14.8649,-41.58634 7.5909,-8.11487 14.9224,-11.77177 27.5448,-13.73911 5.5107,-0.85889 39.4433,-1.23111 47.6206,-0.52237 13.0001,1.12673 21.3056,3.10399 29.1231,6.93322 3.9457,1.93271 5.526,3.0883 9.1422,6.68524 9.4197,9.36932 13.7657,22.358 15.8544,47.38281 1.1656,13.96551 2.4884,42.59711 1.9903,43.07931 -0.9176,0.8884 -17.7367,5.5971 -23.3654,6.5414 -20.4406,3.4292 -70.2575,6.467 -83.6481,5.1006 z" id="path4293-4" inkscape:connector-curvature="0"/>
+              <ellipse style="opacity:1;fill-rule:nonzero;stroke:#000000;stroke-opacity:1" id="path4295-9" cx="106.96198" cy="883.10352" rx="40.658642" ry="38.327599"/>
+            </g>
+          </svg>
+        </a></li>
         
       </ul>
     </nav>
