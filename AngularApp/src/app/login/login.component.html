@@ -6,6 +6,9 @@
         <label for="uname">Username:</label><br>
         <input type="text" placeholder="Enter Username" [(ngModel)]="userName" [ngModelOptions]="{standalone: true}" required>
         <br>
+        <label for="pword">Password:</label><br>
+        <input type="password" placeholder="Enter Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required>
+        <br>
         <button (click)="login()">Login</button><br>
         <a (click)="switchToRegister()">Create an Account</a>
     </div>
