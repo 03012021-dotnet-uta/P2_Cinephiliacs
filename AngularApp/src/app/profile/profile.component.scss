@@ -85,12 +85,16 @@
           border-bottom: none;
       }
 
-      li:nth-child(2) {
+      li:first-child {
           border-radius: 10px 10px 0 0;
       }
 
       li:last-child {
           border-radius: 0 0 10px 10px;
+      }
+
+      li:first-child:last-child {
+          border-radius: 10px;
       }
   }
 }

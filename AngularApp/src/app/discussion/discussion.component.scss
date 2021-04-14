@@ -63,6 +63,10 @@ ul {
     li:last-child {
         border-radius: 0 0 10px 10px;
     }
+
+    li:first-child:last-child {
+        border-radius: 10px;
+    }
 }
 
 #input {
