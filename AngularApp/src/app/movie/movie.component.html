@@ -6,7 +6,7 @@
             <img src="{{selectedMovie.Poster}}" alt="Movie Poster">
             <div class="information">
                 <p class="name"><strong>Title:</strong> {{ selectedMovie.Title }}</p>
-                <p class="reviewscore"><strong>Review Score </strong>{{ reviewScore}}</p>
+                <p *ngIf="reviews" class="reviewscore"><strong>User Review Score </strong>{{ reviewScore}}</p>
                 <p class="year"><strong>Year(s):</strong> {{ selectedMovie.Year }}<span *ngIf="selectedMovie.Year.substring(selectedMovie.Year.length - 1)=='–'">present</span></p>
                 <p class="date"><strong>Release Date:</strong> {{ selectedMovie.Released }}</p>
                 <p class="runtime"><strong>Runtime:</strong> {{ selectedMovie.Runtime }}</p>
@@ -21,7 +21,7 @@
         </li>
     </ul>
 </div> 
-
+<div><button (click)="followMovie()">Follow Movie</button></div>
 <div class="left">
     <h3>Reviews</h3>
     <ul *ngIf="reviews">
@@ -57,13 +57,7 @@
 </div>
 
 <div class="right">
-    <!-- <div *ngIf="topics">
-                    
-        <div *ngFor="let topic of topics" value="1">
-            {{topic}}
-            
-        </div>
-    </div> -->
+
     <h3>Recent Discussions</h3>
     <ul *ngIf="discussions">
         <li *ngFor="let discussion of discussions">

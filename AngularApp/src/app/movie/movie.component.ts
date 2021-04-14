@@ -18,6 +18,7 @@ export class MovieComponent implements OnInit {
   discussions: any;
   reviews: any;
   input:any;
+  user:any;
 
   sumbitReview: any ={
     rating:0,
@@ -87,6 +88,14 @@ export class MovieComponent implements OnInit {
     }, 2000);
   }
 
+
+  followMovie(){
+    if(localStorage.getItem("loggedin")){
+      
+      this._login.followMovie(JSON.parse(this.user).username,this.movieID).subscribe(data => console.log("following Movie Now"));
+    }
+  }
+
   postDiscussion(){
     if(this.submitDiscussion.topic == "" || this.submitDiscussion.subject == "")
     {
@@ -115,8 +124,12 @@ export class MovieComponent implements OnInit {
   inputFields(){
     if(localStorage.getItem("loggedin")){
         console.log("userset");
-        this.submitDiscussion.username = localStorage.getItem("loggedin");
-        this.sumbitReview.username = localStorage.getItem("loggedin");
+        this.user = localStorage.getItem("loggedin")
+       
+        console.log(JSON.parse(this.user).username + "USER");
+        console.log(this.user);
+        this.submitDiscussion.username =JSON.parse(this.user).username;
+        this.sumbitReview.username = JSON.parse(this.user).username;
         console.log(this.sumbitReview);
      
     }else{
