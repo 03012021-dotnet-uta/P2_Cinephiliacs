@@ -63,7 +63,7 @@
     <ul *ngIf="discussions">
         <li *ngFor="let discussion of discussions">
             <!-- <p >{{ discussion.discussionid}}</p> -->
-            <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}}</u> 
+            <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}} <u *ngIf="discussion.topic != 'None'">{{discussion.topic}}</u></u> 
         </li>
     </ul>
     <div id="discussion">

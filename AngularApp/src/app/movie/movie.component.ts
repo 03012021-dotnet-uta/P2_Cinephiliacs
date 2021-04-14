@@ -103,6 +103,7 @@ export class MovieComponent implements OnInit {
     }else if(this.submitDiscussion.subject.length >= 250){
       alert("Discussion should be less than 250 Characters")
     }else{
+      
       this._login.submitDiscussion(this.submitDiscussion).subscribe(data => console.log(data));
       this.showDiscussion();
     }
