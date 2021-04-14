@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj": {}
+    "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Testing\\Testing.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj": {
+    "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj",
+        "projectUniqueName": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj",
         "projectName": "CineAPI",
-        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj",
-        "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\CineAPI\\obj\\",
+        "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj",
+        "packagesPath": "C:\\Users\\silve\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\CineAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Matt_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\silve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -31,14 +32,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Logic\\logic.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Logic\\logic.csproj"
               },
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj"
               },
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\Repository.csproj"
               }
             }
           }
@@ -90,25 +91,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj": {
+    "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Logic\\logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj",
+        "projectUniqueName": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Logic\\logic.csproj",
         "projectName": "logic",
-        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj",
-        "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\obj\\",
+        "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Logic\\logic.csproj",
+        "packagesPath": "C:\\Users\\silve\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Logic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Matt_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\silve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -121,11 +123,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj"
               },
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\Repository.csproj"
               }
             }
           }
@@ -154,25 +156,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
+    "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj",
+        "projectUniqueName": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\obj\\",
+        "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\silve\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Matt_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\silve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -211,25 +214,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
+    "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
+        "projectUniqueName": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\obj\\",
+        "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\silve\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Matt_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\silve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -242,8 +246,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj"
               }
             }
           }
@@ -288,25 +292,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj": {
+    "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Testing\\Testing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+        "projectUniqueName": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Testing\\Testing.csproj",
         "projectName": "Testing",
-        "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
-        "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\obj\\",
+        "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+        "packagesPath": "C:\\Users\\silve\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Testing\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Matt_PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\silve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -319,17 +324,17 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\CineAPI\\CineAPI.csproj"
               },
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Logic\\logic.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Logic\\logic.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Logic\\logic.csproj"
               },
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Models\\Models.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Models\\Models.csproj"
               },
-              "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Repository\\Repository.csproj"
+              "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\Repository.csproj": {
+                "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Repository\\Repository.csproj"
               }
             }
           }
@@ -384,7 +389,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
