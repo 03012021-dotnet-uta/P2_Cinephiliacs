@@ -1,31 +1,15 @@
-<p>home works!</p>
+<div *ngIf="currentUser.username">
+  <button (click)="logout()">LogOut</button><br>
+</div>
+
 <h1>Welcome</h1>
-<form>
-<div class="container" (ngSubmit)="login()">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" [(ngModel)]="userName" [ngModelOptions]="{standalone: true}" required>
-        
-    <button (click)="login()">Login</button>
-    
-  </div>
-</form>
-<br>
-<br>
-<form>
-  <div class="container" (ngSubmit)="createUser()">
-      <h4>Register</h4>
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" [(ngModel)]="newUser.username" [ngModelOptions]="{standalone: true}" required>
-      <label for="uname"><b>FirstName</b></label>
-      <input type="text" placeholder="Enter First Name" [(ngModel)]="newUser.firstname" [ngModelOptions]="{standalone: true}" required>
-      <label for="uname"><b>LastName</b></label>
-      <input type="text" placeholder="Enter Last Name" [(ngModel)]="newUser.lastname" [ngModelOptions]="{standalone: true}" required>
-      <label for="uname"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email Address" [(ngModel)]="newUser.email" [ngModelOptions]="{standalone: true}" required>
-      <button (click)="createUser()">Login</button>
-      
-    </div>
-  </form>
+
+<div *ngIf="currentUser.username; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
   <div class="container">
-    <button (click)="logout()"></button>
-    </div>
+  </div>
+  <app-profile [currentUser]="currentUser"></app-profile>
+</ng-template>
+<ng-template #elseBlock>
+  <app-login [(currentUser)]="currentUser"></app-login>
+</ng-template>

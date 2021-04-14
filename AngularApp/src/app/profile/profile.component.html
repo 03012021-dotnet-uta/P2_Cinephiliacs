@@ -1,0 +1,63 @@
+<div *ngIf="userMovies">
+  <h4>My Movies</h4>
+  <ul class="movies">
+    <li *ngFor="let movie of userMovies">
+      <p class="name">{{ movie.Title }}</p>
+      <img src="{{movie.Poster}}" alt="Movie Poster" routerLink="/movie/{{movie.imdbID}}">
+    </li>
+  </ul>
+</div>
+<div *ngIf="userReviews">
+  <h4>My Reviews</h4>
+  <ul class="reviews">
+    <li *ngFor="let review of userReviews">
+      <p>{{ review.rating }}: {{ review.text }}</p>
+    </li>
+  </ul>
+</div>
+<div *ngIf="userDiscussions">
+  <h4>My Discussions</h4>
+  <ul class="discussions">
+    <li *ngFor="let discussion of userDiscussions">
+      <p>{{ discussion.movieid }}: {{ discussion.subject }}</p>
+    </li>
+  </ul>
+</div>
+<div *ngIf="userComments">
+  <h4>My Comments</h4>
+  <ul class="comments">
+    <li *ngFor="let comment of userComments">
+      <p>{{ comment.discussionid }}: {{ comment.text }}</p>
+    </li>
+  </ul>
+</div>
+
+
+<!--
+Review {
+  movieid: string,
+  username: string,
+  rating: string,
+  text: string
+}
+
+Discussion {
+  discussionid: number,
+  movieid: string,
+  username: string,
+  subject: string,
+  topic: string
+}
+
+Comment {
+  commentid: number,
+  discussionid: number,
+  username: string,
+  text: string,
+  isspoiler: boolean
+}
+
+userMovies: string[] = [];
+userReviews: Review[] = [];
+userDiscussions: Discussion[] = [];
+userComments: Comment[] = [];-->
