@@ -32,4 +32,8 @@ export class AppComponent {
       window.location.href = "/list/" +  searchParam + "/1";
     }
   }
+
+  testCode(num:Number){
+    return num;
+  }
 }

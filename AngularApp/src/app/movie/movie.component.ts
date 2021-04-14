@@ -12,12 +12,13 @@ import { LoginService } from '../login.service';
 })
 export class MovieComponent implements OnInit {
 
-  reviewScore:any =0;
+  reviewScore:number =0;
   selectedMovie: any;
   movieID: any;
   discussions: any;
   reviews: any;
   input:any;
+  user:any;
 
   sumbitReview: any ={
     rating:0,
@@ -87,10 +88,20 @@ export class MovieComponent implements OnInit {
     }, 2000);
   }
 
+
+  followMovie(){
+    if(localStorage.getItem("loggedin")){
+      
+      this._login.followMovie(JSON.parse(this.user).username,this.movieID).subscribe(data => console.log("following Movie Now"));
+    }
+  }
+
   postDiscussion(){
     if(this.submitDiscussion.topic == "" || this.submitDiscussion.subject == "")
     {
       console.log("didn't submit discussion");
+    }else if(this.submitDiscussion.subject.length >= 250){
+      alert("Discussion should be less than 250 Characters")
     }else{
       this._login.submitDiscussion(this.submitDiscussion).subscribe(data => console.log(data));
       this.showDiscussion();
@@ -101,6 +112,8 @@ export class MovieComponent implements OnInit {
   postReview(){
     if(this.sumbitReview.rating == 0 || this.sumbitReview.text == ""){
       console.log("Review Not Sumbitted");
+    }else if(this.sumbitReview.text.length >= 250){
+      alert("Reviews should be less than 250 Characters")
     }else{
       this._login.postReview(this.sumbitReview).subscribe(data => console.log(data));
       this.showReview();
@@ -111,8 +124,12 @@ export class MovieComponent implements OnInit {
   inputFields(){
     if(localStorage.getItem("loggedin")){
         console.log("userset");
-        this.submitDiscussion.username = localStorage.getItem("loggedin");
-        this.sumbitReview.username = localStorage.getItem("loggedin");
+        this.user = localStorage.getItem("loggedin")
+       
+        console.log(JSON.parse(this.user).username + "USER");
+        console.log(this.user);
+        this.submitDiscussion.username =JSON.parse(this.user).username;
+        this.sumbitReview.username = JSON.parse(this.user).username;
         console.log(this.sumbitReview);
      
     }else{
