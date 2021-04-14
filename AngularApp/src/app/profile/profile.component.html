@@ -90,7 +90,7 @@
   <form>
     <div class="container" (ngSubmit)="updateUser()">
       <label for="uname"><b>Username</b></label>
-      <input type="text" [(ngModel)]="editedUser.username" [ngModelOptions]="{standalone: true}" [readonly]="!userIsEditable" required><br>
+      <input type="text" [(ngModel)]="editedUser.username" [ngModelOptions]="{standalone: true}" readonly required><br>
       <label for="uname"><b>FirstName</b></label>
       <input type="text" [(ngModel)]="editedUser.firstname" [ngModelOptions]="{standalone: true}" [readonly]="!userIsEditable" required><br>
       <label for="uname"><b>LastName</b></label>

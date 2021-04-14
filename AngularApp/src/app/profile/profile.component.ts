@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   }
 
   userIsEditable: boolean = false;
+  userIsUpdating: boolean = false;
 
   moviesAreLoaded: boolean = false;
   reviewsAreLoaded: boolean = false;
@@ -85,26 +86,27 @@ export class ProfileComponent implements OnInit {
       }
       this.reviewsAreLoaded = true;
     });
-
-
   }
 
   updateUser(): void {
     if(this.userIsEditable)
     {
-      // call API updateUser()
-
-      this.currentUser.username = this.editedUser.username;
-      this.currentUser.firstname = this.editedUser.firstname;
-      this.currentUser.lastname = this.editedUser.lastname;
-      this.currentUser.email = this.editedUser.email;
-      localStorage.setItem("loggedin",JSON.stringify(this.currentUser));
+      this.userIsUpdating = true;
       this.userIsEditable = false;
+      this._login.postUpdateUser(this.currentUser.username, this.editedUser).subscribe(response => {
+        // Once the update request has processed, use an API call to get the updated user information
+        this._login.loginUser(this.currentUser.username).subscribe((data: User) => {
+          this.currentUser.firstname = data.firstname;
+          this.currentUser.lastname = data.lastname;
+          this.currentUser.email = data.email;
+          localStorage.setItem("loggedin",JSON.stringify(this.currentUser));
+        });
+        this.userIsUpdating = false;
+      });
     }
   }
 
   cancelUpdate(): void {
-    this.editedUser.username = this.currentUser.username;
     this.editedUser.firstname = this.currentUser.firstname;
     this.editedUser.lastname = this.currentUser.lastname;
     this.editedUser.email = this.currentUser.email;
@@ -112,6 +114,9 @@ export class ProfileComponent implements OnInit {
   }
 
   editUser(): void {
-    this.userIsEditable = true;
+    if(!this.userIsUpdating)
+    {
+      this.userIsEditable = true;
+    }
   }
 }

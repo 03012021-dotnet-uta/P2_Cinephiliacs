@@ -77,9 +77,14 @@ export class LoginService {
     return this.http.get<Comment[]>( this.baseURL + "user/comments/" + username);
   }
 
+  postUpdateUser(username:string, updatedUser:User){
+    return this.http.post<User>( this.baseURL + "user/update/" + username, updatedUser);
+  }
+
   getDiscussionComments(discussionID:string){
     return this.http.get( this.baseURL + "forum/comments/" + discussionID);
   }
+
   getCurrentDiscussion(discussionID:string){
     return this.http.get( this.baseURL + "forum/discussion/" + discussionID);
   }
