@@ -39,6 +39,32 @@ namespace Repository
         }
 
         /// <summary>
+        /// Updates the information of the User identified by the username argument
+        /// to the information in the User object. Returns true iff successful.
+        /// Returns false if the user doesn't exist.
+        /// </summary>
+        /// <param name="repoUser"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateUser(string username, User updatedUser)
+        {
+            User existingUser = _dbContext.Users.Where(u => u.Username == username).FirstOrDefault<User>();
+            if(existingUser == null)
+            {
+                Console.WriteLine("RepoLogic.UpdateUser() was called for a user that doesn't exist.");
+                return false;
+            }
+            existingUser.FirstName = updatedUser.FirstName;
+            existingUser.LastName = updatedUser.LastName;
+            existingUser.Email = updatedUser.Email;
+
+            if(await _dbContext.SaveChangesAsync() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Returns the User object from the database that matches the username specified
         /// in the argument. Returns null if the username is not found.
         /// </summary>
@@ -46,7 +72,7 @@ namespace Repository
         /// <returns></returns>
         public User GetUser(string username)
         {
-            return _dbContext.Users.Where(a => a.Username == username).FirstOrDefault<User>();
+            return _dbContext.Users.Where(u => u.Username == username).FirstOrDefault<User>();
         }
 
         /// <summary>
