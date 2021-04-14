@@ -24,6 +24,8 @@ export class ProfileComponent implements OnInit {
   userDiscussions: Discussion[] = [];
   userComments: Comment[] = [];
 
+  displaySpoilers: any = false;
+
   constructor(private _http: HttpService, private _login: LoginService) { }
 
   ngOnInit(): void {
@@ -56,6 +58,16 @@ export class ProfileComponent implements OnInit {
     //   console.log(data);
     //   this.users=data;
     // });
+  }
+
+
+  showSpoilers() {
+    this.displaySpoilers = true;
+    console.log(this.displaySpoilers);
+  }
+
+  spoilersShown() {
+    return this.displaySpoilers;
   }
 
 }

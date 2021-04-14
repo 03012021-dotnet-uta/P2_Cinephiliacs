@@ -1,4 +1,4 @@
-<div *ngIf="userMovies">
+<div *ngIf="userMovies" class="movieinfo">
   <h4>My Movies</h4>
   <ul class="movies">
     <li *ngFor="let movie of userMovies">
@@ -7,57 +7,40 @@
     </li>
   </ul>
 </div>
-<div *ngIf="userReviews">
+
+<div *ngIf="userReviews" class="left">
   <h4>My Reviews</h4>
   <ul class="reviews">
     <li *ngFor="let review of userReviews">
-      <p>{{ review.rating }}: {{ review.text }}</p>
+      <p class="rating">{{ review.rating}}</p>
+      <a routerLink ="/user/{{review.username}}" class="username">{{ review.username}}</a>
+      <p >{{ review.text}}</p>
     </li>
   </ul>
 </div>
-<div *ngIf="userDiscussions">
+
+<div *ngIf="userDiscussions" class="left">
   <h4>My Discussions</h4>
   <ul class="discussions">
     <li *ngFor="let discussion of userDiscussions">
-      <p>{{ discussion.movieid }}: {{ discussion.subject }}</p>
+      <a routerLink="/user/{{discussion.username}}" class="username">{{ discussion.username }}</a>
+      <p *ngIf="discussion.topic != 'None'" class="topic">Topic: {{ discussion.topic}}</p>
+      <div class="discussionsubject">{{ discussion.subject}}</div>
     </li>
   </ul>
 </div>
-<div *ngIf="userComments">
+
+<div *ngIf="userComments" class="left">
   <h4>My Comments</h4>
   <ul class="comments">
     <li *ngFor="let comment of userComments">
-      <p>{{ comment.discussionid }}: {{ comment.text }}</p>
+      <div  class="spoilerCover" *ngIf="comment.isspoiler && !spoilersShown()">
+          <button (click)="showSpoilers()">Show Spoilers</button>
+      </div>
+      <div class="commentContent" *ngIf="!comment.isspoiler || spoilersShown()">
+          <a routerLink="/user/{{comment.username}}" class="username">{{ comment.username }}</a>
+          <div class="commenttext">{{comment.text}}</div>
+      </div>
     </li>
   </ul>
 </div>
-
-
-<!--
-Review {
-  movieid: string,
-  username: string,
-  rating: string,
-  text: string
-}
-
-Discussion {
-  discussionid: number,
-  movieid: string,
-  username: string,
-  subject: string,
-  topic: string
-}
-
-Comment {
-  commentid: number,
-  discussionid: number,
-  username: string,
-  text: string,
-  isspoiler: boolean
-}
-
-userMovies: string[] = [];
-userReviews: Review[] = [];
-userDiscussions: Discussion[] = [];
-userComments: Comment[] = [];-->

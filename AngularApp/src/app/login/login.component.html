@@ -1,4 +1,3 @@
-<div>LOGIN COMPO</div>
 <div *ngIf="isLoginPage; then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
   <form>
@@ -8,7 +7,7 @@
         <input type="text" placeholder="Enter Username" [(ngModel)]="userName" [ngModelOptions]="{standalone: true}" required>
 
         <button (click)="login()">Login</button><br>
-        <p (click)="switchToRegister()">Create an Account</p>
+        <a (click)="switchToRegister()">Create an Account</a>
     </div>
   </form>
 </ng-template>
@@ -24,8 +23,8 @@
       <input type="text" placeholder="Enter Last Name" [(ngModel)]="newUser.lastname" [ngModelOptions]="{standalone: true}" required><br>
       <label for="uname"><b>Email</b></label>
       <input type="text" placeholder="Enter Email Address" [(ngModel)]="newUser.email" [ngModelOptions]="{standalone: true}" required><br>
+      <a (click)="backToLogin()">Return to Login</a>
       <button (click)="createUser()">Create Account</button>
-      <p (click)="backToLogin()">Return to Login</p>
     </div>
   </form>
 </ng-template>
