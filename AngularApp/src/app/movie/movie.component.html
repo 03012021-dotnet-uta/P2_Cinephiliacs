@@ -6,6 +6,7 @@
             <img src="{{selectedMovie.Poster}}" alt="Movie Poster">
             <div class="information">
                 <p class="name"><strong>Title:</strong> {{ selectedMovie.Title }}</p>
+                <p class="reviewscore"><strong>Review Score </strong>{{ reviewScore}}</p>
                 <p class="year"><strong>Year(s):</strong> {{ selectedMovie.Year }}<span *ngIf="selectedMovie.Year.substring(selectedMovie.Year.length - 1)=='–'">present</span></p>
                 <p class="date"><strong>Release Date:</strong> {{ selectedMovie.Released }}</p>
                 <p class="runtime"><strong>Runtime:</strong> {{ selectedMovie.Runtime }}</p>

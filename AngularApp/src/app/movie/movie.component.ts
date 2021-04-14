@@ -12,7 +12,7 @@ import { LoginService } from '../login.service';
 })
 export class MovieComponent implements OnInit {
 
-  reviewScore:any =0;
+  reviewScore:number =0;
   selectedMovie: any;
   movieID: any;
   discussions: any;
