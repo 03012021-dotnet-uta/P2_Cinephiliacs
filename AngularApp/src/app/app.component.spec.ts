@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let component: AppComponent = new AppComponent();
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -32,4 +33,10 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('#search').textContent).toContain('Home');
   });
+
+  it('Should return num', () => {
+    expect(component.testCode(3)).toBe(3);
+  });
+
+
 });
