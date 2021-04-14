@@ -92,5 +92,8 @@ export class LoginService {
   postComment(newComment:any){
     return this.http.post( this.baseURL + "Forum/comment",newComment);
   }
+  followMovie(follower:string,follMovie:string){
+    return this.http.post(this.baseURL+"user/movie/" + follower + "/"+ follMovie,null);
+  }
 
 }

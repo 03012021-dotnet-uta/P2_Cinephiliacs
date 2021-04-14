@@ -21,11 +21,52 @@ header{
         margin-top: -38px;
 
         ul{
-            input {
-                border-radius: 5px;
-                border: 1px solid grey;
-                padding-left: 5px;
-                height: 25px;
+            li {
+                &.search {
+                    width: 215px;
+                    form {
+                        svg{ 
+                            padding-top: 5px;
+                        }
+                    }
+                }
+
+                input {
+                    position: relative;
+                    float: left;
+                    border-radius: 5px;
+                    border: 1px solid grey;
+                    padding-left: 5px;
+                    margin-left: 3%;
+                    height: 25px;
+                }
+
+
+                svg {
+                    position: relative;
+                    float: left;
+
+                    path, ellipse, circle {
+                        fill:black;
+                    }
+                }
+
+                a.profile {
+                    svg {
+                        margin-top: -24px;
+                        padding-top: 16px;
+                    }
+                }
+
+                &:hover {
+                    .profile {
+                        svg {
+                            path, ellipse {
+                                fill-opacity: .65;
+                            }
+                        } 
+                    }
+                }
             }
         }
     }

@@ -24,6 +24,10 @@ header{
         font-weight: bold;
     }
 
+    a.logo:hover {
+        cursor: pointer;
+    }
+
     nav{
         float: right;
         ul{
@@ -32,9 +36,6 @@ header{
             display: flex;
             li a{
                 padding: 1em;
-                &:hover{
-                    background: darken(#467aaa,10);
-                }
             }
         }
     }

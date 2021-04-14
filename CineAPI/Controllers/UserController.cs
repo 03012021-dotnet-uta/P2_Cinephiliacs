@@ -53,6 +53,32 @@ namespace CineAPI.Controllers
         }
 
         /// <summary>
+        /// Updates User information based on the information provided.
+        /// Returns a 400 status code if the incoming data is invalid.
+        /// Returns a 404 status code if the username does not already exist.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost("update/{username}")]
+        public async Task<ActionResult> UpdateUser(string username, [FromBody] User user)
+        {            
+            if(!ModelState.IsValid)
+            {
+                Console.WriteLine("UserController.UpdateUser() was called with invalid body data.");
+                return StatusCode(400);
+            }
+
+            if(await _userLogic.UpdateUser(username, user))
+            {
+                return StatusCode(202);
+            }
+            else
+            {
+                return StatusCode(404);
+            }
+        }
+
+        /// <summary>
         /// Returns the User information associated with the provided username.
         /// </summary>
         /// <param name="username"></param>
