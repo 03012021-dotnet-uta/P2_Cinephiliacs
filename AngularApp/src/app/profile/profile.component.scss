@@ -1,100 +1,151 @@
 .left {
     float: left;
-    width: 55%;
+    width: 60%;
     margin-bottom: 5%;
-   
+
     h3 {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
-   
+
     ul {
         list-style-type: none;
-   
+
         li {
             border: 2px solid #d8d5d1;
             background-color: #fffdfa;
             padding: 2% 5%;
-   
+
             .rating {
                 margin-bottom: 0;
                 font-size: 1.1em;
                 font-weight: bold;
             }
-   
+
             .username {
                 font-size: .75em;
             }
-   
+
             a.username {
                 display: block;
                 margin-bottom: 5px;
                 font-weight: bold;
                 color: black;
             }
-   
+
             .topic {
                 margin-bottom: 0;
                 font-size: 1em;
                 font-weight: normal;
             }
-   
-            div.spoilerCover {
-                padding: 1.5% 3% 2% 4%;
-                background-color: rgb(213, 221, 226);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-   
-                button {
-                    width: 200px;
-                    height: 50px;
-                    margin: 1% 0;
-                    color: black;
-                    border: none;
-                    background-color: #60a0dd;
-                    border-radius: 5px;
-                    font-size: .8em;
-                }
-   
-                button:hover {
-                    cursor: pointer;
-                }
-            }
-   
+
             div.discussionsubject {
                 margin-left: 2px;
                 padding-left: 2%;
                 border-left: 5px outset rgb(182, 204, 219);
                 font-size: .95em;
+                cursor: pointer;
             }
-   
+
             div.commentContent {
                 padding: 1.5% 3% 2% 4%;
-   
+
                 div.commenttext {
                     margin-left: 2px;
                     padding-left: 2%;
                     border-left: 5px outset rgb(182, 204, 219);
                     font-size: .95em;
+                    cursor: pointer;
                 }
             }
         }
-   
+
         li:not(:last-child) {
             border-bottom: none;
         }
-   
+
         li:first-child {
             border-radius: 10px 10px 0 0;
         }
-   
+
         li:last-child {
             border-radius: 0 0 10px 10px;
         }
-   
+
         li:first-child:last-child {
             border-radius: 10px;
         }
     }
   }
-  
+
+  .leftmovie {
+    float: left;
+    width: 60%;
+    margin-bottom: 0;
+
+    ul{
+      list-style-type: none ;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+
+      li{
+         padding: 1em;
+         width: 20%;
+         min-width: 100px;
+         height: auto;
+         margin-bottom: 0.4em;
+         display: flex;
+         flex-direction: column;
+
+         div.image {
+             display: flex;
+             align-items: center;
+             margin-bottom: 0.2em;
+
+             img {
+                 width: 100%;
+                 cursor: pointer;
+             }
+         }
+
+         p{
+             margin: 0;
+             font-weight:bold;
+             font-size: 1.0rem;
+         }
+
+         p.name{
+             font-weight: bold;
+             font-size: 1.0rem;
+             text-transform: uppercase;
+         }
+         p.year{
+             font-size: .9rem;
+             flex-grow: 1;
+         }
+         p.id {
+             display: none;
+         }
+      }
+    }
+
+    h3 {
+        font-size: 1.4em;
+    }
+
+  }
+
+  .missing {
+    padding-left: 1em;
+  }
+
+  .right {
+    float: right;
+    width: 35%;
+    margin-bottom: 5%;
+
+    h3 {
+        font-size: 1.5em;
+    }
+  }

@@ -1,43 +1,105 @@
-<div *ngIf="userMovies" class="movieinfo">
-  <h4>My Movies</h4>
-  <ul class="movies">
-    <li *ngFor="let movie of userMovies">
-      <p class="name">{{ movie.Title }}</p>
-      <img src="{{movie.Poster}}" alt="Movie Poster" routerLink="/movie/{{movie.imdbID}}">
-    </li>
-  </ul>
+<div class="leftmovie">
+  <h3>Movies</h3>
+  <div *ngIf="moviesAreLoaded; then thenMBlock else elseMBlock"></div>
+  <ng-template #thenMBlock>
+    <div *ngIf="userMovies.length">
+      <ul class="movies">
+        <li *ngFor="let movie of userMovies">
+          <div class="image">
+              <img src="{{movie.Poster}}" routerLink="/movie/{{movie.imdbID}}">
+          </div>
+          <p class="name">{{ movie.Title }}</p>
+          <p class="year">{{ movie.Year }}<span *ngIf="movie.Year.substring(movie.Year.length - 1)=='–'">present</span></p>
+          <p class="id">{{ movie.imdbID }}</p>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!userMovies.length">
+      <h4 class="missing">No Favorited Movies</h4>
+    </div>
+  </ng-template>
+  <ng-template #elseMBlock>
+    <h4>Loading Movies . . .</h4>
+  </ng-template>
 </div>
- 
-<div *ngIf="userReviews" class="left">
-  <h4>My Reviews</h4>
-  <ul class="reviews">
-    <li *ngFor="let review of userReviews">
-      <p class="rating">{{ review.rating}}</p>
-      <a routerLink ="/user/{{review.username}}" class="username">{{ review.username}}</a>
-      <p >{{ review.text}}</p>
-    </li>
-  </ul>
+
+<div class="left">
+  <h3>Reviews</h3>
+  <div *ngIf="reviewsAreLoaded; then thenRBlock else elseRBlock"></div>
+  <ng-template #thenRBlock>
+    <div *ngIf="userReviews.length">
+      <ul class="reviews">
+        <li *ngFor="let review of userReviews">
+          <p class="rating">{{ review.rating}}</p>
+          <a routerLink ="/user/{{review.username}}" class="username">{{ review.username}}</a>
+          <p >{{ review.text}}</p>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!userReviews.length">
+      <h4 class="missing">No Reviews</h4>
+    </div>
+  </ng-template>
+  <ng-template #elseRBlock>
+    <h4>Loading Reviews . . .</h4>
+  </ng-template>
+
+  <h3>Discussions</h3>
+  <div *ngIf="discussionsAreLoaded; then thenDBlock else elseDBlock"></div>
+  <ng-template #thenDBlock>
+    <div *ngIf="userDiscussions.length">
+      <ul class="discussions">
+        <li *ngFor="let discussion of userDiscussions">
+          <a routerLink="/user/{{discussion.username}}" class="username">{{ discussion.username }}</a>
+          <p *ngIf="discussion.topic != 'None'" class="topic">Topic: {{ discussion.topic}}</p>
+          <div routerLink="/discussion/{{discussion.discussionid}}" class="discussionsubject">{{ discussion.subject}}</div>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!userDiscussions.length">
+      <h4 class="missing">No Discussions</h4>
+    </div>
+  </ng-template>
+  <ng-template #elseDBlock>
+    <h4>Loading Discussions . . .</h4>
+  </ng-template>
+
+  <h3>Comments</h3>
+  <div *ngIf="commentsAreLoaded; then thenCBlock else elseCBlock"></div>
+  <ng-template #thenCBlock>
+    <div *ngIf="userComments.length">
+      <ul class="comments">
+        <li *ngFor="let comment of userComments">
+          <div class="commentContent">
+              <a routerLink="/user/{{comment.username}}" class="username">{{ comment.username }}</a>
+              <div routerLink="/discussion/{{comment.discussionid}}" class="commenttext">{{comment.text}}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!userComments.length">
+      <h4 class="missing">No Comments</h4>
+    </div>
+  </ng-template>
+  <ng-template #elseCBlock>
+    <h4>Loading Comments . . .</h4>
+  </ng-template>
 </div>
- 
-<div *ngIf="userDiscussions" class="left">
-  <h4>My Discussions</h4>
-  <ul class="discussions">
-    <li *ngFor="let discussion of userDiscussions">
-      <a routerLink="/user/{{discussion.username}}" class="username">{{ discussion.username }}</a>
-      <p *ngIf="discussion.topic != 'None'" class="topic">Topic: {{ discussion.topic}}</p>
-      <div class="discussionsubject">{{ discussion.subject}}</div>
-    </li>
-  </ul>
-</div>
- 
-<div *ngIf="userComments" class="left">
-  <h4>My Comments</h4>
-  <ul class="comments">
-    <li *ngFor="let comment of userComments">
-      <div class="commentContent">
-          <a routerLink="/user/{{comment.username}}" class="username">{{ comment.username }}</a>
-          <div class="commenttext">{{comment.text}}</div>
-      </div>
-    </li>
-  </ul>
+
+<div class="right">
+  <form>
+    <div class="container" (ngSubmit)="updateUser()">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" [(ngModel)]="editedUser.username" [ngModelOptions]="{standalone: true}" [readonly]="!userIsEditable" required><br>
+      <label for="uname"><b>FirstName</b></label>
+      <input type="text" [(ngModel)]="editedUser.firstname" [ngModelOptions]="{standalone: true}" [readonly]="!userIsEditable" required><br>
+      <label for="uname"><b>LastName</b></label>
+      <input type="text" [(ngModel)]="editedUser.lastname" [ngModelOptions]="{standalone: true}" [readonly]="!userIsEditable" required><br>
+      <label for="uname"><b>Email</b></label>
+      <input type="text" [(ngModel)]="editedUser.email" [ngModelOptions]="{standalone: true}" [readonly]="!userIsEditable" required><br>
+      <button *ngIf="!userIsEditable" (click)="editUser()">Edit Profile</button>
+      <button *ngIf="userIsEditable" (click)="cancelUpdate()">Cancel Changes</button>
+      <button *ngIf="userIsEditable" (click)="updateUser()">Submit Changes</button>
+    </div>
+  </form>
 </div>
