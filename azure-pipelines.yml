@@ -12,7 +12,6 @@ pool:
 variables:
   buildConfiguration: 'Release'
   solution: 'cine.sln'
-  angPath: 'AngularApp'
 
 steps:
 - task: UseDotNet@2
@@ -32,25 +31,6 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-- task: Npm@1
-  displayName: 'NPM Install'
-  inputs:
-    command: 'install'
-    workingDir: $(angPath)
-
-#- task: Npm@1
-#  displayName: 'NPM Install Angular CLI'
-#  inputs:
-#    command: 'custom'
-#    workingDir: $(angPath)
-#    customCommand: 'install -g @angular/cli@latest'
-
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'Sonar Cloud'
@@ -72,20 +52,6 @@ steps:
     projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration) --collect "Code Coverage"'
     testRunTitle: 'Dotnet tests running'
-
-- task: Npm@1
-  displayName: 'NPM Build Angular'
-  inputs:
-    command: 'custom'
-    workingDir: $(AngularApp)
-    customCommand: 'ng build --prod'
-
-- task: Npm@1
-  displayName: 'NPM Test'
-  inputs:
-    command: 'custom'
-    workingDir: $(AngularApp)
-    customCommand: 'run test-headless'
 
 # - task: PublishCodeCoverageResults@1
 #   inputs:
