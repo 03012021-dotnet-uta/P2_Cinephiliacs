@@ -40,7 +40,6 @@ export class MovieComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.router.snapshot.params);
     this.inputFields();
-
     this._login.getTopics().subscribe(data => {
       console.log(data);
       this.topics = data;
@@ -52,35 +51,40 @@ export class MovieComponent implements OnInit {
       console.log("this is movies now just so you know");
       console.log(this.selectedMovie);
     });
-    //Will get the discussions for the movie
-    this._login.getDiscussion(this.movieID).subscribe(data => {
-      console.log(data);
-      this.discussions = data;
-    });
 
-   //Movie Reviews
-   this._login.getReviews(this.movieID).subscribe(data => {
-    console.log(data);
-    this.reviews = data;
-    this.reviews.forEach( (value:any) => {
-      console.log(value);
-      this.reviewScore += Number(value.rating);
-      console.log(this.reviewScore);
-  });
-      this.reviewScore = this.reviewScore/this.reviews.length;
-      console.log(this.reviewScore);
-  });
+    //Will get the discussions for the movie
+    this.showDiscussion();
+
+    //Movie Reviews
+    this.showReview();
 
     //saving a reference to the database of movies interacted with
     this._login.postMovieId(this.movieID).subscribe(data => console.log("submitted"));
   }
 
-  showReview(){
-
+  async showReview(){
+    setTimeout(() => {
+      this._login.getReviews(this.movieID).subscribe(data => {
+        console.log(data);
+        this.reviews = data;
+        this.reviews.forEach( (value:any) => {
+          console.log(value);
+          this.reviewScore += Number(value.rating);
+          console.log(this.reviewScore);
+        });
+          this.reviewScore = this.reviewScore/this.reviews.length;
+          console.log(this.reviewScore);
+      });
+    }, 2000);
   }
 
-  showDiscussion(){
-
+  async showDiscussion(){
+    setTimeout(() => {
+      this._login.getDiscussion(this.movieID).subscribe(data => {
+        console.log(data);
+        this.discussions = data;
+      });
+    }, 2000);
   }
 
   postDiscussion(){
@@ -89,15 +93,17 @@ export class MovieComponent implements OnInit {
       console.log("didn't submit discussion");
     }else{
       this._login.submitDiscussion(this.submitDiscussion).subscribe(data => console.log(data));
+      this.showDiscussion();
     }
     console.log(this.submitDiscussion);
   }
 
   postReview(){
-    if(this.sumbitReview.rating ==0 || this.sumbitReview.text ==""){
+    if(this.sumbitReview.rating == 0 || this.sumbitReview.text == ""){
       console.log("Review Not Sumbitted");
     }else{
       this._login.postReview(this.sumbitReview).subscribe(data => console.log(data));
+      this.showReview();
     }
     console.log(this.sumbitReview);
   }

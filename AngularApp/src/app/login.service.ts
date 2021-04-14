@@ -80,6 +80,9 @@ export class LoginService {
   getDiscussionComments(discussionID:string){
     return this.http.get( this.baseURL + "forum/comments/" + discussionID);
   }
+  getCurrentDiscussion(discussionID:string){
+    return this.http.get( this.baseURL + "forum/discussion/" + discussionID);
+  }
 
   postComment(newComment:any){
     return this.http.post( this.baseURL + "Forum/comment",newComment);

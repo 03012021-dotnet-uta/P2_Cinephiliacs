@@ -30,16 +30,21 @@ export class DiscussionComponent implements OnInit {
     this.disscussionID =  this.router.snapshot.params.id;
     this.newComment.discussionid = this.router.snapshot.params.id;
     this.displayInput();
-    this._login.getDiscussionComments(this.disscussionID).subscribe(data =>{ 
-      console.log(data);
-      this.comments = data;
-    });
-
-    this._login.getDiscussion(this.disscussionID).subscribe(data => {
+    this.getComments();
+    this._login.getCurrentDiscussion(this.disscussionID).subscribe(data => {
       console.log(data);
       this.discussion = data;
       this.subject = this.discussion.subject;
     });
+  }
+
+  async getComments() {
+    setTimeout(() => {
+      this._login.getDiscussionComments(this.disscussionID).subscribe(data =>{ 
+        console.log(data);
+        this.comments = data;
+      });
+    }, 1000);
   }
 
   displayInput(){
@@ -57,6 +62,7 @@ export class DiscussionComponent implements OnInit {
       console.log("Please enter a comment");
     }else{
       this._login.postComment(this.newComment).subscribe(data => console.log(data));
+      this.getComments();
     }
     console.log(this.newComment);
   }

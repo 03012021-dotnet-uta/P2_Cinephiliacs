@@ -25,14 +25,61 @@ u:hover {
 .left {
     float: left;
     width: 55%;
-    margin-bottom: 5%;
+    margin-bottom: 7%;
 
     h3 {
         font-size: 1.5em;
     }
 
+    h4 {
+        margin-bottom: 2%;
+        margin-top: 0;
+    }
+
+    #review {
+        background-color: lightgray;
+        padding: 5%;
+        width: 90%;
+
+        form {
+            label {
+                font-size: .75em;
+                margin-right: 10px;
+            }
+
+            select {
+                margin-right: 5px;
+                margin-bottom: 1%;
+                height: 30px;
+                border-radius: 5px;
+                border: 1px solid lightgray;
+                padding: 0 10px;
+            }
+
+            input {
+                height: 30px;
+                border-radius: 5px;
+                border: 1px solid lightgray;
+                width: 87%;
+                margin-bottom: 4%;
+                padding-left: 10px;
+            }
+
+            button {
+                width: 150px;
+                height: 35px;
+                color: white;
+                border: none;
+                background-color: #357fc5;
+                border-radius: 5px;
+                margin-right: 20px;
+            }
+        }
+    }
+
     ul {
         list-style-type: none;
+        padding-left: 0;
 
         li {
             border: 2px solid #d8d5d1;
@@ -54,7 +101,7 @@ u:hover {
             border-bottom: none;
         }
 
-        li:nth-child(2) {
+        li:first-child {
             border-radius: 10px 10px 0 0;
         }
 
@@ -67,13 +114,65 @@ u:hover {
 .right {
     float: right;
     width: 40%;
-    margin-bottom: 5%;
 
     h3 {
         font-size: 1.5em;
     }
 
-    li {
+    h4 {
+        margin-left: 5%;
         margin-bottom: 2%;
+        margin-top: 0;
+    }
+
+    ul {
+        margin-bottom: 5%;
+
+        li {
+            margin-bottom: 2%;
+        }
+    }
+
+    #discussion {
+        background-color: lightgray;
+        padding: 5%;
+        display: inline-block;
+        width: 85%;
+        margin-left: 5%;
+        margin-top: 7%;
+
+        form {
+            margin-left: 5%;
+
+            label {
+                font-size: .75em;
+            }
+
+            select {
+                margin-bottom: 1%;
+                height: 30px;
+                border-radius: 5px;
+                border: 1px solid lightgray;
+            }
+
+            input {
+                height: 30px;
+                border-radius: 5px;
+                border: 1px solid lightgray;
+                width: 80%;
+                margin-bottom: 6%;
+                padding-left: 10px;
+            }
+
+            button {
+                width: 150px;
+                height: 35px;
+                color: white;
+                border: none;
+                background-color: #357fc5;
+                border-radius: 5px;
+                margin-right: 20px;
+            }
+        }
     }
 }
