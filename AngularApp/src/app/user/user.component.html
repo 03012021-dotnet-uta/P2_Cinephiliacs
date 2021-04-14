@@ -1,21 +1,95 @@
-<p>user works!</p>
-<div *ngIf="user">
-    {{user.username}}
-    {{user.email}}<br>
-    <div *ngIf="reviews">
-        <h3>{{user.username}}'s' Review</h3>
-        <div *ngFor="let review of reviews">
-            <b>{{review.movieid}}</b><br>
-            <b>{{review.text}}</b>
-        </div>
-    </div>  
-    <div *ngIf="discussions">
-        <h3>{{user.username}}'s discussions</h3>
-        <div *ngFor="let discussion of discussions">
-            <b routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}}</b>
-            <b>{{discussion.discussionid}}</b>
-        </div>
-    </div>
-    
-</div>
+<div *ngIf="userName">
+  <h1 class="left">{{userName}}'s Profile</h1>
 
+  <div class="leftmovie">
+    <h3>Favorite Movies</h3>
+    <span *ngIf="moviesAreLoaded; then thenMBlock else elseMBlock"></span>
+    <ng-template #thenMBlock>
+      <div *ngIf="userMovies.length">
+        <ul class="movies">
+          <li *ngFor="let movie of userMovies">
+            <div class="image">
+                <img src="{{movie.Poster}}" routerLink="/movie/{{movie.imdbID}}">
+            </div>
+            <p class="name">{{ movie.Title }}</p>
+            <p class="year">{{ movie.Year }}<span *ngIf="movie.Year.substring(movie.Year.length - 1)=='–'">present</span></p>
+            <p class="id">{{ movie.imdbID }}</p>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!userMovies.length">
+        <h4 class="missing">No Favorited Movies</h4>
+      </div>
+    </ng-template>
+    <ng-template #elseMBlock>
+      <h4>Loading Movies . . .</h4>
+    </ng-template>
+  </div>
+
+  <div class="left">
+    <h3>Reviews</h3>
+    <div *ngIf="reviewsAreLoaded; then thenRBlock else elseRBlock"></div>
+    <ng-template #thenRBlock>
+      <div *ngIf="userReviews.length">
+        <ul class="reviews">
+          <li *ngFor="let review of userReviews">
+            <p class="rating">{{ review.rating}}</p>
+            <a routerLink ="/user/{{review.username}}" class="username">{{ review.username}}</a>
+            <p >{{ review.text}}</p>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!userReviews.length">
+        <h4 class="missing">No Reviews</h4>
+      </div>
+    </ng-template>
+    <ng-template #elseRBlock>
+      <h4>Loading Reviews . . .</h4>
+    </ng-template>
+
+    <h3>Discussions</h3>
+    <div *ngIf="discussionsAreLoaded; then thenDBlock else elseDBlock"></div>
+    <ng-template #thenDBlock>
+      <div *ngIf="userDiscussions.length">
+        <ul class="discussions">
+          <li *ngFor="let discussion of userDiscussions">
+            <a routerLink="/user/{{discussion.username}}" class="username">{{ discussion.username }}</a>
+            <p *ngIf="discussion.topic != 'None'" class="topic">Topic: {{ discussion.topic}}</p>
+            <div routerLink="/discussion/{{discussion.discussionid}}" class="discussionsubject">{{ discussion.subject}}</div>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!userDiscussions.length">
+        <h4 class="missing">No Discussions</h4>
+      </div>
+    </ng-template>
+    <ng-template #elseDBlock>
+      <h4>Loading Discussions . . .</h4>
+    </ng-template>
+
+    <h3>Comments</h3>
+    <div *ngIf="commentsAreLoaded; then thenCBlock else elseCBlock"></div>
+    <ng-template #thenCBlock>
+      <div *ngIf="userComments.length">
+        <ul class="comments">
+          <li *ngFor="let comment of userComments">
+            <div  class="spoilerCover" *ngIf="comment.isspoiler && !spoilersShown()">
+              <button (click)="showSpoilers()">Show Spoilers</button>
+            </div>
+            <div class="commentContent" *ngIf="!comment.isspoiler || spoilersShown()">
+              <a routerLink="/user/{{comment.username}}" class="username">{{ comment.username }}</a>
+              <div routerLink="/discussion/{{comment.discussionid}}" class="commenttext">{{comment.text}}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!userComments.length">
+        <h4 class="missing">No Comments</h4>
+      </div>
+    </ng-template>
+    <ng-template #elseCBlock>
+      <h4>Loading Comments . . .</h4>
+    </ng-template>
+  </div>
+
+</div>
