@@ -63,8 +63,8 @@
             
         </div>
     </div> -->
+    <h3>Recent Discussions</h3>
     <ul *ngIf="discussions">
-        <h3>Recent Discussions</h3>
         <li *ngFor="let discussion of discussions">
             <!-- <p >{{ discussion.discussionid}}</p> -->
             <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}}</u> 
