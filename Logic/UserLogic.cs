@@ -21,6 +21,12 @@ namespace BusinessLogic
             return await _repo.AddUser(repoUser);
         }
 
+        public async Task<bool> UpdateUser(string username, User user)
+        {
+            var repoUser = Mapper.UserToRepoUser(user);
+            return await _repo.UpdateUser(username, repoUser);
+        }
+
         public User GetUser(string username)
         {
             var repoUser = _repo.GetUser(username);
