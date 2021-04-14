@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   @Output() currentUserChange = new EventEmitter<User>();
 
   userName: string = "";
+  password: string = "";
 
   isLoginPage: boolean = true;
 
@@ -38,7 +39,10 @@ export class LoginComponent implements OnInit {
     console.log("Login attempt" + this.userName);
     this._login.loginUser(this.userName).subscribe((data: User) => {
       console.log(data);
-      this.currentUser = data;
+      if (data.lastname == this.password)
+      {
+        this.currentUser = data;
+      }
       console.log(this.currentUser.username);
       this.currentUserChange.emit(this.currentUser);
       localStorage.setItem("loggedin",JSON.stringify(this.currentUser));
