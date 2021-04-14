@@ -108,6 +108,10 @@ u:hover {
         li:last-child {
             border-radius: 0 0 10px 10px;
         }
+
+        li:first-child:last-child {
+            border-radius: 10px;
+        }
     }
 }
 
@@ -126,7 +130,7 @@ u:hover {
     }
 
     ul {
-        margin-bottom: 5%;
+        margin-bottom: 7%;
 
         li {
             margin-bottom: 2%;
@@ -139,7 +143,6 @@ u:hover {
         display: inline-block;
         width: 85%;
         margin-left: 5%;
-        margin-top: 7%;
 
         form {
             margin-left: 5%;

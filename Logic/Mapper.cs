@@ -90,6 +90,7 @@ namespace BusinessLogic
             repoReview.Username = review.Username;
             repoReview.MovieId = review.Movieid;
             repoReview.Rating = review.Rating;
+            repoReview.Review1 = review.Text;
             repoReview.CreationTime = DateTime.Now;
 
             return repoReview;

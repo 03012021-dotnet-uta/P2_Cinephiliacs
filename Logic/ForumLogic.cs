@@ -33,6 +33,7 @@ namespace BusinessLogic
             List<Repository.Models.Comment> repoComments = await _repo.GetMovieComments(discussionid);
             if(repoComments == null)
             {
+                Console.WriteLine("ForumLogic.GetComments() was called with a discussionid that doesn't exist.");
                 return null;
             }
 
@@ -48,6 +49,7 @@ namespace BusinessLogic
         {
             if(page < 1)
             {
+                Console.WriteLine("ForumLogic.GetCommentsPage() was called with a negative or zero page number.");
                 return null;
             }
 
@@ -55,21 +57,24 @@ namespace BusinessLogic
             int pageSize = pageSizeSetting.IntValue ?? default(int);
             if(pageSize < 1)
             {
+                Console.WriteLine("ForumLogic.GetCommentsPage() was called but the commentspagesize is invalid");
                 return null;
             }
 
             List<Repository.Models.Comment> repoComments = await _repo.GetMovieComments(discussionid);
-            repoComments = repoComments.OrderByDescending(c => c.CreationTime).ToList<Repository.Models.Comment>();
             if(repoComments == null)
             {
+                Console.WriteLine("ForumLogic.GetCommentsPage() was called with a discussionid that doesn't exist.");
                 return null;
             }
+            repoComments = repoComments.OrderByDescending(c => c.CreationTime).ToList<Repository.Models.Comment>();
 
             int numberOfComments = repoComments.Count;
             int startIndex = pageSize * (page - 1);
 
             if(startIndex > numberOfComments - 1)
             {
+                Console.WriteLine("ForumLogic.GetCommentsPage() was called for a page number without comments.");
                 return null;
             }
 
@@ -92,6 +97,7 @@ namespace BusinessLogic
         {
             if(pagesize < 1 || pagesize > 100)
             {
+                Console.WriteLine("ForumLogic.SetCommentsPageSize() was called with an invalid pagesize.");
                 return false;
             }
 
@@ -106,6 +112,7 @@ namespace BusinessLogic
             List<Repository.Models.Discussion> repoDiscussions = await _repo.GetMovieDiscussions(movieid);
             if(repoDiscussions == null)
             {
+                Console.WriteLine("ForumLogic.GetDiscussions() was called with a movieid that doesn't exist.");
                 return null;
             }
 
@@ -129,6 +136,7 @@ namespace BusinessLogic
             Repository.Models.Discussion repoDiscussion = await _repo.GetDiscussion(discussionid);
             if(repoDiscussion == null)
             {
+                Console.WriteLine("ForumLogic.GetDiscussion() was called for an invalid discussionid.");
                 return null;
             }
 
@@ -148,6 +156,7 @@ namespace BusinessLogic
             var repoTopics = await _repo.GetTopics();
             if(repoTopics == null)
             {
+                Console.WriteLine("ForumLogic.GetTopics() was called but there are no topics.");
                 return null;
             }
 

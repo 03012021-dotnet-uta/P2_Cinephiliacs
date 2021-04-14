@@ -16,7 +16,8 @@ namespace BusinessLogic.Interfaces
 
         /// <summary>
         /// Returns a list of every Review object whose Movieid is equal to
-        /// the movieid argument.
+        /// the movieid argument. Returns null if the movie doesn't
+        /// exist.
         /// </summary>
         /// <param name="movieid"></param>
         /// <returns></returns>
@@ -34,7 +35,8 @@ namespace BusinessLogic.Interfaces
         /// Returns Review objects [n*(page-1), n*(page-1) + n] whose MovieId
         /// is equal to the movieid argument. Where n is the current page size
         /// for reviews and sortorder determines how the Review objects are
-        /// sorted prior to pagination.
+        /// sorted prior to pagination. Returns null if the movie doesn't
+        /// exist.
         /// </summary>
         /// <param name="movieid"></param>
         /// <param name="page"></param>
