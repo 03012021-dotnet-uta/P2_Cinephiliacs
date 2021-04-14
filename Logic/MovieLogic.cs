@@ -21,6 +21,7 @@ namespace BusinessLogic
             var repoReviews = await _repo.GetMovieReviews(movieid);
             if(repoReviews == null)
             {
+                Console.WriteLine("MovieLogic.GetReviews() was called for a movie that doesn't exist.");
                 return null;
             }
 
@@ -36,6 +37,7 @@ namespace BusinessLogic
         {
             if(page < 1)
             {
+                Console.WriteLine("MovieLogic.GetReviewsPage() was called with a negative or zero page number.");
                 return null;
             }
 
@@ -43,6 +45,7 @@ namespace BusinessLogic
             int pageSize = pageSizeSetting.IntValue ?? default(int);
             if(pageSize < 1)
             {
+                Console.WriteLine("MovieLogic.GetReviewsPage() was called but the reviewspagesize is invalid");
                 return null;
             }
 
@@ -50,6 +53,7 @@ namespace BusinessLogic
 
             if(repoReviews == null)
             {
+                Console.WriteLine("MovieLogic.GetReviewsPage() was called for a movie that doesn't exist.");
                 return null;
             }
 
@@ -77,6 +81,7 @@ namespace BusinessLogic
 
             if(startIndex > numberOfReviews - 1)
             {
+                Console.WriteLine("MovieLogic.GetReviewsPage() was called for a page number without reviews.");
                 return null;
             }
 

@@ -15,22 +15,23 @@ namespace BusinessLogic.Interfaces
         public Task<bool> CreateUser(User user);
 
         /// <summary>
-        /// Returns the User object whose Username is equal to
-        /// the username argument.
+        /// Returns the User object whose Username is equal to the username argument.
+        /// Returns null if the username is not found.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
         public User GetUser(string username);
 
         /// <summary>
-        /// Returns a list of every User object
+        /// Returns a list of every User object.
         /// </summary>
         /// <returns></returns>
         public Task<List<User>> GetUsers();
 
         /// <summary>
         /// Returns a list of every Discussion object that was created by the user
-        /// specified by the username argument.
+        /// specified by the username argument. Returns null if the username doesn't
+        /// exist.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -38,7 +39,8 @@ namespace BusinessLogic.Interfaces
 
         /// <summary>
         /// Returns a list of every Comment object that was created by the user
-        /// specified by the username argument.
+        /// specified by the username argument. Returns null if the username doesn't
+        /// exist.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -46,7 +48,8 @@ namespace BusinessLogic.Interfaces
 
         /// <summary>
         /// Returns a list of every FollowingMovie object that was created by the user
-        /// specified by the username argument.
+        /// specified by the username argument. Returns null if the username doesn't
+        /// exist.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -54,7 +57,8 @@ namespace BusinessLogic.Interfaces
 
         /// <summary>
         /// Returns a list of every Review object that was created by the user
-        /// specified by the username argument.
+        /// specified by the username argument. Returns null if the username doesn't
+        /// exist.
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>

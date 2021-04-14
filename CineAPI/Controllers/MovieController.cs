@@ -31,6 +31,10 @@ namespace CineAPI.Controllers
             {
                 return StatusCode(404);
             }
+            if(reviews.Count == 0)
+            {
+                return StatusCode(204);
+            }
             StatusCode(200);
             return reviews;
         }
@@ -52,6 +56,10 @@ namespace CineAPI.Controllers
             if(reviews == null)
             {
                 return StatusCode(404);
+            }
+            if(reviews.Count == 0)
+            {
+                return StatusCode(204);
             }
             StatusCode(200);
             return reviews;
@@ -86,6 +94,7 @@ namespace CineAPI.Controllers
         {
             if(!ModelState.IsValid)
             {
+                Console.WriteLine("MovieController.CreateReview() was called with invalid body data.");
                 return StatusCode(400);
             }
 

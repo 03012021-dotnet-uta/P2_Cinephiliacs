@@ -7,7 +7,6 @@ trigger:
 - main
 
 pool:
-  #name: 'default'
   vmImage: 'windows-latest'
 
 variables:
@@ -32,7 +31,6 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'Sonar Cloud'
@@ -64,7 +62,7 @@ steps:
 
 - task: SonarCloudPublish@1
   inputs:
-    pollingTimeoutSec: '60'
+    pollingTimeoutSec: '300'
 
 - task: DotNetCoreCLI@2
   displayName: 'Publishing'

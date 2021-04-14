@@ -12,6 +12,8 @@ import { MovieComponent } from './movie/movie.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { UserComponent } from './user/user.component';
 import { DiscussionComponent } from './discussion/discussion.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { DiscussionComponent } from './discussion/discussion.component';
     MovieComponent,
     AllUsersComponent,
     UserComponent,
-    DiscussionComponent
+    DiscussionComponent,
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

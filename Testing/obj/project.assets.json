@@ -8951,11 +8951,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+      "projectUniqueName": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
       "projectName": "Testing",
-      "projectPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Testing\\Testing.csproj",
-      "packagesPath": "C:\\Users\\silve\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\silve\\revature\\P2_Cinephiliacs\\Testing\\obj\\",
+      "projectPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\Testing.csproj",
+      "packagesPath": "C:\\Users\\Matt_PC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Matt_PC\\revature\\batch_repos\\P2_Cinephiliacs\\Testing\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

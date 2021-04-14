@@ -26,6 +26,7 @@ namespace BusinessLogic
             var repoUser = _repo.GetUser(username);
             if(repoUser == null)
             {
+                Console.WriteLine("UserLogic.GetUser() was called with a nonexistant username.");
                 return null;
             }
             return Mapper.RepoUserToUser(repoUser);
@@ -34,10 +35,6 @@ namespace BusinessLogic
         public async Task<List<User>> GetUsers()
         {
             var repoUsers = await _repo.GetUsers();
-            if(repoUsers == null)
-            {
-                return null;
-            }
 
             var users = new List<User>();
             foreach (var repoUser in repoUsers)
@@ -52,6 +49,7 @@ namespace BusinessLogic
             List<Repository.Models.Discussion> repoDiscussions = await _repo.GetUserDiscussions(username);
             if(repoDiscussions == null)
             {
+                Console.WriteLine("UserLogic.GetDiscussions() was called for a username that doesn't exist");
                 return null;
             }
 
@@ -75,6 +73,7 @@ namespace BusinessLogic
             List<Repository.Models.Comment> repoComments = await _repo.GetUserComments(username);
             if(repoComments == null)
             {
+                Console.WriteLine("UserLogic.GetComments() was called for a username that doesn't exist.");
                 return null;
             }
 
@@ -91,6 +90,7 @@ namespace BusinessLogic
             List<Repository.Models.FollowingMovie> repoFollowingMovies = await _repo.GetFollowingMovies(username);
             if(repoFollowingMovies == null)
             {
+                Console.WriteLine("UserLogic.GetFollowingMovies() was called for a username that doesn't exist.");
                 return null;
             }
 
@@ -107,6 +107,7 @@ namespace BusinessLogic
             List<Repository.Models.Review> repoReviews = await _repo.GetUserReviews(username);
             if(repoReviews == null)
             {
+                Console.WriteLine("UserLogic.GetReviews() was called for a username that doesn't exist.");
                 return null;
             }
 

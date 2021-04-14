@@ -26,7 +26,7 @@ namespace CineAPI.Controllers
         {
             List<string> topics = await _forumLogic.GetTopics();
 
-            if(topics == null)
+            if(topics.Count == 0)
             {
                 return StatusCode(404);
             }
@@ -44,10 +44,13 @@ namespace CineAPI.Controllers
         public async Task<ActionResult<List<Discussion>>> GetDiscussions(string movieid)
         {
             List<Discussion> discussions = await _forumLogic.GetDiscussions(movieid);
-
             if(discussions == null)
             {
                 return StatusCode(404);
+            }
+            if(discussions.Count == 0)
+            {
+                return StatusCode(204);
             }
             StatusCode(200);
             return discussions;
@@ -62,7 +65,6 @@ namespace CineAPI.Controllers
         public async Task<ActionResult<Discussion>> GetDiscussion(int discussionid)
         {
             Discussion discussion = await _forumLogic.GetDiscussion(discussionid);
-
             if(discussion == null)
             {
                 return StatusCode(404);
@@ -81,10 +83,13 @@ namespace CineAPI.Controllers
         public async Task<ActionResult<List<Comment>>> GetComments(int discussionid)
         {
             List<Comment> comments = await _forumLogic.GetComments(discussionid);
-
             if(comments == null)
             {
                 return StatusCode(404);
+            }
+            if(comments.Count == 0)
+            {
+                return StatusCode(204);
             }
             StatusCode(200);
             return comments;
@@ -101,10 +106,13 @@ namespace CineAPI.Controllers
         public async Task<ActionResult<List<Comment>>> GetCommentsPage(int discussionid, int page)
         {
             List<Comment> comments = await _forumLogic.GetCommentsPage(discussionid, page);
-
             if(comments == null)
             {
                 return StatusCode(404);
+            }
+            if(comments.Count == 0)
+            {
+                return StatusCode(204);
             }
             StatusCode(200);
             return comments;
@@ -139,6 +147,7 @@ namespace CineAPI.Controllers
         {            
             if(!ModelState.IsValid)
             {
+                Console.WriteLine("ForumController.CreateDiscussion() was called with invalid body data.");
                 return StatusCode(400);
             }
 
@@ -163,6 +172,7 @@ namespace CineAPI.Controllers
         {            
             if(!ModelState.IsValid)
             {
+                Console.WriteLine("ForumController.CreateComment() was called with invalid body data.");
                 return StatusCode(400);
             }
 

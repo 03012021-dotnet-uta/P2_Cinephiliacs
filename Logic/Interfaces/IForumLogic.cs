@@ -14,7 +14,7 @@ namespace BusinessLogic.Interfaces
 
         /// <summary>
         /// Returns a list of every Discussion object whose Movieid is equal to
-        /// the movieid argument.
+        /// the movieid argument. Returns null if the movieid doesn't exist.
         /// </summary>
         /// <param name="movieid"></param>
         /// <returns></returns>
@@ -30,7 +30,8 @@ namespace BusinessLogic.Interfaces
 
         /// <summary>
         /// Returns a list of every Comment object whose Discussionid is equal to
-        /// the discussionid argument.
+        /// the discussionid argument. Returns null if the discussionid doesn't
+        /// exist.
         /// </summary>
         /// <param name="discussionid"></param>
         /// <returns></returns>
@@ -38,8 +39,8 @@ namespace BusinessLogic.Interfaces
 
         /// <summary>
         /// Returns Comments objects [n*(page-1), n*(page-1) + n] whose Discussionid
-        /// is equal to the discussionid argument. Where n is the current page size
-        /// for comments
+        /// is equal to the discussionid argument, where n is the current page size
+        /// for comments. Returns null if the discussionid doesn't exist.
         /// </summary>
         /// <param name="discussionid"></param>
         /// <param name="page"></param>

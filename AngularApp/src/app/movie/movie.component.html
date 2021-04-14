@@ -37,7 +37,7 @@
         <form>
             <label>Rating:</label><br>
             <select name="rating" id="rating" [(ngModel)]="sumbitReview.rating" [ngModelOptions]="{standalone: true}">
-                <option selected hidden></option>
+                <option selected hidden disabled></option>
                 <option value="1">1</option>
                 <option value="1.5">1.5</option>
                 <option value="2">2</option>
@@ -63,8 +63,8 @@
             
         </div>
     </div> -->
+    <h3>Recent Discussions</h3>
     <ul *ngIf="discussions">
-        <h3>Recent Discussions</h3>
         <li *ngFor="let discussion of discussions">
             <!-- <p >{{ discussion.discussionid}}</p> -->
             <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}}</u> 
@@ -75,7 +75,7 @@
         <form>
             <label>Topic: </label><br>
             <select name="rating" id="rating" [(ngModel)]="submitDiscussion.topic" [ngModelOptions]="{standalone: true}">
-                <option selected hidden></option>    
+                <option selected hidden disabled></option>    
                 <option *ngFor="let topic of topics" 
                         [value]="topic">
                         {{topic}}

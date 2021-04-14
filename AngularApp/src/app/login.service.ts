@@ -2,7 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { AppComponent } from './app.component';
-
+import { User, Review, Discussion, Comment } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class LoginService {
   loginUser(userName:string){
     this.connection =  this.baseURL +"user/" + userName;
     console.log(this.connection);
-    return this.http.get(this.connection);
+    return this.http.get<User>(this.connection);
   }
 
   getURL(){
@@ -35,7 +35,7 @@ export class LoginService {
   getTopics(){
     return this.http.get( this.baseURL + "forum/topics");
   }
-  
+
 
   getDiscussion(movieId:String){
     return this.http.get( this.baseURL + "forum/discussions/"+movieId);
@@ -62,11 +62,21 @@ export class LoginService {
   }
 
   getUserReviews(username:string){
-    return this.http.get( this.baseURL + "user/reviews/" + username);
+    return this.http.get<Review[]>( this.baseURL + "user/reviews/" + username);
   }
+
   getUserDiscussions(username:string){
-    return this.http.get( this.baseURL + "user/discussions/" + username);
+    return this.http.get<Discussion[]>( this.baseURL + "user/discussions/" + username);
   }
+
+  getUserMovies(username:string){
+    return this.http.get<string[]>( this.baseURL + "user/movies/" + username);
+  }
+
+  getUserComments(username:string){
+    return this.http.get<Comment[]>( this.baseURL + "user/comments/" + username);
+  }
+
   getDiscussionComments(discussionID:string){
     return this.http.get( this.baseURL + "forum/comments/" + discussionID);
   }
