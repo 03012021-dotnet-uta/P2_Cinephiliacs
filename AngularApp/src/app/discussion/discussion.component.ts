@@ -31,7 +31,7 @@ export class DiscussionComponent implements OnInit {
     this.newComment.discussionid = this.router.snapshot.params.id;
     this.displayInput();
     this.getComments();
-    this._login.getDiscussion(this.disscussionID).subscribe(data => {
+    this._login.getCurrentDiscussion(this.disscussionID).subscribe(data => {
       console.log(data);
       this.discussion = data;
       this.subject = this.discussion.subject;
