@@ -1,5 +1,5 @@
 <div *ngIf="currentUser.username">
-  <button (click)="logout()">LogOut</button><br>
+  <button (click)="logout()">Log Out</button><br>
 </div>
 
 <h1>Welcome <span *ngIf="currentUser.username">{{ currentUser.username }}</span></h1>
@@ -11,5 +11,10 @@
   <app-profile [currentUser]="currentUser"></app-profile>
 </ng-template>
 <ng-template #elseBlock>
-  <app-login [(currentUser)]="currentUser"></app-login>
+  <div class="left">
+    <p class="about">Do you like movies and want to find reviews for your potential next watch or analyze your favorite films with other fans? If so, Cinephiliacs is the perfect application for you. Find information and user generated reviews about films or participate in discussions centered around your favorite, or least favorite, films. You can even follow individual movies to stay up to date on the discussions that have happened while you were away.</p>
+  </div>
+  <div class="right">
+    <app-login [(currentUser)]="currentUser"></app-login>
+  </div>
 </ng-template>
