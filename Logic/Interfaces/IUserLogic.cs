@@ -15,6 +15,14 @@ namespace BusinessLogic.Interfaces
         public Task<bool> CreateUser(User user);
 
         /// <summary>
+        /// Updates a User Object in storage.
+        /// Returns true if sucessful; false otherwise.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public Task<bool> UpdateUser(string username, User user);
+
+        /// <summary>
         /// Returns the User object whose Username is equal to the username argument.
         /// Returns null if the username is not found.
         /// </summary>
