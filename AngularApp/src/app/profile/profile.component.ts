@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { User, Review, Discussion, Comment } from '../models';
 import { LoginService } from '../login.service';
 import { HttpService } from '../http.service';
@@ -18,56 +17,106 @@ export class ProfileComponent implements OnInit {
     permissions:1
   }
 
+  editedUser: User = {
+    username:'',
+    firstname:'',
+    lastname:'',
+    email:'',
+    permissions:1
+  }
+
+  userIsEditable: boolean = false;
+  userIsUpdating: boolean = false;
+
+  moviesAreLoaded: boolean = false;
+  reviewsAreLoaded: boolean = false;
+  discussionsAreLoaded: boolean = false;
+  commentsAreLoaded: boolean = false;
+
   userMovieNames: string[] = [];
   userMovies: any[] = [];
   userReviews: Review[] = [];
   userDiscussions: Discussion[] = [];
   userComments: Comment[] = [];
 
-  displaySpoilers: any = false;
-
   constructor(private _http: HttpService, private _login: LoginService) { }
 
   ngOnInit(): void {
 
+    this.editedUser.username = this.currentUser.username;
+    this.editedUser.firstname = this.currentUser.firstname;
+    this.editedUser.lastname = this.currentUser.lastname;
+    this.editedUser.email = this.currentUser.email;
+
     this._login.getUserMovies(this.currentUser.username).subscribe(data => {
       this.userMovieNames = data;
 
-      this.userMovieNames.forEach(movieName => {
-
-        this._http.getMovie(movieName).subscribe(movieData => {
-          this.userMovies.push(movieData);
+      if(this.userMovieNames)
+      {
+        this.userMovieNames.forEach(movieName => {
+          // Get the Movie information for each favorited movie, for the poster image.
+          this._http.getMovie(movieName).subscribe(movieData => {
+            this.userMovies.push(movieData);
+          });
         });
-      });
+      }
+      this.moviesAreLoaded = true;
     });
 
     this._login.getUserDiscussions(this.currentUser.username).subscribe(data => {
-      this.userDiscussions = data;
+      if(data != null)
+      {
+        this.userDiscussions = data;
+      }
+      this.discussionsAreLoaded = true;
     });
 
     this._login.getUserComments(this.currentUser.username).subscribe(data => {
-      this.userComments = data;
+      if(data != null)
+      {
+        this.userComments = data;
+      }
+      this.commentsAreLoaded = true;
     });
 
     this._login.getUserReviews(this.currentUser.username).subscribe(data => {
-      this.userReviews = data;
+      if(data != null)
+      {
+        this.userReviews = data;
+      }
+      this.reviewsAreLoaded = true;
     });
-
-
-    // this.http.get("https://cinephiliacsapi.azurewebsites.net/user/users").subscribe(data => {
-    //   console.log(data);
-    //   this.users=data;
-    // });
   }
 
-
-  showSpoilers() {
-    this.displaySpoilers = true;
-    console.log(this.displaySpoilers);
+  updateUser(): void {
+    if(this.userIsEditable)
+    {
+      this.userIsUpdating = true;
+      this.userIsEditable = false;
+      this._login.postUpdateUser(this.currentUser.username, this.editedUser).subscribe(response => {
+        // Once the update request has processed, use an API call to get the updated user information
+        this._login.loginUser(this.currentUser.username).subscribe((data: User) => {
+          this.currentUser.firstname = data.firstname;
+          this.currentUser.lastname = data.lastname;
+          this.currentUser.email = data.email;
+          localStorage.setItem("loggedin",JSON.stringify(this.currentUser));
+        });
+        this.userIsUpdating = false;
+      });
+    }
   }
 
-  spoilersShown() {
-    return this.displaySpoilers;
+  cancelUpdate(): void {
+    this.editedUser.firstname = this.currentUser.firstname;
+    this.editedUser.lastname = this.currentUser.lastname;
+    this.editedUser.email = this.currentUser.email;
+    this.userIsEditable = false;
   }
 
+  editUser(): void {
+    if(!this.userIsUpdating)
+    {
+      this.userIsEditable = true;
+    }
+  }
 }

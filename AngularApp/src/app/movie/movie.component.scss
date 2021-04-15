@@ -21,6 +21,10 @@ u:hover {
         margin-bottom: 2%;
     }
 
+    button:hover {
+        cursor: pointer;
+    }
+
     ul {
         list-style-type: none;
         padding-left: 0;
@@ -88,6 +92,10 @@ u:hover {
                 background-color: #357fc5;
                 border-radius: 5px;
                 margin-right: 20px;
+            }
+
+            button:hover {
+                cursor: pointer;
             }
         }
     }
@@ -190,6 +198,10 @@ u:hover {
                 background-color: #357fc5;
                 border-radius: 5px;
                 margin-right: 20px;
+            }
+
+            button:hover {
+                cursor: pointer;
             }
         }
     }
