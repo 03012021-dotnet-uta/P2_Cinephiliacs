@@ -21,6 +21,7 @@ export class MovieComponent implements OnInit {
   reviews: Review[] = [];
   input:any;
   user:any;
+  movieFollowed: any = false;
 
   reviewPage: number = 1;
   reviewSortOrder: string = "ratingdsc";
@@ -79,7 +80,6 @@ export class MovieComponent implements OnInit {
       }
       else
       {
-        console.log(data);
         data.forEach((review:Review) => {
           console.log(review);
           this.reviews.push(review);
@@ -108,6 +108,11 @@ export class MovieComponent implements OnInit {
     }
   }
 
+  canYouInput(): boolean {
+    console.log("Can input ?" + this.caninput);
+    return this.caninput;
+  }
+
   async showDiscussion(){
     setTimeout(() => {
       this._login.getDiscussion(this.movieID).subscribe(data => {
@@ -119,8 +124,11 @@ export class MovieComponent implements OnInit {
 
   followMovie(){
     if(localStorage.getItem("loggedin")){
-
       this._login.followMovie(JSON.parse(this.user).username,this.movieID).subscribe(data => console.log("following Movie Now"));
+      this.movieFollowed = true;
+      setTimeout(() => {
+        this.movieFollowed = false;
+      }, 2000);
     }
   }
 

@@ -36,6 +36,15 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it("should return username", () =>{
+    component.userName = "rwplyler";
+    expect(component.getUserName()).toBe("rwplyler");
+  });
+  it("should return true", () =>{
+    component.password = "yes";
+    expect(component.isPasswordRigt("yes")).toBeTrue;
+  }) 
+
   it('Switch to Regisrer', () => {
     component.isLoginPage = true;
     component.switchToRegister();

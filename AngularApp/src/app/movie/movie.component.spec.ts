@@ -43,6 +43,11 @@ describe('MovieComponent', () => {
     expect(component.caninput).toBe(false);
   })
 
+
+  it("should say that you can do inputs",() =>{
+    component.caninput = true;
+    expect(component.canYouInput()).toBeTrue;
+  });
   it('It should check input feilds to false', () =>{
     
     expect(component.inputFields()).toBeTruthy;

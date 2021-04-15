@@ -1,6 +1,7 @@
 <div *ngIf="selectedMovie" class="movieinfo">
     <h1>{{ selectedMovie.Title }}</h1>
     <button *ngIf="caninput" (click)="followMovie()">Follow Movie</button>
+    <p *ngIf="movieFollowed" class="feedback">Movie followed</p>
 
     <ul>
         <li>

@@ -25,6 +25,17 @@ u:hover {
         cursor: pointer;
     }
 
+    button:active {
+        background-color: #336da3;
+    }
+
+    .feedback {
+        font-size: .7em;
+        margin-top: -1.75%;
+        margin-bottom: 2%;
+        margin-left: 25px;
+    }
+
     ul {
         list-style-type: none;
         padding-left: 0;
@@ -96,6 +107,10 @@ u:hover {
 
             button:hover {
                 cursor: pointer;
+            }
+
+            button:active {
+                background-color: #336da3;
             }
         }
     }
@@ -202,6 +217,10 @@ u:hover {
 
             button:hover {
                 cursor: pointer;
+            }
+
+            button:active {
+                background-color: #336da3;
             }
         }
     }

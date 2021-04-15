@@ -26,6 +26,23 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  getCurrentUser(){
+    console.log(this.currentUser);
+    return this.currentUser.username;
+  }
+  getName(){
+    console.log(this.currentUser.firstname);
+    return this.currentUser.firstname;
+  }
+  getEmail(){
+    console.log(this.currentUser.email);
+    return this.currentUser.email;
+  }
+  getPermissions(){
+    console.log(this.currentUser.permissions);
+    return this.currentUser.permissions;
+  }
+
   logout(){
     this.currentUser.username = "";
     this.currentUser.firstname = "";
