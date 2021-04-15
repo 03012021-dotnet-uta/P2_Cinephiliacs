@@ -22,18 +22,20 @@
             </div>
         </li>
     </ul>
-</div> 
+</div>
 
 <div class="left">
     <h3>Reviews</h3>
+    <span>Sort By: </span><span class="sort" (click)="timeSortNext()">{{timeSortString}}</span><span class="sort" (click)="ratingSortNext()">{{ratingSortString}}</span>
     <ul *ngIf="reviews">
         <li *ngFor="let review of reviews">
             <p class="rating">{{ review.rating}}</p>
             <u routerLink ="/user/{{review.username}}" class="username">{{ review.username}}</u>
             <p >{{ review.text}}</p>
-            
+
         </li>
     </ul>
+    <button *ngIf="!lastPage" (click)="loadNextPage()">More Reviews</button>
 
     <div *ngIf="caninput" id="review">
         <h4>New Review</h4>
@@ -64,7 +66,7 @@
     <ul *ngIf="discussions">
         <li *ngFor="let discussion of discussions">
             <!-- <p >{{ discussion.discussionid}}</p> -->
-            <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}} <u *ngIf="discussion.topic != 'None'">{{discussion.topic}}</u></u> 
+            <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}} <u *ngIf="discussion.topic != 'None'">{{discussion.topic}}</u></u>
         </li>
     </ul>
     <div *ngIf="caninput" id="discussion">
@@ -72,8 +74,8 @@
         <form>
             <label>Topic: </label><br>
             <select name="rating" id="rating" [(ngModel)]="submitDiscussion.topic" [ngModelOptions]="{standalone: true}">
-                <option selected hidden disabled></option>    
-                <option *ngFor="let topic of topics" 
+                <option selected hidden disabled></option>
+                <option *ngFor="let topic of topics"
                         [value]="topic">
                         {{topic}}
                 </option>

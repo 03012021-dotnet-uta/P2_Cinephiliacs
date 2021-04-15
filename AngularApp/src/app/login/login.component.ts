@@ -66,7 +66,6 @@ export class LoginComponent implements OnInit {
     }
     else
     {
-      this.newUser;
       console.log(JSON.stringify(this.newUser));
       this._login.createUser(this.newUser).subscribe(data => {
         console.log(data);
