@@ -16,11 +16,13 @@
   </form>
 </ng-template>
 <ng-template #elseBlock>
-  <form>
+  <form class="registerform">
     <div class="container" (ngSubmit)="createUser()">
       <h2>Register</h2>
       <label for="uname">Username:</label><br>
       <input type="text" placeholder="Enter Username" [(ngModel)]="newUser.username" [ngModelOptions]="{standalone: true}" required><br>
+      <label for="uname">Password:</label><br>
+      <input type="text" placeholder="Enter Password" required><br>
       <label for="uname">First Name:</label><br>
       <input type="text" placeholder="Enter First Name" [(ngModel)]="newUser.firstname" [ngModelOptions]="{standalone: true}" required><br>
       <label for="uname">Last Name:</label><br>
