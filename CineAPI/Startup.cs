@@ -35,7 +35,7 @@ namespace CineAPI
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                 builder =>
                                 {
-                                    builder.WithOrigins("https://cinephiliacs.azurewebsites.net/", "http://localhost:4200/")
+                                    builder.WithOrigins("https://cinephiliacs.azurewebsites", "http://localhost:4200")
                                     .AllowAnyHeader()
                                     .AllowAnyMethod();
                                 });
