@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService} from '../http.service';
 import { LoginService } from '../login.service';
+import { Review } from '../models';
 
 @Component({
   selector: 'app-movie',
@@ -12,13 +13,17 @@ import { LoginService } from '../login.service';
 })
 export class MovieComponent implements OnInit {
 
-  reviewScore:number =0;
+  reviewScoreSum:number = 0;
+  reviewScore:number = 0;
   selectedMovie: any;
   movieID: any;
   discussions: any;
-  reviews: any;
+  reviews: Review[] = [];
   input:any;
   user:any;
+
+  reviewPage: number = 1;
+  reviewSortOrder: string = "ratingdsc";
 
   caninput:boolean = false;
 
@@ -59,26 +64,48 @@ export class MovieComponent implements OnInit {
     this.showDiscussion();
 
     //Movie Reviews
-    this.showReview();
+    this.loadReviews(this.reviewPage);
 
     //saving a reference to the database of movies interacted with
     this._login.postMovieId(this.movieID).subscribe(data => console.log("submitted"));
   }
 
-  async showReview(){
-    setTimeout(() => {
-      this._login.getReviews(this.movieID).subscribe(data => {
+  loadReviews(page:number) {
+    this._login.getReviewsPage(this.movieID, page, this.reviewSortOrder).subscribe((data:Review[]) => {
+      if(data.length == 0)
+      {
+        this.setLastPage();
+        this.reviewPage = page - 1;
+      }
+      else
+      {
         console.log(data);
-        this.reviews = data;
-        this.reviews.forEach( (value:any) => {
-          console.log(value);
-          this.reviewScore += Number(value.rating);
-          console.log(this.reviewScore);
+        data.forEach((review:Review) => {
+          console.log(review);
+          this.reviews.push(review);
+          this.reviewScoreSum += Number(review.rating);
         });
-          this.reviewScore = this.reviewScore/this.reviews.length;
+          this.reviewScore = this.reviewScoreSum/this.reviews.length;
           console.log(this.reviewScore);
-      });
-    }, 2000);
+      }
+    });
+  }
+
+  loadNextPage()
+  {
+    this.reviewPage += 1;
+    this.loadReviews(this.reviewPage);
+  }
+
+  setLastPage()
+  {
+
+  }
+
+  reloadReviews(){
+    for (let pageCounter:number = 1; pageCounter <= this.reviewPage; pageCounter++) {
+      setTimeout(() => { this.loadReviews(pageCounter); }, 500*pageCounter);
+    }
   }
 
   async showDiscussion(){
@@ -90,10 +117,9 @@ export class MovieComponent implements OnInit {
     }, 2000);
   }
 
-
   followMovie(){
     if(localStorage.getItem("loggedin")){
-      
+
       this._login.followMovie(JSON.parse(this.user).username,this.movieID).subscribe(data => console.log("following Movie Now"));
     }
   }
@@ -105,7 +131,7 @@ export class MovieComponent implements OnInit {
     }else if(this.submitDiscussion.subject.length >= 250){
       alert("Discussion should be less than 250 Characters")
     }else{
-      
+
       this._login.submitDiscussion(this.submitDiscussion).subscribe(data => console.log(data));
       this.showDiscussion();
     }
@@ -119,29 +145,39 @@ export class MovieComponent implements OnInit {
       alert("Reviews should be less than 250 Characters")
     }else{
       this._login.postReview(this.sumbitReview).subscribe(data => console.log(data));
-      this.showReview();
+      this.reloadReviews();
     }
     console.log(this.sumbitReview);
   }
-  
+
   inputFields(){
     if(localStorage.getItem("loggedin")){
         this.caninput=true;
         console.log("userset");
         this.user = localStorage.getItem("loggedin")
-       
+
         console.log(JSON.parse(this.user).username + "USER");
         console.log(this.user);
         this.submitDiscussion.username =JSON.parse(this.user).username;
         this.sumbitReview.username = JSON.parse(this.user).username;
         console.log(this.sumbitReview);
-     
+
     }else{
-      
+
       console.log("no User");
     }
   }
 
-
-  
+  changeReviewSortOrder(sortOrder:string)
+  {
+    if(sortOrder == "ratingasc" || sortOrder == "ratingdsc"
+      || sortOrder == "timeasc" || sortOrder == "timedsc")
+    {
+      this.reviews = [];
+      this.reviewPage = 1;
+      this.reviewScoreSum = 0;
+      this.reviewSortOrder = sortOrder;
+      this.loadReviews(this.reviewPage);
+    }
+  }
 }
