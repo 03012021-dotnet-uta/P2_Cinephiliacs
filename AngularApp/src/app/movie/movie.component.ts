@@ -65,6 +65,10 @@ export class MovieComponent implements OnInit {
     this._login.postMovieId(this.movieID).subscribe(data => console.log("submitted"));
   }
 
+  canYouInput(){
+    console.log("Can input ?" + this.caninput);
+    return this.caninput;
+  }
   async showReview(){
     setTimeout(() => {
       this._login.getReviews(this.movieID).subscribe(data => {

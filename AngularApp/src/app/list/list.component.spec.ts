@@ -54,4 +54,14 @@ describe('ListComponent', () => {
   });
 
 
+  it("page num should increase", () =>{
+    component.pageNum = 1;
+    expect(component.increasePage()).toBe(2);
+  })
+
+  it("page num should Decrease", () =>{
+    component.pageNum = 2;
+    expect(component.decreasePage()).toBe(1);
+  })
+
 });

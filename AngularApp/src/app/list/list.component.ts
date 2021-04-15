@@ -62,15 +62,27 @@ export class ListComponent implements OnInit {
   function1(): void {
     this.myNumber++;
   }
-
   function2(s1: string, s2: string): void {
     this.myStrings = s1 + s2;
   }
-
   function3(myString: string): string {
     return myString + myString;
   }
 
+  increasePage(){
+    this.pageNum++;
+    return this.pageNum;
+  }
+
+  decreasePage(){
+    this.pageNum--;
+    return this.pageNum;
+  }
+
+  getPageNum(){
+    console.log("PageNum" + this.pageNum);
+    return this.pageNum;
+  }
   onSubmit() {
     if (this.searchForm.get('search')!.value != "")
     {

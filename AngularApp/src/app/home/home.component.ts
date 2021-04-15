@@ -26,6 +26,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  getCurrentUser(){
+    console.log(this.currentUser);
+    return this.currentUser.username;
+  }
+
   logout(){
     this.currentUser.username = "";
     this.currentUser.firstname = "";
