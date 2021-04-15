@@ -31,7 +31,7 @@ export class MovieComponent implements OnInit {
   ratingSortState: number = 0;
   ratingSortString: string = "Rating \u21D5";
   ratingActive: boolean = false;
-  timeActive: boolean = false;
+  timeActive: boolean = true;
   reviewsBusy: boolean = false;
   lastPage: boolean = false;
 
