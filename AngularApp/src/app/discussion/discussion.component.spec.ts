@@ -36,4 +36,10 @@ describe('DiscussionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('On Init test', () => {
+    component.ngOnInit();
+    expect(component.getComments).toHaveBeenCalled;
+    expect(component.displayInput).toHaveBeenCalled;
+  });
 });
