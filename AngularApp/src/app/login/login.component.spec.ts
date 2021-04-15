@@ -35,4 +35,16 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Switch to Regisrer', () => {
+    component.isLoginPage = true;
+    component.switchToRegister();
+    expect(component.isLoginPage).toBe(false);
+  });
+
+  it('Switch to Regisrer', () => {
+    component.isLoginPage = false;
+    component.backToLogin();
+    expect(component.isLoginPage).toBe(true);
+  });
 });

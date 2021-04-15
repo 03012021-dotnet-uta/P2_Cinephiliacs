@@ -48,4 +48,11 @@ describe('MovieComponent', () => {
     expect(component.inputFields()).toBeTruthy;
    
   })
+
+  it('showdiscussion should be run', () => {
+    component.submitDiscussion.topic = "yes";
+    component.submitDiscussion.subject = "test";
+    component.followMovie();
+    expect(component.showDiscussion).toHaveBeenCalled;
+  })
 });

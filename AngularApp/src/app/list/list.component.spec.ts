@@ -52,4 +52,6 @@ describe('ListComponent', () => {
   it('should concatenate and return the string', () => {
     expect(component.function3('test')).toBe('testtest', 'funtion3 test failed.');
   });
+
+
 });
