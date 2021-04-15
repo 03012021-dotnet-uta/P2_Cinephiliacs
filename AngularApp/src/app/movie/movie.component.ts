@@ -30,6 +30,8 @@ export class MovieComponent implements OnInit {
   timeSortString: string = "Time \u21D5";
   ratingSortState: number = 0;
   ratingSortString: string = "Rating \u21D5";
+  ratingActive: boolean = false;
+  timeActive: boolean = false;
 
   reviewsBusy: boolean = false;
 
@@ -146,6 +148,8 @@ export class MovieComponent implements OnInit {
           this.changeReviewSortOrder("timeasc");
           break;
       }
+      this.ratingActive = false;
+      this.timeActive = true;
     }
   }
 
@@ -177,6 +181,8 @@ export class MovieComponent implements OnInit {
           this.changeReviewSortOrder("ratingasc");
           break;
       }
+      this.timeActive = false;
+      this.ratingActive = true;
     }
   }
 
