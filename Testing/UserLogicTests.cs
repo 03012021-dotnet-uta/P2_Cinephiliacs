@@ -21,10 +21,18 @@ namespace Testing
         [Fact]
         public async Task UserTest()
         {
-            GlobalModels.User inputGMUser;
-            GlobalModels.User outputGMUser;
+            GlobalModels.User updatedGMUser = new GlobalModels.User();
 
             RelatedDataSet dataSetA = new RelatedDataSet("JimmyJimerson", "ab10101010", "Theory");
+            updatedGMUser.Username = dataSetA.User.Username;
+            updatedGMUser.Firstname = "Steve";
+            updatedGMUser.Lastname = dataSetA.User.LastName;
+            updatedGMUser.Email = dataSetA.User.Email;
+            updatedGMUser.Permissions = dataSetA.User.Permissions;
+            updatedGMUser.Username = dataSetA.User.Username;
+
+            string inputFirstName = dataSetA.User.FirstName;
+            string outputFirstName = updatedGMUser.Firstname;
 
             // Seed the test database
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -32,14 +40,13 @@ namespace Testing
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
-                inputGMUser = BusinessLogic.Mapper.RepoUserToUser(dataSetA.User);
-
                 RepoLogic repoLogic = new RepoLogic(context);
 
-                // Test CreateUser()
+                // Test CreateUser & UpdateUser()
                 IUserLogic userLogic = new UserLogic(repoLogic);
                 UserController userController = new UserController(userLogic);
-                await userController.CreateUser(inputGMUser);
+                await userController.CreateUser(BusinessLogic.Mapper.RepoUserToUser(dataSetA.User));
+                await userController.UpdateUser(dataSetA.User.Username, updatedGMUser);
             }
 
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))
@@ -49,10 +56,10 @@ namespace Testing
                 // Test GetUser()
                 IUserLogic userLogic = new UserLogic(repoLogic);
                 UserController userController = new UserController(userLogic);
-                outputGMUser = userController.GetUser(dataSetA.User.Username).Value;
+                outputFirstName = userController.GetUser(dataSetA.User.Username).Value.Firstname;
             }
 
-            Assert.Equal(inputGMUser, outputGMUser);
+            Assert.Equal(inputFirstName, outputFirstName);
         }
 
         [Fact]
@@ -73,6 +80,7 @@ namespace Testing
 
                 RepoLogic repoLogic = new RepoLogic(context);
 
+                // Test CreateUser()
                 IUserLogic userLogic = new UserLogic(repoLogic);
                 UserController userController = new UserController(userLogic);
                 await userController.CreateUser(inputGMUser);
