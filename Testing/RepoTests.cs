@@ -108,7 +108,7 @@ namespace Testing
                 RepoLogic repoLogic = new RepoLogic(context);
 
                 // Test AddDiscussion() without User dependency
-                result = await repoLogic.AddDiscussion(dataSetA.Discussion);
+                result = await repoLogic.AddDiscussion(dataSetA.Discussion, dataSetA.Topic);
             }
 
             Assert.False(result);
@@ -151,7 +151,7 @@ namespace Testing
                 await repoLogic.AddUser(dataSetA.User);
 
                 // Test AddDiscussion() without User dependency
-                result = await repoLogic.AddDiscussion(dataSetA.Discussion);
+                result = await repoLogic.AddDiscussion(dataSetA.Discussion, dataSetA.Topic);
             }
 
             Assert.False(result);

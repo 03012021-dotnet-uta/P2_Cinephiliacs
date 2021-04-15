@@ -233,7 +233,7 @@ namespace Testing
                 // Add Database entries for the object-under-test's foreign keys
                 await repoLogic.AddUser(dataSetA.User);
                 await repoLogic.AddMovie(dataSetA.Movie.MovieId);
-                await repoLogic.AddDiscussion(dataSetA.Discussion);
+                await repoLogic.AddDiscussion(dataSetA.Discussion, dataSetA.Topic);
 
                 IForumLogic forumLogic = new ForumLogic(repoLogic);
                 ForumController forumController = new ForumController(forumLogic);
