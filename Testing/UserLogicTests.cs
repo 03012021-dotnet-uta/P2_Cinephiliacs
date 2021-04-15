@@ -32,7 +32,7 @@ namespace Testing
             updatedGMUser.Username = dataSetA.User.Username;
 
             string inputFirstName = dataSetA.User.FirstName;
-            string outputFirstName = updatedGMUser.Firstname;
+            string outputFirstName;
 
             // Seed the test database
             using(var context = new Repository.Models.Cinephiliacs_DbContext(dbOptions))

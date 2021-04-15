@@ -484,6 +484,7 @@ namespace Testing
                 context.Database.EnsureCreated();
 
                 RepoLogic repoLogic = new RepoLogic(context);
+                await repoLogic.AddUser(dataSetA.User);
 
                 // Test AddReview() without Movie dependency
                 result = await repoLogic.AddReview(dataSetA.Review);
