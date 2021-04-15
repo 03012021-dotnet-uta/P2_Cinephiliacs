@@ -46,6 +46,8 @@ describe('HomeComponent', () => {
     expect(component.currentUser.username).toBe("");
   });
   
+  
+  
   it('should return user name ', () => {
     component.currentUser = {
       username:'rwplyler',

@@ -64,7 +64,7 @@ describe('UserComponent', () => {
     expect(component.discussionsAreLoaded).toBe(true);
   });
 
-  it('shoul load movies', () =>{
+  it('should load movies', () =>{
     component.moviesLoaded();
     expect(component.moviesAreLoaded).toBe(true);
   })
