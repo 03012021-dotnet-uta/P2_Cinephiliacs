@@ -82,6 +82,7 @@ export class LoginComponent implements OnInit {
     console.log(this.userName);
     return this.userName;
   }
+  
 
   isPasswordRigt(pass:string){
     console.log("Checking");

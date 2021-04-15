@@ -96,7 +96,10 @@ export class ListComponent implements OnInit {
   }
 
   
-
+  getSearchTerm(){
+    console.log("Search Term" + this.searchTerm);
+    return this.searchTerm;
+  }
   
   onSubmit() {
     if (this.searchForm.get('search')!.value != "")

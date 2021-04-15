@@ -88,6 +88,10 @@ export class UserComponent implements OnInit {
     console.log("commentsAreLoaded");
   }
 
+  getUsername(){
+    console.log("username" + this.userName);
+    return this.userName;
+  }
 
   showSpoilers() {
     this.displaySpoilers = true;

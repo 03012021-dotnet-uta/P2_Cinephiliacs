@@ -45,6 +45,10 @@ export class LoginService {
     return this.http.get( this.baseURL + "movie/reviews/"+movieId);
   }
 
+  getReviewsPage(movieId:String, page:number, sortOrder:string){
+    return this.http.get<Review[]>( this.baseURL + "movie/reviews/"+movieId+"/"+page+"/"+sortOrder);
+  }
+
   submitDiscussion(discussion:any){
     return this.http.post( this.baseURL + "forum/discussion", discussion);
   }
