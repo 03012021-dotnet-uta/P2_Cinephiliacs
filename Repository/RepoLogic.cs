@@ -118,18 +118,12 @@ namespace Repository
             if(topicExists)
             {
                 await _dbContext.SaveChangesAsync();
-                int count = 0;
                 Discussion discussion;
-                while((discussion = _dbContext.Discussions.Where(d => d.MovieId == repoDiscussion.MovieId
+                if((discussion = _dbContext.Discussions.Where(d => d.MovieId == repoDiscussion.MovieId
                     && d.Username == repoDiscussion.Username && d.Subject == repoDiscussion.Subject)
                     .FirstOrDefault<Discussion>()) == null)
                 {
-                    if(count > 50)
-                    {
-                        return true;
-                    }
-                    Thread.Sleep(100);
-                    count += 1;
+                    return true;
                 }
                 await AddDiscussionTopic(discussion.DiscussionId, repoTopic.TopicName);
                 return true;
