@@ -230,8 +230,9 @@ export class MovieComponent implements OnInit {
 
   followMovie(){
     if(this.user){
-      this._login.followMovie(JSON.parse(this.user).username,this.movieID);
-      this.movieFollowed = true
+      this._login.followMovie(JSON.parse(this.user).username,this.movieID).subscribe(data => {
+        this.movieFollowed = true
+      });
     }
   }
 
