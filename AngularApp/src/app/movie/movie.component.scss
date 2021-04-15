@@ -2,24 +2,6 @@ u:hover {
     cursor: pointer;
 }
 
-button {
-    width: 150px;
-    height: 35px;
-    color: white;
-    border: none;
-    background-color: #357fc5;
-    border-radius: 5px;
-    margin-right: 20px;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
-button:active {
-    background-color: #336da3;
-}
-
 .movieinfo {
     margin-bottom: 5%;
     margin-top: -35px;
@@ -84,6 +66,44 @@ button:active {
         margin-top: 0;
     }
 
+    span.sort {
+        background-color: lightgrey;
+        border: 1px solid grey;
+        font-size: .8em;
+        padding: 5px 10px;
+        &:not(.lastchild) {
+            border-right: none;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.selected {
+            background-color: rgb(180, 179, 179);
+        }
+    }
+
+    button {
+        width: 150px;
+        height: 35px;
+        color: white;
+        border: none;
+        background-color: #357fc5;
+        border-radius: 5px;
+        margin-right: 20px;
+        margin-left: 37%;
+        margin-bottom: 5%;
+    }
+    
+    button:hover {
+        cursor: pointer;
+    }
+    
+    button:active {
+        background-color: #336da3;
+    }
+
     #review {
         background-color: lightgray;
         padding: 5%;
@@ -114,21 +134,8 @@ button:active {
             }
 
             button {
-                width: 150px;
-                height: 35px;
-                color: white;
-                border: none;
-                background-color: #357fc5;
-                border-radius: 5px;
-                margin-right: 20px;
-            }
-
-            button:hover {
-                cursor: pointer;
-            }
-
-            button:active {
-                background-color: #336da3;
+                margin-left: 0;
+                margin-bottom: 0;
             }
         }
     }
