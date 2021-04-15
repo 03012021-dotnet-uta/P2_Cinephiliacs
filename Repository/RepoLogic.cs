@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Repository.Models;
@@ -83,12 +84,12 @@ namespace Repository
         /// </summary>
         /// <param name="repoDiscussion"></param>
         /// <returns></returns>
-        public async Task<bool> AddDiscussion(Discussion repoDiscussion)
+        public async Task<bool> AddDiscussion(Discussion repoDiscussion, Topic repoTopic)
         {
             var userExists = UserExists(repoDiscussion.Username);
             if(!userExists)
             {
-                Console.WriteLine("RepoLogic.AddDiscussion() was called for a movie that doesn't exist.");
+                Console.WriteLine("RepoLogic.AddDiscussion() was called for a user that doesn't exist.");
                 return false;
             }
             var movieExists = MovieExists(repoDiscussion.MovieId);
@@ -97,8 +98,73 @@ namespace Repository
                 Console.WriteLine("RepoLogic.AddDiscussion() was called for a movie that doesn't exist.");
                 return false;
             }
+            var topicExists = TopicExists(repoTopic.TopicName);
+            if(topicExists)
+            {
+                await _dbContext.Discussions.AddAsync(repoDiscussion);
 
-            await _dbContext.Discussions.AddAsync(repoDiscussion);
+                if((await _dbContext.SaveChangesAsync()) > 0)
+                {
+                    int count = 0;
+                    Discussion discussion;
+                    while((discussion = _dbContext.Discussions.Where(d => d.MovieId == repoDiscussion.MovieId
+                        && d.Username == repoDiscussion.Username && d.Subject == repoDiscussion.Subject)
+                        .FirstOrDefault<Discussion>()) == null)
+                    {
+                        if(count > 50)
+                        {
+                            return true;
+                        }
+                        Thread.Sleep(100);
+                        count += 1;
+                    }
+                    await AddDiscussionTopic(discussion.DiscussionId, repoTopic.TopicName);
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                await _dbContext.Discussions.AddAsync(repoDiscussion);
+
+                if((await _dbContext.SaveChangesAsync()) > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Adds the DiscussionTopic defined by the discussion Id and topic name arguments
+        /// to the database.
+        /// Returns true iff successful.
+        /// Returns false if the Discussion with the specified discussionId or the Topic with
+        /// the specified topicName referenced do not already exist in their respective
+        /// database tables.
+        /// </summary>
+        /// <param name="discussionId"></param>
+        /// <param name="topicName"></param>
+        /// <returns></returns>
+        public async Task<bool> AddDiscussionTopic(int discussionId, string topicName)
+        {
+            var discussionExists = DiscussionExists(discussionId);
+            if(!discussionExists)
+            {
+                Console.WriteLine("RepoLogic.AddDiscussionTopic() was called for a discussion id that doesn't exist.");
+                return false;
+            }
+            var topicExists = TopicExists(topicName);
+            if(!topicExists)
+            {
+                Console.WriteLine("RepoLogic.AddDiscussionTopic() was called for a topic that doesn't exist.");
+                return false;
+            }
+            var discussionTopic = new DiscussionTopic();
+            discussionTopic.DiscussionId = discussionId;
+            discussionTopic.TopicName = topicName;
+
+            await _dbContext.DiscussionTopics.AddAsync(discussionTopic);
 
             if((await _dbContext.SaveChangesAsync()) > 0)
             {
@@ -505,6 +571,16 @@ namespace Repository
         private bool DiscussionExists(int discussionid)
         {
             return (_dbContext.Discussions.Where(d => d.DiscussionId == discussionid).FirstOrDefault<Discussion>() != null);
+        }
+
+        /// <summary>
+        /// Returns true iff the Topic name, specified in the argument, exists in the database's Topics table.
+        /// </summary>
+        /// <param name="discussionid"></param>
+        /// <returns></returns>
+        private bool TopicExists(string topicName)
+        {
+            return (_dbContext.Topics.Where(t => t.TopicName == topicName).FirstOrDefault<Topic>() != null);
         }
 
         /// <summary>
