@@ -21,7 +21,7 @@ export class MovieComponent implements OnInit {
   reviews: Review[] = [];
   input:any;
   user:any;
-  movieFollowed: any = false;
+  movieFollowed: boolean = false;
 
   reviewPage: number = 1;
   reviewSortOrder: string = "timedsc";
@@ -76,6 +76,17 @@ export class MovieComponent implements OnInit {
 
     //Movie Reviews
     this.loadReviews(this.reviewPage);
+
+    this._login.getUserMovies(JSON.parse(this.user).username).subscribe((usersMovieNames: string[]) => {
+      if(typeof usersMovieNames.find(m => m == this.movieID) === 'undefined')
+      {
+        this.movieFollowed = false;
+      }
+      else
+      {
+        this.movieFollowed = true;
+      }
+    });
 
     //saving a reference to the database of movies interacted with
     this._login.postMovieId(this.movieID).subscribe(data => console.log("submitted"));
@@ -202,7 +213,7 @@ export class MovieComponent implements OnInit {
       this.reviewPage += 1;
     }
     for (let pageCounter:number = 1; pageCounter <= this.reviewPage; pageCounter++) {
-      setTimeout(() => { this.loadReviews(pageCounter); }, 500*pageCounter);
+      setTimeout(() => { this.loadReviews(pageCounter); }, 300*pageCounter);
     }
   }
 

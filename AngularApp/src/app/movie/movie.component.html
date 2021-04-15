@@ -1,14 +1,21 @@
 <div *ngIf="selectedMovie" class="movieinfo">
     <h1>{{ selectedMovie.Title }}</h1>
-    <button *ngIf="user" (click)="followMovie()">Follow Movie</button>
-    <p *ngIf="movieFollowed" class="feedback">Movie followed</p>
+    <div *ngIf="user">
+      <div *ngIf="movieFollowed then thenFBlock else elseFBlock"></div>
+      <ng-template #thenFBlock>
+        <button class="deactived">Following Movie</button>
+      </ng-template>
+      <ng-template #elseFBlock>
+        <button (click)="followMovie()">Follow Movie</button>
+      </ng-template>
+    </div>
 
     <ul>
         <li>
             <img src="{{selectedMovie.Poster}}" alt="Movie Poster">
             <div class="information">
                 <p class="name"><strong>Title:</strong> {{ selectedMovie.Title }}</p>
-                <p *ngIf="reviews.length > 0" class="reviewscore"><strong>User Review Score: </strong>{{ reviewScore }}</p>
+                <p *ngIf="reviews.length > 0" class="reviewscore"><strong>User Review Score: </strong>{{ reviewScore.toFixed(1) }}</p>
                 <p class="year"><strong>Year(s):</strong> {{ selectedMovie.Year }}<span *ngIf="selectedMovie.Year.substring(selectedMovie.Year.length - 1)=='–'">present</span></p>
                 <p class="date"><strong>Release Date:</strong> {{ selectedMovie.Released }}</p>
                 <p class="runtime"><strong>Runtime:</strong> {{ selectedMovie.Runtime }}</p>

@@ -10,7 +10,7 @@ u:hover {
         margin-bottom: 1%;
     }
 
-    button {
+    button:not(.deactived) {
         width: 150px;
         height: 35px;
         color: white;
@@ -19,13 +19,21 @@ u:hover {
         border-radius: 5px;
         margin-right: 20px;
         margin-bottom: 2%;
-    }
-
-    button:hover {
         cursor: pointer;
     }
 
-    button:active {
+    button.deactived {
+      width: 150px;
+      height: 35px;
+      color: white;
+      border: none;
+      background-color: #357fc5;
+      border-radius: 5px;
+      margin-right: 20px;
+      margin-bottom: 2%;
+    }
+
+    button:active:not(.deactived) {
         background-color: #336da3;
     }
 
