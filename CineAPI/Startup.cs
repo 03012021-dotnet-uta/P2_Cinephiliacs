@@ -36,7 +36,7 @@ namespace CineAPI
                                 builder =>
                                 {
                                     builder.WithOrigins("https://cinephiliacs.azurewebsites.com", 
-                                        "http://cinephiliacs.azurewebsites.com", "http://localhost:4200")
+                                        "http://cinephiliacs.azurewebsites.com", "http://localhost:4200");
                                 });
             });
 
