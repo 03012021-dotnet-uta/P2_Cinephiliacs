@@ -32,6 +32,10 @@ button:hover {
     cursor: pointer;
 }
 
+button:active {
+    background-color: #336da3;
+}
+
 .left {
     float: left;
     width: 60%;

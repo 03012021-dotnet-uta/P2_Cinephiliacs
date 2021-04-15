@@ -19,6 +19,7 @@ export class MovieComponent implements OnInit {
   reviews: any;
   input:any;
   user:any;
+  movieFollowed: any = false;
 
   caninput:boolean = false;
 
@@ -97,8 +98,11 @@ export class MovieComponent implements OnInit {
 
   followMovie(){
     if(localStorage.getItem("loggedin")){
-      
       this._login.followMovie(JSON.parse(this.user).username,this.movieID).subscribe(data => console.log("following Movie Now"));
+      this.movieFollowed = true;
+      setTimeout(() => {
+        this.movieFollowed = false;
+      }, 2000);
     }
   }
 

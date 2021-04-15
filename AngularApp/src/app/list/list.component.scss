@@ -98,6 +98,10 @@ ul{
         display: flex;
         justify-content: center;
         align-items: center;
+
+        a:active {
+            background-color: #336da3;
+        }
     }
 
     .next {
@@ -114,5 +118,9 @@ ul{
         justify-content: center;
         align-items: center;
         margin-right: 2.5%;
+
+        a:active {
+            background-color: #336da3;
+        }
     }
 }
