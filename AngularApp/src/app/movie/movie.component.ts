@@ -20,6 +20,8 @@ export class MovieComponent implements OnInit {
   input:any;
   user:any;
 
+  caninput:boolean = false;
+
   sumbitReview: any ={
     rating:0,
     movieid:this.router.snapshot.params.id,
@@ -124,6 +126,7 @@ export class MovieComponent implements OnInit {
   
   inputFields(){
     if(localStorage.getItem("loggedin")){
+        this.caninput=true;
         console.log("userset");
         this.user = localStorage.getItem("loggedin")
        
@@ -135,9 +138,7 @@ export class MovieComponent implements OnInit {
      
     }else{
       
-      console.log("user isn't set");
-      this.input = document.getElementById("input");
-      this.input.style.display = "none";
+      console.log("no User");
     }
   }
 

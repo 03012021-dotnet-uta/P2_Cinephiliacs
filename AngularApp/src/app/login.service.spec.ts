@@ -19,4 +19,37 @@ beforeEach(() => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('GetURL should be right', () => {
+    expect(service.getURL()).toBe("https://cinephiliacsapi.azurewebsites.net/");
+  });
+
+  it('Create User',() =>{
+    expect(service.loginUser).toBeTruthy();
+  });
+
+  it('PostReview',() =>{
+    expect(service.postReview).toBeTruthy();
+  });
+
+  it('Get User',() =>{
+    expect(service.getUser).toBeTruthy();
+  });
+
+  it('Update User',() =>{
+    expect(service.postUpdateUser).toBeTruthy();
+  });
+
+  it('getDiscussion',() =>{
+    expect(service.getDiscussionComments).toBeTruthy();
+  });
+
+  it('PostComment',() =>{
+    expect(service.postComment).toBeTruthy();
+  });
+
+  
+  it('followMovie',() =>{
+    expect(service.followMovie).toBeTruthy();
+  });
 });

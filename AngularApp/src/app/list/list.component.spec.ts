@@ -36,4 +36,22 @@ describe('ListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should increment "myNumber"', () => {
+    component.function1();
+    expect(component.myNumber).toBe(1);
+    component.function1();
+    expect(component.myNumber).toBe(2);
+  });
+
+  it('should concatenate the strings', () => {
+    component.function2('testing', ' is fun');
+    expect(component.myStrings).toBe('testing is fun');
+  });
+
+  it('should concatenate and return the string', () => {
+    expect(component.function3('test')).toBe('testtest', 'funtion3 test failed.');
+  });
+
+
 });

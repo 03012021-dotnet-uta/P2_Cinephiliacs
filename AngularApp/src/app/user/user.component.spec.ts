@@ -36,4 +36,23 @@ describe('UserComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+  it('spoilerShown is True now', () =>{
+    component.displaySpoilers = false;
+    component.showSpoilers();
+    expect(component.displaySpoilers).toBe(true);
+  });
+
+  it('spoilerShown is Truthy', () =>{
+
+   expect( component.showSpoilers).toBeTruthy;
+
+  });
+
+  it('spoilerShown is right amount', () =>{
+    component.displaySpoilers = true;
+    expect(component.spoilersShown()).toBe(true);
+  });
+
 });
