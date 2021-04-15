@@ -36,4 +36,10 @@ describe('MovieComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('It should check input feilds', () =>{
+    
+    expect(component.inputFields()).toBeTruthy;
+    expect(component.caninput).toBe(false);
+  })
 });
