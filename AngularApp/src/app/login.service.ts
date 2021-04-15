@@ -61,6 +61,21 @@ export class LoginService {
     return this.http.get( this.baseURL + "user/"+ username);
   }
 
+  getConnection(){
+    console.log(this.connection);
+    return this.connection;
+  }
+
+  getCurrentUser(){
+    console.log(this.currentUser);
+    return this.currentUser;
+  }
+
+  getAskingUser(){
+    console.log(this.askingUser);
+    return this.askingUser;
+  }
+
   getUserReviews(username:string){
     return this.http.get<Review[]>( this.baseURL + "user/reviews/" + username);
   }
