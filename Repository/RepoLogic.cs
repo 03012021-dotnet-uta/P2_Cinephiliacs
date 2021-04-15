@@ -32,11 +32,27 @@ namespace Repository
             }
             await _dbContext.Users.AddAsync(repoUser);
 
-            if(await _dbContext.SaveChangesAsync() > 0)
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        /// <summary>
+        /// Adds the Topic specified in the argument to the database. Returns true iff successful.
+        /// Returns false if the Topic already exists.
+        /// </summary>
+        /// <param name="repoUser"></param>
+        /// <returns></returns>
+        public async Task<bool> AddTopic(Topic topic)
+        {
+            if(TopicExists(topic.TopicName))
             {
-                return true;
+                Console.WriteLine("RepoLogic.AddTopic() was called for a topic that already exists.");
+                return false;
             }
-            return false;
+            await _dbContext.Topics.AddAsync(topic);
+
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         /// <summary>
@@ -58,11 +74,8 @@ namespace Repository
             existingUser.LastName = updatedUser.LastName;
             existingUser.Email = updatedUser.Email;
 
-            if(await _dbContext.SaveChangesAsync() > 0)
-            {
-                return true;
-            }
-            return false;
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         /// <summary>
@@ -98,40 +111,33 @@ namespace Repository
                 Console.WriteLine("RepoLogic.AddDiscussion() was called for a movie that doesn't exist.");
                 return false;
             }
+
+            await _dbContext.Discussions.AddAsync(repoDiscussion);
+
             var topicExists = TopicExists(repoTopic.TopicName);
             if(topicExists)
             {
-                await _dbContext.Discussions.AddAsync(repoDiscussion);
-
-                if((await _dbContext.SaveChangesAsync()) > 0)
+                await _dbContext.SaveChangesAsync();
+                int count = 0;
+                Discussion discussion;
+                while((discussion = _dbContext.Discussions.Where(d => d.MovieId == repoDiscussion.MovieId
+                    && d.Username == repoDiscussion.Username && d.Subject == repoDiscussion.Subject)
+                    .FirstOrDefault<Discussion>()) == null)
                 {
-                    int count = 0;
-                    Discussion discussion;
-                    while((discussion = _dbContext.Discussions.Where(d => d.MovieId == repoDiscussion.MovieId
-                        && d.Username == repoDiscussion.Username && d.Subject == repoDiscussion.Subject)
-                        .FirstOrDefault<Discussion>()) == null)
+                    if(count > 50)
                     {
-                        if(count > 50)
-                        {
-                            return true;
-                        }
-                        Thread.Sleep(100);
-                        count += 1;
+                        return true;
                     }
-                    await AddDiscussionTopic(discussion.DiscussionId, repoTopic.TopicName);
-                    return true;
+                    Thread.Sleep(100);
+                    count += 1;
                 }
-                return false;
+                await AddDiscussionTopic(discussion.DiscussionId, repoTopic.TopicName);
+                return true;
             }
             else
             {
-                await _dbContext.Discussions.AddAsync(repoDiscussion);
-
-                if((await _dbContext.SaveChangesAsync()) > 0)
-                {
-                    return true;
-                }
-                return false;
+                await _dbContext.SaveChangesAsync();
+                return true;
             }
         }
 
@@ -166,11 +172,8 @@ namespace Repository
 
             await _dbContext.DiscussionTopics.AddAsync(discussionTopic);
 
-            if((await _dbContext.SaveChangesAsync()) > 0)
-            {
-                return true;
-            }
-            return false;
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         /// <summary>
@@ -198,11 +201,8 @@ namespace Repository
 
             await _dbContext.Comments.AddAsync(repoComment);
 
-            if((await _dbContext.SaveChangesAsync()) > 0)
-            {
-                return true;
-            }
-            return false;
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         /// <summary>
@@ -348,11 +348,8 @@ namespace Repository
 
             await _dbContext.FollowingMovies.AddAsync(followingMovie);
 
-            if(await _dbContext.SaveChangesAsync() > 0)
-            {
-                return true;
-            }
-            return false;
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         /// <summary>
@@ -402,24 +399,14 @@ namespace Repository
             if(review == null)
             {
                 await _dbContext.Reviews.AddAsync(repoReview);
-
-                if(await _dbContext.SaveChangesAsync() > 0)
-                {
-                    return true;
-                }
-                return false;
             }
             else
             {
                 review.Rating = repoReview.Rating;
                 review.Review1 = repoReview.Review1;
-                
-                if(await _dbContext.SaveChangesAsync() > 0)
-                {
-                    return true;
-                }
-                return false;
             }
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         /// <summary>
@@ -439,11 +426,8 @@ namespace Repository
             movie.MovieId = movieid;
             await _dbContext.Movies.AddAsync(movie);
 
-            if(await _dbContext.SaveChangesAsync() > 0)
-            {
-                return true;
-            }
-            return false;
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         /// <summary>
@@ -525,22 +509,13 @@ namespace Repository
                 {
                     existentSetting.StringValue = setting.StringValue;
                 }
-                if(await _dbContext.SaveChangesAsync() > 0)
-                {
-                    return true;
-                }
-                return false;
             }
             else
             {
                 await _dbContext.Settings.AddAsync(setting);
-
-                if(await _dbContext.SaveChangesAsync() > 0)
-                {
-                    return true;
-                }
-                return false;
             }
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         /// <summary>
