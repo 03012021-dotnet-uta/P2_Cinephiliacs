@@ -31,7 +31,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('#search').textContent).toContain('Home');
+    expect(compiled.querySelector('.logo').textContent).toContain('Cinephiliacs');
   });
 
   it('Should return num', () => {
