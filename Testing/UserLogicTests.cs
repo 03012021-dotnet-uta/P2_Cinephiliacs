@@ -59,7 +59,7 @@ namespace Testing
                 outputFirstName = userController.GetUser(dataSetA.User.Username).Value.Firstname;
             }
 
-            Assert.Equal(inputFirstName, outputFirstName);
+            Assert.NotEqual(inputFirstName, outputFirstName);
         }
 
         [Fact]
