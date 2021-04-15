@@ -26,6 +26,15 @@ export class MovieComponent implements OnInit {
   reviewPage: number = 1;
   reviewSortOrder: string = "ratingdsc";
 
+  timeSortState: number = 0;
+  timeSortString: string = "Time \u21D5";
+  ratingSortState: number = 0;
+  ratingSortString: string = "Rating \u21D5";
+
+  reviewsBusy: boolean = false;
+
+  lastPage: boolean = false;
+
   caninput:boolean = false;
 
   sumbitReview: any ={
@@ -72,10 +81,11 @@ export class MovieComponent implements OnInit {
   }
 
   loadReviews(page:number) {
-    this._login.getReviewsPage(this.movieID, page, this.reviewSortOrder).subscribe((data:Review[]) => {
+    this._login.getReviewsPage(this.movieID, page, this.reviewSortOrder)
+    .subscribe((data:Review[]) => {
       if(data.length == 0)
       {
-        this.setLastPage();
+        this.lastPage = true;
         this.reviewPage = page - 1;
       }
       else
@@ -85,21 +95,102 @@ export class MovieComponent implements OnInit {
           this.reviews.push(review);
           this.reviewScoreSum += Number(review.rating);
         });
-          this.reviewScore = this.reviewScoreSum/this.reviews.length;
-          console.log(this.reviewScore);
+        this.reviewScore = this.reviewScoreSum/this.reviews.length;
+        console.log(this.reviewScore);
+        this.lastPage = false;
+        this.reviewsBusy = false;
       }
+    }, error => {
+      this.lastPage = true;
+      this.reviewPage = page - 1;
+      this.reviewsBusy = false;
     });
   }
 
   loadNextPage()
   {
-    this.reviewPage += 1;
-    this.loadReviews(this.reviewPage);
+    if(!this.lastPage && !this.reviewsBusy)
+    {
+      this.reviewsBusy = true;
+      this.lastPage = true;
+      this.reviewPage += 1;
+      this.loadReviews(this.reviewPage);
+    }
   }
 
-  setLastPage()
+  timeSortNext()
   {
+    if(!this.reviewsBusy)
+    {
+      this.reviewsBusy = true;
+      switch (this.timeSortState) {
+        case 0:
+          this.timeSortState = 1;
+          this.timeSortString = "Time \u21D1";
+          this.ratingSortState = 0;
+          this.ratingSortString = "Rating \u21D5";
+          this.changeReviewSortOrder("timeasc");
+          break;
+        case 1:
+          this.timeSortState = 2;
+          this.timeSortString = "Time \u21D3";
+          this.ratingSortState = 0;
+          this.ratingSortString = "Rating \u21D5";
+          this.changeReviewSortOrder("timedsc");
+          break;
+        case 2:
+          this.timeSortState = 1;
+          this.timeSortString = "Time \u21D1";
+          this.ratingSortState = 0;
+          this.ratingSortString = "Rating \u21D5";
+          this.changeReviewSortOrder("timeasc");
+          break;
+      }
+    }
+  }
 
+  ratingSortNext()
+  {
+    if(!this.reviewsBusy)
+    {
+      this.reviewsBusy = true;
+      switch (this.ratingSortState) {
+        case 0:
+          this.ratingSortState = 1;
+          this.ratingSortString = "Rating \u21D1";
+          this.timeSortState = 0;
+          this.timeSortString = "Time \u21D5";
+          this.changeReviewSortOrder("ratingasc");
+          break;
+        case 1:
+          this.ratingSortState = 2;
+          this.ratingSortString = "Rating \u21D3";
+          this.timeSortState = 0;
+          this.timeSortString = "Time \u21D5";
+          this.changeReviewSortOrder("ratingdsc");
+          break;
+        case 2:
+          this.ratingSortState = 1;
+          this.ratingSortString = "Rating \u21D1";
+          this.timeSortState = 0;
+          this.timeSortString = "Time \u21D5";
+          this.changeReviewSortOrder("ratingasc");
+          break;
+      }
+    }
+  }
+
+  changeReviewSortOrder(sortOrder:string)
+  {
+    if(sortOrder == "ratingasc" || sortOrder == "ratingdsc"
+      || sortOrder == "timeasc" || sortOrder == "timedsc")
+    {
+      this.reviews = [];
+      this.reviewScoreSum = 0;
+      this.reviewSortOrder = sortOrder;
+      this.lastPage = false;
+      this.reloadReviews();
+    }
   }
 
   reloadReviews(){
@@ -173,19 +264,6 @@ export class MovieComponent implements OnInit {
     }else{
 
       console.log("no User");
-    }
-  }
-
-  changeReviewSortOrder(sortOrder:string)
-  {
-    if(sortOrder == "ratingasc" || sortOrder == "ratingdsc"
-      || sortOrder == "timeasc" || sortOrder == "timedsc")
-    {
-      this.reviews = [];
-      this.reviewPage = 1;
-      this.reviewScoreSum = 0;
-      this.reviewSortOrder = sortOrder;
-      this.loadReviews(this.reviewPage);
     }
   }
 }
