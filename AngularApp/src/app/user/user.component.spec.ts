@@ -50,6 +50,10 @@ describe('UserComponent', () => {
 
   });
 
+  it('should get username', () =>{
+    component.userName = "rwplyler";
+    expect(component.getUsername()).toBe("rwplyler");
+  });
   it('spoilerShown is right amount', () =>{
     component.displaySpoilers = true;
     expect(component.spoilersShown()).toBe(true);
@@ -60,7 +64,7 @@ describe('UserComponent', () => {
     expect(component.discussionsAreLoaded).toBe(true);
   });
 
-  it('shoul load movies', () =>{
+  it('should load movies', () =>{
     component.moviesLoaded();
     expect(component.moviesAreLoaded).toBe(true);
   })

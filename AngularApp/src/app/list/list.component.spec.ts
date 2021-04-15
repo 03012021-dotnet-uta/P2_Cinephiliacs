@@ -74,4 +74,9 @@ describe('ListComponent', () => {
     expect(component.getNextPageNum()).toBe(3);
   })
 
+  it("Should get search term", () => {
+    component.searchTerm = "Back";
+    expect(component.getSearchTerm()).toBe("Back");
+  });
+
 });

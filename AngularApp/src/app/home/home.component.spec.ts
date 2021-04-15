@@ -46,6 +46,8 @@ describe('HomeComponent', () => {
     expect(component.currentUser.username).toBe("");
   });
   
+  
+  
   it('should return user name ', () => {
     component.currentUser = {
       username:'rwplyler',
@@ -56,5 +58,40 @@ describe('HomeComponent', () => {
     }
     expect(component.getCurrentUser()).toBe('rwplyler');
   });
+
+  it('should return email ', () => {
+    component.currentUser = {
+      username:'',
+      firstname:'',
+      lastname:'',
+      email:'john@park.com',
+      permissions:1
+    }
+    expect(component.getEmail()).toBe('john@park.com');
+  });
+
+  
+  it('should return email ', () => {
+    component.currentUser = {
+      username:'',
+      firstname:'',
+      lastname:'',
+      email:'john@park.com',
+      permissions:1
+    }
+    expect(component.getPermissions()).toBe(1);
+  });
+
+  it('should return email ', () => {
+    component.currentUser = {
+      username:'',
+      firstname:'Marty',
+      lastname:'',
+      email:'john@park.com',
+      permissions:1
+    }
+    expect(component.getName()).toBe("Marty");
+  });
+  
 
 });
