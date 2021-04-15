@@ -62,6 +62,16 @@ describe('ListComponent', () => {
   it("page num should Decrease", () =>{
     component.pageNum = 2;
     expect(component.decreasePage()).toBe(1);
+  });
+
+  it("Should get the previous number", () =>{
+    component.pageNum = 2;
+    expect(component.getPreviousPageNum()).toBe(1);
+  })
+
+  it("Should get the next number", () =>{
+    component.pageNum = 2;
+    expect(component.getNextPageNum()).toBe(3);
   })
 
 });
