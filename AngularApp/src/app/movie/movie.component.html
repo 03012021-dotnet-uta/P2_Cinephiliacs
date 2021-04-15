@@ -1,6 +1,6 @@
 <div *ngIf="selectedMovie" class="movieinfo">
     <h1>{{ selectedMovie.Title }}</h1>
-    <button *ngIf="caninput" (click)="followMovie()">Follow Movie</button>
+    <button *ngIf="user" (click)="followMovie()">Follow Movie</button>
     <p *ngIf="movieFollowed" class="feedback">Movie followed</p>
 
     <ul>
@@ -8,7 +8,7 @@
             <img src="{{selectedMovie.Poster}}" alt="Movie Poster">
             <div class="information">
                 <p class="name"><strong>Title:</strong> {{ selectedMovie.Title }}</p>
-                <p *ngIf="reviews" class="reviewscore"><strong>User Review Score: </strong>{{ reviewScore}}</p>
+                <p *ngIf="reviews.length > 0" class="reviewscore"><strong>User Review Score: </strong>{{ reviewScore }}</p>
                 <p class="year"><strong>Year(s):</strong> {{ selectedMovie.Year }}<span *ngIf="selectedMovie.Year.substring(selectedMovie.Year.length - 1)=='–'">present</span></p>
                 <p class="date"><strong>Release Date:</strong> {{ selectedMovie.Released }}</p>
                 <p class="runtime"><strong>Runtime:</strong> {{ selectedMovie.Runtime }}</p>
@@ -26,18 +26,26 @@
 
 <div class="left">
     <h3>Reviews</h3>
-    <span>Sort By: </span><span class="sort" (click)="timeSortNext()" [class.selected]="timeActive">{{timeSortString}}</span><span class="sort lastchild" (click)="ratingSortNext()" [class.selected]="ratingActive">{{ratingSortString}}</span>
-    <ul *ngIf="reviews">
-        <li *ngFor="let review of reviews">
-            <p class="rating">{{ review.rating}}</p>
-            <u routerLink ="/user/{{review.username}}" class="username">{{ review.username}}</u>
-            <p >{{ review.text}}</p>
+    <div *ngIf="(reviews.length > 0) then thenRBlock else elseRBlock"></div>
+    <ng-template #thenRBlock>
+      <span>Sort By: </span>
+      <span class="sort" (click)="timeSortNext()" [class.selected]="timeActive">{{timeSortString}}</span>
+      <span class="sort lastchild" (click)="ratingSortNext()" [class.selected]="ratingActive">{{ratingSortString}}</span>
+      <ul>
+          <li *ngFor="let review of reviews">
+              <p class="rating">{{ review.rating}}</p>
+              <u routerLink ="/user/{{review.username}}" class="username">{{ review.username}}</u>
+              <p >{{ review.text}}</p>
 
-        </li>
-    </ul>
-    <button *ngIf="!lastPage" (click)="loadNextPage()">More Reviews</button>
+          </li>
+      </ul>
+      <button *ngIf="!lastPage" (click)="loadNextPage()">More Reviews</button>
+    </ng-template>
+    <ng-template #elseRBlock>
+      <span>This movie has not be reviewed</span>
+    </ng-template>
 
-    <div *ngIf="caninput" id="review">
+    <div *ngIf="user" id="review">
         <h4>New Review</h4>
         <form>
             <label>Rating:</label><br>
@@ -62,15 +70,22 @@
 
 <div class="right">
 
-    <h3>Recent Discussions</h3>
-    <ul *ngIf="discussions">
+  <h3>Recent Discussions</h3>
+  <div *ngIf="discussions then thenDBlock else elseDBlock"></div>
+  <ng-template #thenDBlock>
+    <ul>
         <li *ngFor="let discussion of discussions">
             <!-- <p >{{ discussion.discussionid}}</p> -->
             <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}}</u>
             <span *ngIf="discussion.topic != 'None'">{{discussion.topic}}</span>
         </li>
     </ul>
-    <div *ngIf="caninput" id="discussion">
+  </ng-template>
+  <ng-template #elseDBlock>
+    <span>There are no discussions for this movie</span>
+  </ng-template>
+
+    <div *ngIf="user" id="discussion">
         <h4>New Discussion</h4>
         <form>
             <label>Topic: </label><br>
