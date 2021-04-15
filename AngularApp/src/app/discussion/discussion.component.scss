@@ -27,6 +27,10 @@ ul {
             button:hover {
                 cursor: pointer;
             }
+
+            button:active {
+                background-color: #336da3;
+            }
         }
 
         div.commentContent {
@@ -94,6 +98,10 @@ ul {
 
         button:hover {
             cursor: pointer;
+        }
+
+        button:active {
+            background-color: #336da3;
         }
 
         label {
