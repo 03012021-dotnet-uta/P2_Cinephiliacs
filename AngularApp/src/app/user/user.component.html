@@ -9,7 +9,7 @@
         <ul class="movies">
           <li *ngFor="let movie of userMovies">
             <div class="image">
-                <img src="{{movie.Poster}}" routerLink="/movie/{{movie.imdbID}}">
+                <img src="{{movie.Poster}}" routerLink="/movie/{{movie.imdbID}}" alt="Movie Poster">
             </div>
             <p class="name">{{ movie.Title }}</p>
             <p class="year">{{ movie.Year }}<span *ngIf="movie.Year.substring(movie.Year.length - 1)=='–'">present</span></p>

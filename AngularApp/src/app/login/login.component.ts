@@ -58,20 +58,22 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  createUser(): void {
+  createUser() {
     console.log("In Create");
     if(!this.newUser.firstname || !this.newUser.lastname || !this.newUser.username ||!this.newUser.email)
     {
-      console.log("Please fill in the correct data")
+      console.log("Please fill in all data")
     }
     else
     {
-      this.newUser
+      this.newUser;
       console.log(JSON.stringify(this.newUser));
       this._login.createUser(this.newUser).subscribe(data => {
         console.log(data);
         this.currentUser = this.newUser;
-        this.isLoginPage = true;
+        this.userName = this.currentUser.username;
+        this.password = this.currentUser.lastname;
+        this.login();
       });
     }
   }
