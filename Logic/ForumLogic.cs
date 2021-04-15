@@ -25,7 +25,9 @@ namespace BusinessLogic
         public async Task<bool> CreateDiscussion(NewDiscussion discussion)
         {
             var repoDiscussion = Mapper.NewDiscussionToNewRepoDiscussion(discussion);
-            return await _repo.AddDiscussion(repoDiscussion);
+            var repoTopic = new Repository.Models.Topic();
+            repoTopic.TopicName = discussion.Topic;
+            return await _repo.AddDiscussion(repoDiscussion, repoTopic);
         }
 
         public async Task<List<Comment>> GetComments(int discussionid)

@@ -21,6 +21,8 @@ export class MovieComponent implements OnInit {
   user:any;
   movieFollowed: any = false;
 
+  caninput:boolean = false;
+
   sumbitReview: any ={
     rating:0,
     movieid:this.router.snapshot.params.id,
@@ -64,6 +66,10 @@ export class MovieComponent implements OnInit {
     this._login.postMovieId(this.movieID).subscribe(data => console.log("submitted"));
   }
 
+  canYouInput(){
+    console.log("Can input ?" + this.caninput);
+    return this.caninput;
+  }
   async showReview(){
     setTimeout(() => {
       this._login.getReviews(this.movieID).subscribe(data => {
@@ -128,6 +134,7 @@ export class MovieComponent implements OnInit {
   
   inputFields(){
     if(localStorage.getItem("loggedin")){
+        this.caninput=true;
         console.log("userset");
         this.user = localStorage.getItem("loggedin")
        
@@ -139,9 +146,7 @@ export class MovieComponent implements OnInit {
      
     }else{
       
-      console.log("user isn't set");
-      this.input = document.getElementById("input");
-      this.input.style.display = "none";
+      console.log("no User");
     }
   }
 

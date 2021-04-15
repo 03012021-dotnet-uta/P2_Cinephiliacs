@@ -57,7 +57,47 @@ export class ListComponent implements OnInit {
     });
 
   }
+  myNumber:number = 0;
+  myStrings:string = '';
+  function1(): void {
+    this.myNumber++;
+  }
+  function2(s1: string, s2: string): void {
+    this.myStrings = s1 + s2;
+  }
+  function3(myString: string): string {
+    return myString + myString;
+  }
 
+  increasePage(){
+    this.pageNum++;
+    return this.pageNum;
+  }
+
+  decreasePage(){
+    this.pageNum--;
+    return this.pageNum;
+  }
+  getPreviousPageNum(){
+    this.prevPg = this.pageNum - 1;
+    console.log(this.prevPg);
+    return this.prevPg;
+  }
+
+  getNextPageNum(){
+    this.nextPg = this.pageNum + 1;
+    console.log(this.nextPg);
+    return this.nextPg;
+  }
+
+  getPageNum(){
+    console.log("PageNum" + this.pageNum);
+    return this.pageNum;
+  }
+
+  
+
+  
   onSubmit() {
     if (this.searchForm.get('search')!.value != "")
     {

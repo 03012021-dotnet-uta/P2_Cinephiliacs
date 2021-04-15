@@ -1,6 +1,6 @@
 <div *ngIf="selectedMovie" class="movieinfo">
     <h1>{{ selectedMovie.Title }}</h1>
-    <button (click)="followMovie()">Follow Movie</button>
+    <button *ngIf="caninput" (click)="followMovie()">Follow Movie</button>
     <p *ngIf="movieFollowed" class="feedback">Movie followed</p>
 
     <ul>
@@ -35,7 +35,7 @@
         </li>
     </ul>
 
-    <div id="review">
+    <div *ngIf="caninput" id="review">
         <h4>New Review</h4>
         <form>
             <label>Rating:</label><br>
@@ -67,7 +67,7 @@
             <u routerLink="/discussion/{{discussion.discussionid}}">{{discussion.subject}} <u *ngIf="discussion.topic != 'None'">{{discussion.topic}}</u></u> 
         </li>
     </ul>
-    <div id="discussion">
+    <div *ngIf="caninput" id="discussion">
         <h4>New Discussion</h4>
         <form>
             <label>Topic: </label><br>

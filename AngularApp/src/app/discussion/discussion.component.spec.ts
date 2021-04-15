@@ -36,4 +36,30 @@ describe('DiscussionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+
+  it('On Init test', () => {
+    component.ngOnInit();
+    expect(component.getComments).toHaveBeenCalled;
+    expect(component.displayInput).toHaveBeenCalled;
+  });
+
+  it('spoilers shown', () => {
+    component.displaySpoilers = true;
+    expect(component.showSpoilers).toBeTruthy();
+  });
+
+  it("Should return dicussion ID", () =>{
+    component.disscussionID = "123";
+    expect(component.getDicussionID()).toBe("123");
+  })
+  
+  it('is true', () => {
+    component.displaySpoilers = true;
+    expect(component.spoilersShown()).toBe(true);
+  });
+
+  it('is Empty',() =>{
+    expect(component.isEmpty("NotEmpty")).toBe(false);
+  })
 });

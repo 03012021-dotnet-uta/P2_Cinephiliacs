@@ -36,4 +36,42 @@ describe('ListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should increment "myNumber"', () => {
+    component.function1();
+    expect(component.myNumber).toBe(1);
+    component.function1();
+    expect(component.myNumber).toBe(2);
+  });
+
+  it('should concatenate the strings', () => {
+    component.function2('testing', ' is fun');
+    expect(component.myStrings).toBe('testing is fun');
+  });
+
+  it('should concatenate and return the string', () => {
+    expect(component.function3('test')).toBe('testtest', 'funtion3 test failed.');
+  });
+
+
+  it("page num should increase", () =>{
+    component.pageNum = 1;
+    expect(component.increasePage()).toBe(2);
+  })
+
+  it("page num should Decrease", () =>{
+    component.pageNum = 2;
+    expect(component.decreasePage()).toBe(1);
+  });
+
+  it("Should get the previous number", () =>{
+    component.pageNum = 2;
+    expect(component.getPreviousPageNum()).toBe(1);
+  })
+
+  it("Should get the next number", () =>{
+    component.pageNum = 2;
+    expect(component.getNextPageNum()).toBe(3);
+  })
+
 });

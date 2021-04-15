@@ -36,4 +36,28 @@ describe('MovieComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('It should check input feilds', () =>{
+    
+    expect(component.inputFields()).toBeTruthy;
+    expect(component.caninput).toBe(false);
+  })
+
+
+  it("should say that you can do inputs",() =>{
+    component.caninput = true;
+    expect(component.canYouInput()).toBeTrue;
+  });
+  it('It should check input feilds to false', () =>{
+    
+    expect(component.inputFields()).toBeTruthy;
+   
+  })
+
+  it('showdiscussion should be run', () => {
+    component.submitDiscussion.topic = "yes";
+    component.submitDiscussion.subject = "test";
+    component.followMovie();
+    expect(component.showDiscussion).toHaveBeenCalled;
+  })
 });

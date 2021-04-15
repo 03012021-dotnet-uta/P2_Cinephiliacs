@@ -59,8 +59,13 @@ export class DiscussionComponent implements OnInit {
     }
   }
 
+  getDicussionID(){
+    console.log("Dicussion ID " +this.disscussionID);
+    return this.disscussionID;
+  }
+
   postComment(){
-    if(this.newComment.text ==""){
+    if(this.isEmpty(this.newComment.text)){
       console.log("Please enter a comment");
     }else{
       this._login.postComment(this.newComment).subscribe(data => console.log(data));
@@ -76,6 +81,10 @@ export class DiscussionComponent implements OnInit {
 
   spoilersShown() {
     return this.displaySpoilers;
+  }
+
+  isEmpty(testSTR:string){
+    return (testSTR == "");
   }
 
 }

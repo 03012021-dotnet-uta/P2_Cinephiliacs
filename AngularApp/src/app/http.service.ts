@@ -9,7 +9,8 @@ import { FormsModule} from '@angular/forms';
 })
 export class HttpService {
 
-  
+  connectionString:string ="https://movie-database-imdb-alternative.p.rapidapi.com";
+  apiKey:string ="f6d24cec46msh55a535ae1cf36d0p1bf4bcjsnd49b624447d2";
 
   constructor(private http: HttpClient) { 
     
@@ -23,6 +24,16 @@ export class HttpService {
 
   getMovie(id: string){
     return this.http.get("https://movie-database-imdb-alternative.p.rapidapi.com?rapidapi-key=f6d24cec46msh55a535ae1cf36d0p1bf4bcjsnd49b624447d2&i="+ id + "&r=json");
+  }
+
+  getConnection(){
+    console.log(this.connectionString);
+    return this.connectionString;
+  }
+
+  getAPIKey(){
+    console.log(this.connectionString);
+    return this.apiKey;
   }
 
 
