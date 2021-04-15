@@ -32,10 +32,12 @@ namespace CineAPI
         {   
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
+                options.AddDefaultPolicy(
                                 builder =>
                                 {
-                                    builder.WithOrigins("https://cinephiliacs.azurewebsites.com", 
+                                    builder.WithOrigins("https://cinephiliacsapi.azurewebsites.net",
+                                        "http://cinephiliacsapi.azurewebsites.net",
+                                        "https://cinephiliacs.azurewebsites.com", 
                                         "http://cinephiliacs.azurewebsites.com", "http://localhost:4200")
                                         .AllowAnyHeader()
                                         .AllowAnyMethod();
@@ -75,7 +77,7 @@ namespace CineAPI
             app.UseRouting();
 
             // Enables the CORS policty for all controller endpoints. Must come between UseRouting() and UseEndpoints()
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
