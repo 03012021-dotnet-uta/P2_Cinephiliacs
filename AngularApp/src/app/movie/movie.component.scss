@@ -198,6 +198,19 @@ u:hover {
         li {
             margin-bottom: 2%;
         }
+
+        span {
+            display: inline-block;
+            background-color: lightgray;
+            border: 1px solid rgb(180, 179, 179);
+            font-size: .6em;
+            padding: 4px 3px 2px 3px;
+            margin-left: 10px;
+
+            &:hover {
+                cursor: default;
+            }
+        }
     }
 
     #discussion {
