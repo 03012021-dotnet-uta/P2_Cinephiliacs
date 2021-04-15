@@ -32,9 +32,7 @@ export class MovieComponent implements OnInit {
   ratingSortString: string = "Rating \u21D5";
   ratingActive: boolean = false;
   timeActive: boolean = false;
-
   reviewsBusy: boolean = false;
-
   lastPage: boolean = false;
 
   sumbitReview: any ={
@@ -76,7 +74,7 @@ export class MovieComponent implements OnInit {
 
     //Movie Reviews
     this.loadReviews(this.reviewPage);
-
+    if(this.user){
     this._login.getUserMovies(JSON.parse(this.user).username).subscribe((usersMovieNames: string[]) => {
       if(typeof usersMovieNames.find(m => m == this.movieID) === 'undefined')
       {
@@ -87,6 +85,10 @@ export class MovieComponent implements OnInit {
         this.movieFollowed = true;
       }
     });
+      }
+    else{
+    console.log("user isn't set");
+  }
 
     //saving a reference to the database of movies interacted with
     this._login.postMovieId(this.movieID).subscribe(data => console.log("submitted"));
