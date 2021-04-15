@@ -35,10 +35,7 @@ namespace CineAPI
                 options.AddDefaultPolicy(
                                 builder =>
                                 {
-                                    builder.WithOrigins("https://cinephiliacsapi.azurewebsites.net",
-                                        "http://cinephiliacsapi.azurewebsites.net",
-                                        "https://cinephiliacs.azurewebsites.com", 
-                                        "http://cinephiliacs.azurewebsites.com", "http://localhost:4200")
+                                    builder.AllowAnyOrigin()
                                         .AllowAnyHeader()
                                         .AllowAnyMethod();
                                 });
