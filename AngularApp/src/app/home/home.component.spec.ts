@@ -45,5 +45,16 @@ describe('HomeComponent', () => {
     component.logout();
     expect(component.currentUser.username).toBe("");
   });
+  
+  it('should return user name ', () => {
+    component.currentUser = {
+      username:'rwplyler',
+      firstname:'',
+      lastname:'',
+      email:'',
+      permissions:1
+    }
+    expect(component.getCurrentUser()).toBe('rwplyler');
+  });
 
 });

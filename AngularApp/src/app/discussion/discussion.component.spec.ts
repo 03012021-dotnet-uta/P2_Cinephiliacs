@@ -48,6 +48,11 @@ describe('DiscussionComponent', () => {
     component.displaySpoilers = true;
     expect(component.showSpoilers).toBeTruthy();
   });
+
+  it("Should return dicussion ID", () =>{
+    component.disscussionID = "123";
+    expect(component.getDicussionID()).toBe("123");
+  })
   
   it('is true', () => {
     component.displaySpoilers = true;

@@ -76,6 +76,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  getUserName(){
+    console.log(this.userName);
+    return this.userName;
+  }
+
+  isPasswordRigt(pass:string){
+    console.log("Checking");
+    return (pass == this.password);
+  }
+
   switchToRegister(): void {
     this.isLoginPage = false;
   }

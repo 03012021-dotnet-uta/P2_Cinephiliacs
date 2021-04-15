@@ -59,6 +59,11 @@ export class DiscussionComponent implements OnInit {
     }
   }
 
+  getDicussionID(){
+    console.log("Dicussion ID " +this.disscussionID);
+    return this.disscussionID;
+  }
+
   postComment(){
     if(this.isEmpty(this.newComment.text)){
       console.log("Please enter a comment");
