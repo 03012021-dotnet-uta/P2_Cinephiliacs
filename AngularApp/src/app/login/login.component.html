@@ -8,6 +8,7 @@
         <br>
         <label for="pword">Password:</label><br>
         <input type="password" placeholder="Enter Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required>
+        <p *ngIf="passwordNotOk" id="pwcheck">Incorrect Password</p>
         <br>
         <button (click)="login()">Login</button><br>
         <a (click)="switchToRegister()">Create an Account</a>

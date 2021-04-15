@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   userName: string = "";
   password: string = "";
+  passwordNotOk: any = false;
 
   isLoginPage: boolean = true;
 
@@ -41,7 +42,14 @@ export class LoginComponent implements OnInit {
       console.log(data);
       if (data.lastname == this.password)
       {
+        this.passwordNotOk = false;
         this.currentUser = data;
+      }
+      else {
+        this.passwordNotOk = true;
+        setTimeout(() => { 
+          this.passwordNotOk = false;
+        }, 3000);
       }
       console.log(this.currentUser.username);
       this.currentUserChange.emit(this.currentUser);
