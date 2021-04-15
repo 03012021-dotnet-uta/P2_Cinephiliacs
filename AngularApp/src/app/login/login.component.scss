@@ -12,6 +12,10 @@ form {
   margin-left: 5%;
   text-align: left;
 
+  &.registerform {
+    margin-top: -15%;
+  }
+
   label {
     font-size: .9em;
     font-weight: bold;
