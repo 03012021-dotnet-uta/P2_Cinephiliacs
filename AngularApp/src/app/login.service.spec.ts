@@ -39,6 +39,20 @@ beforeEach(() => {
   it('Update User',() =>{
     expect(service.postUpdateUser).toBeTruthy();
   });
+   it('get connection',() =>{
+     service.connection = "www.google.com";
+     expect(service.getConnection()).toBe("www.google.com");
+   });
+
+   it('get Asking User', () =>{
+      service.askingUser = "rwplyler";
+      expect(service.getAskingUser()).toBe("rwplyler");
+   });
+
+   it('get current User', () =>{
+    service.currentUser= "rwplyler";
+    expect(service.getCurrentUser()).toBe("rwplyler");
+ });
 
   it('getDiscussion',() =>{
     expect(service.getDiscussionComments).toBeTruthy();

@@ -55,4 +55,23 @@ describe('UserComponent', () => {
     expect(component.spoilersShown()).toBe(true);
   });
 
+  it('should show Discussion', () => {
+    component.discussionsLoaded();
+    expect(component.discussionsAreLoaded).toBe(true);
+  });
+
+  it('shoul load movies', () =>{
+    component.moviesLoaded();
+    expect(component.moviesAreLoaded).toBe(true);
+  })
+  it('Should Load Discussions', () =>{
+    component.reviewsLoaded();
+    expect(component.reviewsAreLoaded).toBe(true);
+  })
+  it('should load comments', ()=>{
+    component.commentsLoaded();
+    expect(component.commentsAreLoaded).toBe(true);
+  });
+
+
 });

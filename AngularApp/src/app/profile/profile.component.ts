@@ -88,6 +88,29 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  moviesLoaded(){
+    console.log(this.moviesAreLoaded);
+    this.moviesAreLoaded = true;
+    return this.moviesAreLoaded;
+  }
+  reviewsLoaded(){
+    console.log(this.reviewsAreLoaded);
+    this.reviewsAreLoaded = true;
+    return this.reviewsAreLoaded;
+  }
+  dicussionsLoaded(){
+    console.log(this.discussionsAreLoaded);
+    this.discussionsAreLoaded = true;
+    return this.discussionsAreLoaded
+  }
+
+  commentsLoaded(){
+    console.log(this.commentsAreLoaded);
+    this.commentsAreLoaded = true;
+    return this.commentsAreLoaded;
+  }
+
+
   updateUser(): void {
     if(this.userIsEditable)
     {

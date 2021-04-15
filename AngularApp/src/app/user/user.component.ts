@@ -71,6 +71,24 @@ export class UserComponent implements OnInit {
     });
   }
 
+  moviesLoaded(){
+  this.moviesAreLoaded = true;
+  console.log("movies are loaded");
+  }
+  reviewsLoaded(){
+    this.reviewsAreLoaded = true;
+    console.log("reviews are loaded");
+  }
+  discussionsLoaded(){
+    this.discussionsAreLoaded = true;
+    console.log("discussionsAreLoaded");
+  }
+  commentsLoaded(){
+    this.commentsAreLoaded = true;
+    console.log("commentsAreLoaded");
+  }
+
+
   showSpoilers() {
     this.displaySpoilers = true;
     console.log(this.displaySpoilers);

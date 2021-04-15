@@ -20,12 +20,19 @@ describe('HttpService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('should return apiKey', () => {
+    expect(service.getAPIKey()).toBe("f6d24cec46msh55a535ae1cf36d0p1bf4bcjsnd49b624447d2");
+  })
+
+  it('should return base website', () => {
+    expect(service.getConnection()).toBe("https://movie-database-imdb-alternative.p.rapidapi.com");
+  })
+
   it('should create an array', ()=>{
     const back = 'back to the future';
     let movies:any;
     movies = service.getMovies(back,1);
     expect(true).toBeTrue();
-    
   });
 });
 
