@@ -19,7 +19,7 @@
 <ul *ngIf="searches">
     <li *ngFor="let search of searches">
         <div class="image">
-            <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}">
+            <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}" alt="Movie Poster">
         </div>
         <p class="name">{{ search.Title }}</p>
         <p class="year">{{ search.Year }}<span *ngIf="search.Year.substring(search.Year.length - 1)=='–'">present</span></p>
@@ -29,7 +29,7 @@
 <ul *ngIf="searches2">
     <li *ngFor="let search of searches2">
         <div class="image">
-            <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}">
+            <img src="{{search.Poster}}" routerLink="/movie/{{search.imdbID}}" alt="Movie Poster">
         </div>
         <p class="name">{{ search.Title }}</p>
         <p class="year">{{ search.Year }}<span *ngIf="search.Year.substring(search.Year.length - 1)=='–'">present</span></p>
