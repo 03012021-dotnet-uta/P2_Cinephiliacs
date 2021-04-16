@@ -21,23 +21,19 @@ export class MovieComponent implements OnInit {
   reviews: Review[] = [];
   input:any;
   user:any;
-  movieFollowed: any = false;
+  movieFollowed: boolean = false;
 
   reviewPage: number = 1;
-  reviewSortOrder: string = "ratingdsc";
+  reviewSortOrder: string = "timedsc";
 
   timeSortState: number = 0;
-  timeSortString: string = "Time \u21D5";
+  timeSortString: string = "Newest";
   ratingSortState: number = 0;
   ratingSortString: string = "Rating \u21D5";
   ratingActive: boolean = false;
-  timeActive: boolean = false;
-
+  timeActive: boolean = true;
   reviewsBusy: boolean = false;
-
   lastPage: boolean = false;
-
-  caninput:boolean = false;
 
   sumbitReview: any ={
     rating:0,
@@ -63,7 +59,8 @@ export class MovieComponent implements OnInit {
     this._login.getTopics().subscribe(data => {
       console.log(data);
       this.topics = data;
-  });
+    });
+
     //will get the details of the movie from the IMDB API
     this.movieID = this.router.snapshot.params.id;
     this._http.getMovie(this.movieID).subscribe(data => {
@@ -77,6 +74,21 @@ export class MovieComponent implements OnInit {
 
     //Movie Reviews
     this.loadReviews(this.reviewPage);
+    if(this.user){
+    this._login.getUserMovies(JSON.parse(this.user).username).subscribe((usersMovieNames: string[]) => {
+      if(typeof usersMovieNames.find(m => m == this.movieID) === 'undefined')
+      {
+        this.movieFollowed = false;
+      }
+      else
+      {
+        this.movieFollowed = true;
+      }
+    });
+      }
+    else{
+    console.log("user isn't set");
+  }
 
     //saving a reference to the database of movies interacted with
     this._login.postMovieId(this.movieID).subscribe(data => console.log("submitted"));
@@ -99,7 +111,6 @@ export class MovieComponent implements OnInit {
         });
         this.reviewScore = this.reviewScoreSum/this.reviews.length;
         console.log(this.reviewScore);
-        this.lastPage = false;
         this.reviewsBusy = false;
       }
     }, error => {
@@ -128,21 +139,21 @@ export class MovieComponent implements OnInit {
       switch (this.timeSortState) {
         case 0:
           this.timeSortState = 1;
-          this.timeSortString = "Time \u21D1";
+          this.timeSortString = "Oldest";
           this.ratingSortState = 0;
           this.ratingSortString = "Rating \u21D5";
           this.changeReviewSortOrder("timeasc");
           break;
         case 1:
           this.timeSortState = 2;
-          this.timeSortString = "Time \u21D3";
+          this.timeSortString = "Newest";
           this.ratingSortState = 0;
           this.ratingSortString = "Rating \u21D5";
           this.changeReviewSortOrder("timedsc");
           break;
         case 2:
           this.timeSortState = 1;
-          this.timeSortString = "Time \u21D1";
+          this.timeSortString = "Oldest";
           this.ratingSortState = 0;
           this.ratingSortString = "Rating \u21D5";
           this.changeReviewSortOrder("timeasc");
@@ -194,20 +205,19 @@ export class MovieComponent implements OnInit {
       this.reviews = [];
       this.reviewScoreSum = 0;
       this.reviewSortOrder = sortOrder;
-      this.lastPage = false;
-      this.reloadReviews();
+      this.reloadReviews(false);
     }
   }
 
-  reloadReviews(){
+  reloadReviews(loadNew: boolean){
+    if(loadNew)
+    {
+      this.reviews = [];
+      this.reviewPage += 1;
+    }
     for (let pageCounter:number = 1; pageCounter <= this.reviewPage; pageCounter++) {
-      setTimeout(() => { this.loadReviews(pageCounter); }, 500*pageCounter);
+      setTimeout(() => { this.loadReviews(pageCounter); }, 300*pageCounter);
     }
-  }
-
-  canYouInput(): boolean {
-    console.log("Can input ?" + this.caninput);
-    return this.caninput;
   }
 
   async showDiscussion(){
@@ -220,12 +230,10 @@ export class MovieComponent implements OnInit {
   }
 
   followMovie(){
-    if(localStorage.getItem("loggedin")){
-      this._login.followMovie(JSON.parse(this.user).username,this.movieID).subscribe(data => console.log("following Movie Now"));
-      this.movieFollowed = true;
-      setTimeout(() => {
-        this.movieFollowed = false;
-      }, 2000);
+    if(this.user){
+      this._login.followMovie(JSON.parse(this.user).username,this.movieID).subscribe(data => {
+        this.movieFollowed = true;
+      });
     }
   }
 
@@ -250,14 +258,14 @@ export class MovieComponent implements OnInit {
       alert("Reviews should be less than 250 Characters")
     }else{
       this._login.postReview(this.sumbitReview).subscribe(data => console.log(data));
-      this.reloadReviews();
+      this.lastPage = false;
+      this.reloadReviews(true);
     }
     console.log(this.sumbitReview);
   }
 
   inputFields(){
     if(localStorage.getItem("loggedin")){
-        this.caninput=true;
         console.log("userset");
         this.user = localStorage.getItem("loggedin")
 

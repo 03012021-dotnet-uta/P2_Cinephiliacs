@@ -19,7 +19,6 @@ namespace CineAPI
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,12 +31,12 @@ namespace CineAPI
         {   
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
+                options.AddDefaultPolicy(
                                 builder =>
                                 {
                                     builder.AllowAnyOrigin()
-                                    .AllowAnyHeader()
-                                    .AllowAnyMethod();
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
                                 });
             });
 
@@ -74,7 +73,7 @@ namespace CineAPI
             app.UseRouting();
 
             // Enables the CORS policty for all controller endpoints. Must come between UseRouting() and UseEndpoints()
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
