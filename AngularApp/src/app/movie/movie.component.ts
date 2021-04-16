@@ -212,6 +212,7 @@ export class MovieComponent implements OnInit {
   reloadReviews(loadNew: boolean){
     if(loadNew)
     {
+      this.reviews = [];
       this.reviewPage += 1;
     }
     for (let pageCounter:number = 1; pageCounter <= this.reviewPage; pageCounter++) {
