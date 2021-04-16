@@ -28,17 +28,17 @@
     <h3>Your Info</h3>
     <div class="container" (ngSubmit)="updateUser()">
       <label for="uname">Username</label>
-      <p *ngIf="!userIsEditable">{{editedUser.username}}</p>
-      <input *ngIf="userIsEditable" type="text" [(ngModel)]="editedUser.username" [ngModelOptions]="{standalone: true}" readonly required><br>
+      <p>{{editedUser.username}}</p>
+      <input *ngIf="false" type="text" [(ngModel)]="editedUser.username" [ngModelOptions]="{standalone: true}" class="noneditable" required><br>
       <label for="uname">First Name</label>
       <p *ngIf="!userIsEditable">{{editedUser.firstname}}</p>
-      <input *ngIf="userIsEditable" type="text" [(ngModel)]="editedUser.firstname" [ngModelOptions]="{standalone: true}" [readonly]="!userIsEditable" required><br>
+      <input *ngIf="userIsEditable" type="text" [(ngModel)]="editedUser.firstname" [ngModelOptions]="{standalone: true}" required><br>
       <label for="uname">Last Name</label>
       <p *ngIf="!userIsEditable">{{editedUser.lastname}}</p>
-      <input *ngIf="userIsEditable" type="text" [(ngModel)]="editedUser.lastname" [ngModelOptions]="{standalone: true}" [readonly]="!userIsEditable" required><br>
+      <input *ngIf="userIsEditable" type="text" [(ngModel)]="editedUser.lastname" [ngModelOptions]="{standalone: true}" required><br>
       <label for="uname">Email</label>
       <p *ngIf="!userIsEditable">{{editedUser.email}}</p>
-      <input *ngIf="userIsEditable" type="text" [(ngModel)]="editedUser.email" [ngModelOptions]="{standalone: true}" [readonly]="!userIsEditable" required><br>
+      <input *ngIf="userIsEditable" type="text" [(ngModel)]="editedUser.email" [ngModelOptions]="{standalone: true}" required><br>
       <button *ngIf="!userIsEditable" (click)="editUser()">Edit Profile</button>
       <button *ngIf="userIsEditable" (click)="updateUser()">Submit</button>
       <a *ngIf="userIsEditable" (click)="cancelUpdate()">Cancel Changes</a>
