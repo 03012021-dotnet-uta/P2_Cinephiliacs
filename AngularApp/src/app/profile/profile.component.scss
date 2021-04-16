@@ -181,6 +181,10 @@ form.update {
           width: 90%;
         }
 
+        input.noneditable {
+            background-color: lightgrey;
+        }
+
         p {
           padding-left: 5px;
           margin-left: 3%;
