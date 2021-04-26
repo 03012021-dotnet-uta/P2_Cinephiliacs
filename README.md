@@ -48,7 +48,7 @@ To-do list:
 
 ## Getting Started
    
-> Visit https://cinephiliacs.azurewebsites.net/
+Visit https://cinephiliacs.azurewebsites.net/
 
 ## Usage
 
@@ -66,9 +66,9 @@ To-do list:
 
 ## Contributors
 
-> Tristyn Linde (team lead),
-> Matthew Grimsley,
-> Roger Plyler.
+* Tristyn Linde (team lead)
+* Matthew Grimsley
+* Roger Plyler
 
 ## License
 
