@@ -52,23 +52,23 @@ To-do list:
 
 ## Usage
 
-> Register a new user with the credentials you would like.
-> Search for your favorite movie using the search bar in the header.
-> Select your movie from the list of results.
-> Follow your movie using the button under the title.
-> Leave a review with your desired rating and comments. 
-> Create a discussion with the subject and tag of your choice.
-> Click to view your discussion.
-> Leave the first comment and decide whether or not to mark it as a spoiler. 
-> Click on the user icon at the top of the page to go back to your profile.
-> View your followed movies and your created reviews and discussions.
+1. Register a new user with the credentials you would like.
+2. Search for your favorite movie using the search bar in the header.
+3. Select your movie from the list of results.
+4. Follow your movie using the button under the title.
+5. Leave a review with your desired rating and comments. 
+6. Create a discussion with the subject and tag of your choice.
+7. Click to view your discussion.
+8. Leave the first comment and decide whether or not to mark it as a spoiler. 
+9. Click on the user icon at the top of the page to go back to your profile.
+10. View your followed movies and your created reviews and discussions.
 
 
 ## Contributors
 
-> Tristyn Linde (team lead)
-> Matthew Grimsley
-> Roger Plyler
+> Tristyn Linde (team lead),
+> Matthew Grimsley,
+> Roger Plyler.
 
 ## License
 
