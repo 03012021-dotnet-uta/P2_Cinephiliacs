@@ -1,4 +1,4 @@
-# PROJECT NAME
+# P2 Cinephiliacs
 
 ## Project Description
 
